@@ -1,6 +1,268 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vocal Commerce Bénin</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background: #006233;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 { font-size: 28px; }
+    header p { font-size: 14px; margin-top: 5px; opacity: 0.9; }
+
+    .auteur {
+      text-align: center;
+      background: #ffd700;
+      padding: 8px;
+      font-weight: bold;
+      color: #006233;
+    }
+
+    .recherche {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+      background: white;
+    }
+
+    .recherche input {
+      width: 60%;
+      padding: 12px;
+      border: 2px solid #006233;
+      border-radius: 25px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .recherche button {
+      padding: 12px 20px;
+      background: #006233;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px;
+      flex-wrap: wrap;
+      background: white;
+      border-bottom: 2px solid #eee;
+    }
+
+    .categories button {
+      padding: 10px 20px;
+      border: 2px solid #006233;
+      background: white;
+      color: #006233;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .categories button.active,
+    .categories button:hover {
+      background: #006233;
+      color: white;
+    }
+
+    .titre-section {
+      text-align: center;
+      padding: 20px;
+      font-size: 22px;
+      color: #006233;
+    }
+
+    .grille {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 0 20px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .carte {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .carte:hover { transform: translateY(-4px); }
+
+    .carte .emoji {
+      font-size: 60px;
+      text-align: center;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    .carte-info { padding: 15px; }
+    .carte-info h3 { font-size: 16px; margin-bottom: 5px; }
+    .carte-info p { font-size: 13px; color: #777; margin-bottom: 10px; }
+
+    .prix {
+      font-size: 18px;
+      font-weight: bold;
+      color: #006233;
+      margin-bottom: 10px;
+    }
+
+    .btn-commander {
+      width: 100%;
+      padding: 10px;
+      background: #006233;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.3s;
+    }
+
+    .btn-commander:hover { background: #004d26; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #006233;
+      color: white;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🛒 Vocal Commerce Bénin</h1>
+  <p>Achetez facilement avec votre voix</p>
+</header>
+
+<div class="auteur">Auteur : Anael DESSOUASSI</div>
+
+<div class="recherche">
+  <input type="text" id="searchInput" placeholder="Rechercher un produit...">
+  <button onclick="demarrerVoix()">🎤</button>
+  <button onclick="rechercherProduit()">🔍</button>
+</div>
+
+<div class="categories">
+  <button class="active" onclick="filtrer('tous', this)">🛍️ Tous</button>
+  <button onclick="filtrer('alimentation', this)">🍎 Alimentation</button>
+  <button onclick="filtrer('vetements', this)">👕 Vêtements</button>
+  <button onclick="filtrer('electrique', this)">⚡ Électrique</button>
+  <button onclick="filtrer('divers', this)">📦 Divers</button>
+</div>
+
+<h2 class="titre-section" id="titreSection">Tous les produits</h2>
+
+<div class="grille" id="grille"></div>
+
+<footer>
+  © 2026 Vocal Commerce Bénin — Anael DESSOUASSI
+</footer>
+
+<script>
+  const produits = [
+    { nom: "Riz local 5kg", prix: 3500, categorie: "alimentation", emoji: "🍚", desc: "Riz de qualité du Bénin" },
+    { nom: "Huile de palme 1L", prix: 1200, categorie: "alimentation", emoji: "🫙", desc: "Huile naturelle locale" },
+    { nom: "Tomates fraîches", prix: 500, categorie: "alimentation", emoji: "🍅", desc: "Tomates du marché" },
+    { nom: "Poulet entier", prix: 4500, categorie: "alimentation", emoji: "🍗", desc: "Poulet fermier frais" },
+    { nom: "Pagne wax 6 yards", prix: 8000, categorie: "vetements", emoji: "🧵", desc: "Tissu wax africain" },
+    { nom: "T-shirt homme", prix: 3000, categorie: "vetements", emoji: "👕", desc: "100% coton, toutes tailles" },
+    { nom: "Robe femme", prix: 5500, categorie: "vetements", emoji: "👗", desc: "Robe légère et élégante" },
+    { nom: "Sandales cuir", prix: 4000, categorie: "vetements", emoji: "👡", desc: "Sandales artisanales" },
+    { nom: "Ventilateur", prix: 15000, categorie: "electrique", emoji: "🌀", desc: "Ventilateur de table 3 vitesses" },
+    { nom: "Chargeur universel", prix: 2500, categorie: "electrique", emoji: "🔌", desc: "Compatible tous téléphones" },
+    { nom: "Ampoule LED", prix: 1500, categorie: "electrique", emoji: "💡", desc: "Économie d'énergie 12W" },
+    { nom: "Fer à repasser", prix: 9000, categorie: "electrique", emoji: "🔧", desc: "Fer vapeur 1200W" },
+    { nom: "Savon naturel", prix: 800, categorie: "divers", emoji: "🧼", desc: "Savon karité artisanal" },
+    { nom: "Sac à dos", prix: 6000, categorie: "divers", emoji: "🎒", desc: "Sac résistant 20L" },
+    { nom: "Cahier 200 pages", prix: 1000, categorie: "divers", emoji: "📓", desc: "Pour école ou bureau" },
+    { nom: "Parapluie", prix: 3500, categorie: "divers", emoji: "☂️", desc: "Solide et léger" },
+  ];
+
+  function afficherProduits(liste) {
+    const grille = document.getElementById('grille');
+    grille.innerHTML = '';
+    liste.forEach(p => {
+      grille.innerHTML += `
+        <div class="carte">
+          <div class="emoji">${p.emoji}</div>
+          <div class="carte-info">
+            <h3>${p.nom}</h3>
+            <p>${p.desc}</p>
+            <div class="prix">${p.prix.toLocaleString()} FCFA</div>
+            <button class="btn-commander" onclick="commander('${p.nom}', ${p.prix})">🛒 Commander</button>
+          </div>
+        </div>`;
+    });
+  }
+
+  function filtrer(categorie, btn) {
+    document.querySelectorAll('.categories button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const titres = {
+      tous: "Tous les produits",
+      alimentation: "🍎 Alimentation",
+      vetements: "👕 Vêtements",
+      electrique: "⚡ Électrique",
+      divers: "📦 Produits Divers"
+    };
+    document.getElementById('titreSection').textContent = titres[categorie];
+    const resultat = categorie === 'tous' ? produits : produits.filter(p => p.categorie === categorie);
+    afficherProduits(resultat);
+  }
+
+  function rechercherProduit() {
+    const terme = document.getElementById('searchInput').value.toLowerCase();
+    const resultat = produits.filter(p => p.nom.toLowerCase().includes(terme));
+    document.getElementById('titreSection').textContent = Résultats pour "${terme}";
+    afficherProduits(resultat);
+  }
+
+  function demarrerVoix() {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'fr-FR';
+    recognition.start();
+    recognition.onresult = (e) => {
+      document.getElementById('searchInput').value = e.results[0][0].transcript;
+      rechercherProduit();
+    };
+  }
+
+  function commander(nom, prix) {
+    alert(✅ Commande reçue !\n\nProduit : ${nom}\nPrix : ${prix.toLocaleString()} FCFA\n\nNous vous contacterons bientôt.);
+  }
+
+  afficherProduits(produits);
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vocal Commerce BJ</title>
