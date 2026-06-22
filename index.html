@@ -1,6 +1,425 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vocal Commerce BJ</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #222;
+    }
+
+    /* NAVBAR */
+    nav {
+      background: #006400;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .logo {
+      color: #FFD700;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    nav ul li a:hover { color: #FFD700; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #006400, #228B22);
+      color: white;
+      text-align: center;
+      padding: 80px 20px 60px;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+    .hero h1 span { color: #FFD700; }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+
+    /* BOUTON VOCAL */
+    .mic-btn {
+      background: #FFD700;
+      color: #006400;
+      border: none;
+      padding: 18px 40px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .mic-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+    .mic-btn.active {
+      background: #ff4444;
+      color: white;
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    #voice-result {
+      margin-top: 20px;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.15);
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 20px;
+      min-width: 200px;
+    }
+
+    /* COMMENT ÇA MARCHE */
+    .how {
+      padding: 60px 20px;
+      text-align: center;
+      background: white;
+    }
+    .how h2 {
+      font-size: 1.8rem;
+      color: #006400;
+      margin-bottom: 40px;
+    }
+    .steps {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .step {
+      background: #f0fff0;
+      border-radius: 15px;
+      padding: 30px 20px;
+      max-width: 220px;
+      box-shadow: 0 2px 10px rgba(0,100,0,0.1);
+    }
+    .step .icon { font-size: 2.5rem; margin-bottom: 15px; }
+    .step h3 { color: #006400; margin-bottom: 8px; }
+    .step p { font-size: 0.9rem; color: #555; }
+
+    /* PRODUITS */
+    .products {
+      padding: 60px 20px;
+      background: #f9f9f9;
+    }
+    .products h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #006400;
+      margin-bottom: 40px;
+    }
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .product-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+    .product-card:hover { transform: translateY(-5px); }
+    .product-card .emoji { font-size: 3rem; margin-bottom: 10px; }
+    .product-card h3 { font-size: 1rem; color: #333; margin-bottom: 5px; }
+    .product-card .price {
+      color: #006400;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .product-card button {
+      background: #006400;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .product-card button:hover { background: #228B22; }
+
+    /* VENDEURS */
+    .vendors {
+      background: #006400;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .vendors h2 { font-size: 1.8rem; margin-bottom: 15px; }
+    .vendors p { max-width: 500px; margin: 0 auto 30px; opacity: 0.9; }
+    .vendors .price-box {
+      display: inline-block;
+      background: #FFD700;
+      color: #006400;
+      padding: 20px 40px;
+      border-radius: 15px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .vendors a {
+      display: inline-block;
+      background: white;
+      color: #006400;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 15px;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 60px 20px;
+      text-align: center;
+      background: white;
+    }
+    .contact h2 { font-size: 1.8rem; color: #006400; margin-bottom: 30px; }
+    .contact-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .contact-buttons a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .whatsapp-btn { background: #25D366; color: white; }
+    .email-btn { background: #006400; color: white; }
+
+    /* FOOTER */
+    footer {
+      background: #222;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+    }
+    footer span { color: #FFD700; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">🎙️ Vocal Commerce BJ</div>
+    <ul>
+      <li><a href="#produits">Produits</a></li>
+      <li><a href="#comment">Comment ça marche</a></li>
+      <li><a href="#vendeurs">Devenir vendeur</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Commandez au <span>Bénin</span><br/>avec votre voix 🎙️</h1>
+    <p>La première plateforme e-commerce vocale du Bénin. Nourriture, produits divers et services — commandez simplement en parlant !</p>
+    <button class="mic-btn" id="micBtn" onclick="startVoice()">
+      🎤 Parler pour commander
+    </button>
+    <div id="voice-result">Appuyez sur le bouton et parlez...</div>
+  </section>
+
+  <!-- COMMENT ÇA MARCHE -->
+  <section class="how" id="comment">
+    <h2>Comment ça marche ?</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="icon">🎤</div>
+        <h3>1. Parlez</h3>
+        <p>Appuyez sur le bouton et dites ce que vous voulez commander</p>
+      </div>
+      <div class="step">
+        <div class="icon">🔍</div>
+        <h3>2. On cherche</h3>
+        <p>Notre système trouve le produit disponible près de chez vous</p>
+      </div>
+      <div class="step">
+        <div class="icon">📦</div>
+        <h3>3. Livraison</h3>
+        <p>Votre commande est confirmée et livrée rapidement</p>
+      </div>
+      <div class="step">
+        <div class="icon">💰</div>
+        <h3>4. Paiement</h3>
+        <p>Payez via MTN Mobile Money ou Moov Money facilement</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUITS -->
+  <section class="products" id="produits">
+    <h2>Nos produits disponibles</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="emoji">🍚</div>
+        <h3>Riz local</h3>
+        <div class="price">500 FCFA/kg</div>
+        <button onclick="addToCart('Riz local')">Commander</button>
+      </div>
+      <div class="product-card">
+        <div class="emoji">🐟</div>
+        <h3>Poisson frais</h3>
+        <div class="price">1 500 FCFA</div>
+        <button onclick="addToCart('Poisson frais')">Commander</button>
+      </div>
+      <div class="product-card">
+        <div class="emoji">🥬</div>
+        <h3>Légumes frais</h3>
+        <div class="price">300 FCFA</div>
+        <button onclick="addToCart('Légumes frais')">Commander</button>
+      </div>
+      <div class="product-card">
+        <div class="emoji">🍗</div>
+        <h3>Poulet local</h3>
+        <div class="price">3 500 FCFA</div>
+        <button onclick="addToCart('Poulet local')">Commander</button>
+      </div>
+      <div class="product-card">
+        <div class="emoji">🧴</div>
+        <h3>Produits ménagers</h3>
+        <div class="price">800 FCFA</div>
+        <button onclick="addToCart('Produits ménagers')">Commander</button>
+      </div>
+      <div class="product-card">
+        <div class="emoji">💊</div>
+        <h3>Médicaments</h3>
+        <div class="price">Sur ordonnance</div>
+        <button onclick="addToCart('Médicaments')">Commander</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVENIR VENDEUR -->
+  <section class="vendors" id="vendeurs">
+    <h2>Devenez vendeur partenaire 🏪</h2>
+    <p>Rejoignez notre plateforme et accédez à des milliers de clients au Bénin grâce à la technologie vocale.</p>
+    <div class="price-box">📦 Abonnement : 2 000 FCFA / mois</div>
+    <br/>
+    <a href="https://wa.me/22900000000?text=Je veux devenir vendeur sur Vocal Commerce BJ">
+      💬 S'inscrire via WhatsApp
+    </a>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <h2>Contactez-nous</h2>
+    <div class="contact-buttons">
+      <a class="whatsapp-btn" href="https://wa.me/22900000000">
+        💬 WhatsApp
+      </a>
+      <a class="email-btn" href="mailto:contact@vocal-commerce.bj">
+        📧 Email
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>Vocal Commerce BJ</span> — Plateforme e-commerce vocale du Bénin 🇧🇯</p>
+    <p style="margin-top:5px;">Développé par <span>Anavid51</span> | HTML · CSS · JavaScript · Web Speech API</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Commande vocale
+    function startVoice() {
+      const btn = document.getElementById('micBtn');
+      const result = document.getElementById('voice-result');
+
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        result.textContent = "❌ Navigateur non compatible. Utilisez Chrome.";
+        return;
+      }
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'fr-FR';
+      recognition.interimResults = false;
+
+      btn.classList.add('active');
+      btn.textContent = '🔴 Écoute en cours...';
+      result.textContent = '🎙️ Parlez maintenant...';
+
+      recognition.start();
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        result.textContent = '🛒 Vous avez dit : "' + transcript + '"';
+        btn.classList.remove('active');
+        btn.textContent = '🎤 Parler pour commander';
+        handleVoiceCommand(transcript.toLowerCase());
+      };
+
+      recognition.onerror = function() {
+        result.textContent = '❌ Erreur. Réessayez.';
+        btn.classList.remove('active');
+        btn.textContent = '🎤 Parler pour commander';
+      };
+    }
+
+    function handleVoiceCommand(text) {
+      if (text.includes('riz')) {
+        alert('🍚 Riz local ajouté à votre commande ! Prix : 500 FCFA/kg');
+      } else if (text.includes('poisson')) {
+        alert('🐟 Poisson frais ajouté ! Prix : 1 500 FCFA');
+      } else if (text.includes('poulet')) {
+        alert('🍗 Poulet local ajouté ! Prix : 3 500 FCFA');
+      } else if (text.includes('légume')) {
+        alert('🥬 Légumes frais ajoutés ! Prix : 300 FCFA');
+      } else {
+        alert('🔍 Produit recherché : "' + text + '"\nNous allons trouver ça pour vous !');
+      }
+    }
+
+    function addToCart(product) {
+      const msg = encodeURIComponent('Bonjour, je voudrais commander : ' + product + ' via Vocal Commerce BJ');
+      window.open('https://wa.me/22900000000?text=' + msg, '_blank');
+    }
+  </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vocal commerce BJ</title>
