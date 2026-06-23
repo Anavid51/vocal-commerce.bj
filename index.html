@@ -53,6 +53,30 @@
       margin: 0 auto 30px;
       opacity: 0.9;
     }
+FCFA
+            </div>
+
+            <p style="color:green;font-weight:bold;">
+              En stock : ${p.stock}
+            </p>
+
+            <button class="btn-commander"
+              onclick="commander('${p.nom}', ${p.prix})">
+              🛒 Commander
+            </button>
+          </div>
+        </div>
+      `;
+    });
+}
+{
+  nom: "Samsung Galaxy A55",
+  prix: 185000,
+  categorie: "telephone",
+  emoji: "📱",
+  desc: "128Go, 5G",
+  stock: 0
+}
 
     .mic-btn {
       background: #FFD700;
