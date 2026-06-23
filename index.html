@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vocal Commerce BJ – Électronique</title>
+  <title>Vocal Commerce BJ</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -215,10 +215,95 @@
       color: #006233;
     }
 
+    /* SECTION A PROPOS */
+    .apropos {
+      background: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .apropos h2 {
+      font-size: 1.8rem;
+      color: #006400;
+      margin-bottom: 30px;
+    }
+    .apropos-carte {
+      display: inline-block;
+      background: #f0fff0;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 500px;
+      box-shadow: 0 4px 20px rgba(0,100,0,0.1);
+      border: 2px solid #006233;
+    }
+    .apropos-carte .avatar {
+      font-size: 80px;
+      margin-bottom: 15px;
+    }
+    .apropos-carte h3 {
+      font-size: 1.5rem;
+      color: #006400;
+      margin-bottom: 5px;
+    }
+    .apropos-carte .titre {
+      font-size: 1rem;
+      color: #888;
+      margin-bottom: 20px;
+    }
+    .apropos-carte p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .apropos-badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .badge {
+      background: #006233;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    .contact {
+      background: #006400;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .contact h2 {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      color: #FFD700;
+    }
+    .contact-liens {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .contact-liens a {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .contact-liens a:hover { transform: scale(1.05); }
+    .btn-whatsapp { background: #25D366; color: white; }
+    .btn-telephone { background: #FFD700; color: #006400; }
+    .btn-email { background: white; color: #006400; }
+
     footer {
       text-align: center;
       padding: 20px;
-      background: #006233;
+      background: #004d00;
       color: white;
       font-size: 13px;
     }
@@ -227,17 +312,18 @@
 <body>
 
   <nav>
-    <div class="logo">📱 Vocal Commerce BJ</div>
+    <div class="logo">🛒 Vocal Commerce BJ</div>
     <ul>
       <li><a href="#">Accueil</a></li>
       <li><a href="#">Produits</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#apropos">A propos</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
   <div class="hero">
-    <h1>🛒 Vocal Commerce <span>Bénin</span></h1>
-    <p>Achetez vos appareils électroniques facilement avec votre voix</p>
+    <h1>🛒 Vocal Commerce <span>Benin</span></h1>
+    <p>Achetez facilement avec votre voix</p>
     <button class="mic-btn" onclick="demarrerVoix()">🎤 Rechercher par voix</button>
     <div id="voice-result">Dites le nom d'un produit...</div>
   </div>
@@ -245,7 +331,7 @@
   <div class="auteur">Auteur : Anael DESSOUASSI</div>
 
   <div class="how">
-    <h2>Comment ça marche ?</h2>
+    <h2>Comment ca marche ?</h2>
     <div class="steps">
       <div class="step">
         <div class="icon">🎤</div>
@@ -273,18 +359,54 @@
 
   <div class="categories">
     <button class="active" onclick="filtrer('tous', this)">🛍️ Tous</button>
-    <button onclick="filtrer('telephone', this)">📱 Téléphones</button>
-    <button onclick="filtrer('television', this)">📺 Télévisions</button>
+    <button onclick="filtrer('telephone', this)">📱 Telephones</button>
+    <button onclick="filtrer('television', this)">📺 Televisions</button>
+    <button onclick="filtrer('ordinateur', this)">💻 Ordinateurs</button>
     <button onclick="filtrer('montre', this)">⌚ Montres</button>
     <button onclick="filtrer('console', this)">🎮 Consoles</button>
+    <button onclick="filtrer('alimentation', this)">🍎 Alimentation</button>
   </div>
 
   <h2 class="titre-section" id="titreSection">Tous les produits</h2>
 
   <div class="grille" id="grille"></div>
 
+  <!-- SECTION A PROPOS -->
+  <div class="apropos" id="apropos">
+    <h2>👤 A propos de l'auteur</h2>
+    <div class="apropos-carte">
+      <div class="avatar">👨‍💻</div>
+      <h3>Anael DESSOUASSI</h3>
+      <div class="titre">Createur de Vocal Commerce BJ</div>
+      <p>
+        Entrepreneur beninois passionne par le numerique,
+        Anael DESSOUASSI a cree Vocal Commerce BJ pour
+        permettre aux Beninois d'acheter facilement
+        en utilisant simplement leur voix.
+        Une innovation locale au service de tous.
+      </p>
+      <div class="apropos-badges">
+        <span class="badge">🇧🇯 Benin</span>
+        <span class="badge">💡 Innovation</span>
+        <span class="badge">🛒 E-commerce</span>
+        <span class="badge">🎤 Vocal Tech</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION CONTACT -->
+  <div class="contact" id="contact">
+    <h2>📞 Contactez-nous</h2>
+    <div class="contact-liens">
+      <a href="https://wa.me/22901401093" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+      <a href="tel:+22901401093" class="btn-telephone">📞 0140109306</a>
+      <a href="mailto:dessouassianael51@gmail.com" class="btn-email">✉️ dessouassianael51@gmail.com</a>
+    </div>
+  </div>
+
   <footer>
-    © 2026 Vocal Commerce Bénin – Anael DESSOUASSI
+    2026 Vocal Commerce Benin - Anael DESSOUASSI |
+    Tel : 0140109306 | dessouassianael51@gmail.com
   </footer>
 
   <script>
@@ -297,6 +419,10 @@
       { nom: "LG TV 55 pouces", prix: 480000, categorie: "television", emoji: "📺", desc: "OLED 4K, HDR, Smart TV" },
       { nom: "Hisense 32 pouces", prix: 145000, categorie: "television", emoji: "📺", desc: "HD Ready, Android TV" },
       { nom: "TCL 50 pouces 4K", prix: 290000, categorie: "television", emoji: "📺", desc: "4K UHD, Google TV" },
+      { nom: "HP Pavilion 15", prix: 350000, categorie: "ordinateur", emoji: "💻", desc: "Intel i5, 8Go RAM, 512Go SSD" },
+      { nom: "Lenovo IdeaPad 3", prix: 280000, categorie: "ordinateur", emoji: "💻", desc: "AMD Ryzen 5, 8Go RAM" },
+      { nom: "Asus VivoBook 14", prix: 310000, categorie: "ordinateur", emoji: "💻", desc: "Intel i3, 8Go RAM, 256Go" },
+      { nom: "Dell Inspiron 15", prix: 420000, categorie: "ordinateur", emoji: "💻", desc: "Intel i7, 16Go RAM, 512Go" },
       { nom: "Samsung Galaxy Watch 6", prix: 125000, categorie: "montre", emoji: "⌚", desc: "GPS, cardiaque, Android" },
       { nom: "Apple Watch SE", prix: 195000, categorie: "montre", emoji: "⌚", desc: "GPS, sport, iOS" },
       { nom: "Huawei Watch GT4", prix: 110000, categorie: "montre", emoji: "⌚", desc: "14 jours batterie, sport" },
@@ -305,6 +431,10 @@
       { nom: "PS5 Digital Edition", prix: 450000, categorie: "console", emoji: "🎮", desc: "Sans lecteur, 825Go" },
       { nom: "Manette PS5 DualSense", prix: 45000, categorie: "console", emoji: "🕹️", desc: "Vibration haptique" },
       { nom: "Jeu FIFA 25 PS5", prix: 35000, categorie: "console", emoji: "⚽", desc: "EA Sports, mode carriere" },
+      { nom: "Riz local 5kg", prix: 3500, categorie: "alimentation", emoji: "🍚", desc: "Riz de qualite du Benin" },
+      { nom: "Huile de palme 1L", prix: 1200, categorie: "alimentation", emoji: "🫙", desc: "Huile naturelle locale" },
+      { nom: "Tomates fraiches 1kg", prix: 500, categorie: "alimentation", emoji: "🍅", desc: "Tomates du marche" },
+      { nom: "Poulet entier", prix: 4500, categorie: "alimentation", emoji: "🍗", desc: "Poulet fermier frais" },
     ];
 
     function afficherProduits(liste) {
@@ -331,8 +461,10 @@
         tous: "Tous les produits",
         telephone: "📱 Telephones",
         television: "📺 Televisions",
+        ordinateur: "💻 Ordinateurs",
         montre: "⌚ Montres connectees",
-        console: "🎮 Consoles et Jeux"
+        console: "🎮 Consoles et Jeux",
+        alimentation: "🍎 Alimentation"
       };
       document.getElementById('titreSection').textContent = titres[categorie];
       const resultat = categorie === 'tous' ? produits : produits.filter(p => p.categorie === categorie);
@@ -363,7 +495,7 @@
     }
 
     function commander(nom, prix) {
-      alert('Commande recue ! Produit : ' + nom + ' - Prix : ' + prix.toLocaleString() + ' FCFA. Nous vous contacterons via WhatsApp.');
+      alert('Commande recue !\n\nProduit : ' + nom + '\nPrix : ' + prix.toLocaleString() + ' FCFA\n\nNous vous contacterons au 0140109306 ou via WhatsApp pour confirmer.');
     }
 
     afficherProduits(produits);
