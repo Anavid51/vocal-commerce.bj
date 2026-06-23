@@ -3,33 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vocal Commerce Bénin</title>
+  <title>Vocal Commerce BJ – Électronique</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #222;
     }
 
-    header {
-      background: #006233;
-      color: white;
-      padding: 20px;
-      text-align: center;
+    nav {
+      background: #006400;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-
-    header h1 { font-size: 28px; }
-    header p { font-size: 14px; margin-top: 5px; opacity: 0.9; }
-
-    .auteur {
-      text-align: center;
-      background: #ffd700;
-      padding: 8px;
+    nav .logo {
+      color: #FFD700;
+      font-size: 1.5rem;
       font-weight: bold;
-      color: #006233;
     }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #006400, #228B22);
+      color: white;
+      text-align: center;
+      padding: 80px 20px 60px;
+    }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
+    .hero h1 span { color: #FFD700; }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+
+    .mic-btn {
+      background: #FFD700;
+      color: #006400;
+      border: none;
+      padding: 18px 40px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .mic-btn.active {
+      background: #ff4444;
+      color: white;
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    #voice-result {
+      margin-top: 20px;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.15);
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 20px;
+      min-width: 200px;
+    }
+
+    .how {
+      padding: 60px 20px;
+      text-align: center;
+      background: white;
+    }
+    .how h2 { font-size: 1.8rem; color: #006400; margin-bottom: 40px; }
+    .steps { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; }
+    .step {
+      background: #f0fff0;
+      border-radius: 15px;
+      padding: 30px 20px;
+      max-width: 220px;
+      box-shadow: 0 2px 10px rgba(0,100,0,0.1);
+    }
+    .step .icon { font-size: 2.5rem; margin-bottom: 15px; }
+    .step h3 { color: #006400; margin-bottom: 8px; }
+    .step p { font-size: 0.9rem; color: #555; }
 
     .recherche {
       display: flex;
@@ -38,7 +110,6 @@
       padding: 20px;
       background: white;
     }
-
     .recherche input {
       width: 60%;
       padding: 12px;
@@ -47,7 +118,6 @@
       font-size: 16px;
       outline: none;
     }
-
     .recherche button {
       padding: 12px 20px;
       background: #006233;
@@ -67,7 +137,6 @@
       background: white;
       border-bottom: 2px solid #eee;
     }
-
     .categories button {
       padding: 10px 20px;
       border: 2px solid #006233;
@@ -78,7 +147,6 @@
       font-size: 14px;
       transition: all 0.3s;
     }
-
     .categories button.active,
     .categories button:hover {
       background: #006233;
@@ -108,16 +176,13 @@
       overflow: hidden;
       transition: transform 0.2s;
     }
-
     .carte:hover { transform: translateY(-4px); }
-
     .carte .emoji {
       font-size: 60px;
       text-align: center;
       padding: 20px;
       background: #f9f9f9;
     }
-
     .carte-info { padding: 15px; }
     .carte-info h3 { font-size: 16px; margin-bottom: 5px; }
     .carte-info p { font-size: 13px; color: #777; margin-bottom: 10px; }
@@ -140,8 +205,15 @@
       font-size: 15px;
       transition: background 0.3s;
     }
-
     .btn-commander:hover { background: #004d26; }
+
+    .auteur {
+      text-align: center;
+      background: #ffd700;
+      padding: 8px;
+      font-weight: bold;
+      color: #006233;
+    }
 
     footer {
       text-align: center;
@@ -154,570 +226,148 @@
 </head>
 <body>
 
-<header>
-  <h1>🛒 Vocal Commerce Bénin</h1>
-  <p>Achetez facilement avec votre voix</p>
-</header>
-
-<div class="auteur">Auteur : Anael DESSOUASSI</div>
-
-<div class="recherche">
-  <input type="text" id="searchInput" placeholder="Rechercher un produit...">
-  <button onclick="demarrerVoix()">🎤</button>
-  <button onclick="rechercherProduit()">🔍</button>
-</div>
-
-<div class="categories">
-  <button class="active" onclick="filtrer('tous', this)">🛍 Tous</button>
-  <button onclick="filtrer('telephone', this)">📱 Téléphones</button>
-  <button onclick="filtrer('television', this)">📺 Télévisions</button>
-  <button onclick="filtrer('montre', this)">⌚ Montres</button>
-  <button onclick="filtrer('console', this)">🎮 Consoles</button>
-</div><div class="categories">
-  <button class="active" onclick="filtrer('tous', this)">🛍️ Tous</button>
-  <button onclick="filtrer('alimentation', this)">🍎 Alimentation</button>
-  <button onclick="filtrer('vetements', this)">👕 Vêtements</button>
-  <button onclick="filtrer('electrique', this)">⚡ Électrique</button>
-  <button onclick="filtrer('divers', this)">📦 Divers</button>
-</div>
-
-<h2 class="titre-section" id="titreSection">Tous les produits</h2>
-
-<div class="grille" id="grille"></div>
-
-<footer>
-  © 2026 Vocal Commerce Bénin — Anael DESSOUASSI
-</footer>
-
-<script>
-  const produits = [
-  const produits = [
-  { nom: "Samsung Galaxy A55", prix: 185000, categorie: "telephone", emoji: "📱", desc: "6.6 pouces, 128Go, 5G" },
-  { nom: "iPhone 14", prix: 420000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, Face ID" },
-  { nom: "Tecno Spark 20", prix: 75000, categorie: "telephone", emoji: "📱", desc: "6.56 pouces, 128Go" },
-  { nom: "Infinix Hot 40", prix: 65000, categorie: "telephone", emoji: "📱", desc: "6.78 pouces, 256Go" },
-  { nom: "Samsung Smart TV 43\"", prix: 320000, categorie: "television", emoji: "📺", desc: "4K UHD, WiFi, Netflix" },
-  { nom: "LG TV 55 pouces", prix: 480000, categorie: "television", emoji: "📺", desc: "OLED 4K, HDR, Smart TV" },
-  { nom: "Hisense 32 pouces", prix: 145000, categorie: "television", emoji: "📺", desc: "HD Ready, Android TV" },
-  { nom: "TCL 50 pouces 4K", prix: 290000, categorie: "television", emoji: "📺", desc: "4K UHD, Google TV" },
-  { nom: "Samsung Galaxy Watch 6", prix: 125000, categorie: "montre", emoji: "⌚", desc: "GPS, cardiaque, Android" },
-  { nom: "Apple Watch SE", prix: 195000, categorie: "montre", emoji: "⌚", desc: "GPS, sport, iOS" },
-  { nom: "Huawei Watch GT4", prix: 110000, categorie: "montre", emoji: "⌚", desc: "14 jours batterie, sport" },
-  { nom: "Amazfit GTS 4", prix: 65000, categorie: "montre", emoji: "⌚", desc: "AMOLED, GPS, 150 sports" },
-  { nom: "PS5 Standard", prix: 550000, categorie: "console", emoji: "🎮", desc: "Console Sony, 825Go SSD" },
-  { nom: "PS5 Digital Edition", prix: 450000, categorie: "console", emoji: "🎮", desc: "Sans lecteur, 825Go" },
-  { nom: "Manette PS5 DualSense", prix: 45000, categorie: "console", emoji: "🕹️", desc: "Vibration haptique" },
-  { nom: "Jeu FIFA 25 PS5", prix: 35000, categorie: "console", emoji: "⚽", desc: "EA Sports, mode carrière" },
-];  { nom: "Riz local 5kg", prix: 3500, categorie: "alimentation", emoji: "🍚", desc: "Riz de qualité du Bénin" },
-    { nom: "Huile de palme 1L", prix: 1200, categorie: "alimentation", emoji: "🫙", desc: "Huile naturelle locale" },
-    { nom: "Tomates fraîches", prix: 500, categorie: "alimentation", emoji: "🍅", desc: "Tomates du marché" },
-    { nom: "Poulet entier", prix: 4500, categorie: "alimentation", emoji: "🍗", desc: "Poulet fermier frais" },
-    { nom: "Pagne wax 6 yards", prix: 8000, categorie: "vetements", emoji: "🧵", desc: "Tissu wax africain" },
-    { nom: "T-shirt homme", prix: 3000, categorie: "vetements", emoji: "👕", desc: "100% coton, toutes tailles" },
-    { nom: "Robe femme", prix: 5500, categorie: "vetements", emoji: "👗", desc: "Robe légère et élégante" },
-    { nom: "Sandales cuir", prix: 4000, categorie: "vetements", emoji: "👡", desc: "Sandales artisanales" },
-    { nom: "Ventilateur", prix: 15000, categorie: "electrique", emoji: "🌀", desc: "Ventilateur de table 3 vitesses" },
-    { nom: "Chargeur universel", prix: 2500, categorie: "electrique", emoji: "🔌", desc: "Compatible tous téléphones" },
-    { nom: "Ampoule LED", prix: 1500, categorie: "electrique", emoji: "💡", desc: "Économie d'énergie 12W" },
-    { nom: "Fer à repasser", prix: 9000, categorie: "electrique", emoji: "🔧", desc: "Fer vapeur 1200W" },
-    { nom: "Savon naturel", prix: 800, categorie: "divers", emoji: "🧼", desc: "Savon karité artisanal" },
-    { nom: "Sac à dos", prix: 6000, categorie: "divers", emoji: "🎒", desc: "Sac résistant 20L" },
-    { nom: "Cahier 200 pages", prix: 1000, categorie: "divers", emoji: "📓", desc: "Pour école ou bureau" },
-    { nom: "Parapluie", prix: 3500, categorie: "divers", emoji: "☂️", desc: "Solide et léger" },
-  ];
-
-  function afficherProduits(liste) {
-    const grille = document.getElementById('grille');
-    grille.innerHTML = '';
-    liste.forEach(p => {
-      grille.innerHTML += `
-        <div class="carte">
-          <div class="emoji">${p.emoji}</div>
-          <div class="carte-info">
-            <h3>${p.nom}</h3>
-            <p>${p.desc}</p>
-            <div class="prix">${p.prix.toLocaleString()} FCFA</div>
-            <button class="btn-commander" onclick="commander('${p.nom}', ${p.prix})">🛒 Commander</button>
-          </div>
-        </div>`;
-    });
-  }
-
-  function filtrer(categorie, btn) {
-    document.querySelectorAll('.categories button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const titres = {
-      tous: "Tous les produits",const titres = {
-  tous: "Tous les produits",
-  telephone: "📱 Téléphones",
-  television: "📺 Télévisions",
-  montre: "⌚ Montres connectées",
-  console: "🎮 Consoles & Jeux"
-};
-      alimentation: "🍎 Alimentation",
-      vetements: "👕 Vêtements",
-      electrique: "⚡ Électrique",
-      divers: "📦 Produits Divers"
-    };
-    document.getElementById('titreSection').textContent = titres[categorie];
-    const resultat = categorie === 'tous' ? produits : produits.filter(p => p.categorie === categorie);
-    afficherProduits(resultat);
-  }
-
-  function rechercherProduit() {
-    const terme = document.getElementById('searchInput').value.toLowerCase();
-    const resultat = produits.filter(p => p.nom.toLowerCase().includes(terme));
-    document.getElementById('titreSection').textContent = Résultats pour "${terme}";
-    afficherProduits(resultat);
-  }
-
-  function demarrerVoix() {
-    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = 'fr-FR';
-    recognition.start();
-    recognition.onresult = (e) => {
-      document.getElementById('searchInput').value = e.results[0][0].transcript;
-      rechercherProduit();
-    };
-  }
-
-  function commander(nom, prix) {
-    alert(✅ Commande reçue !\n\nProduit : ${nom}\nPrix : ${prix.toLocaleString()} FCFA\n\nNous vous contacterons bientôt.);
-  }
-
-  afficherProduits(produits);
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vocal Commerce BJ</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #222;
-    }
-
-    /* NAVBAR */
-    nav {
-      background: #006400;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav .logo {
-      color: #FFD700;
-      font-size: 1.5rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-    nav ul li a:hover { color: #FFD700; }
-
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, #006400, #228B22);
-      color: white;
-      text-align: center;
-      padding: 80px 20px 60px;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-    }
-    .hero h1 span { color: #FFD700; }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto 30px;
-      opacity: 0.9;
-    }
-
-    /* BOUTON VOCAL */
-    .mic-btn {
-      background: #FFD700;
-      color: #006400;
-      border: none;
-      padding: 18px 40px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .mic-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    }
-    .mic-btn.active {
-      background: #ff4444;
-      color: white;
-      animation: pulse 1s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-
-    #voice-result {
-      margin-top: 20px;
-      font-size: 1rem;
-      background: rgba(255,255,255,0.15);
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: 20px;
-      min-width: 200px;
-    }
-
-    /* COMMENT ÇA MARCHE */
-    .how {
-      padding: 60px 20px;
-      text-align: center;
-      background: white;
-    }
-    .how h2 {
-      font-size: 1.8rem;
-      color: #006400;
-      margin-bottom: 40px;
-    }
-    .steps {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-    .step {
-      background: #f0fff0;
-      border-radius: 15px;
-      padding: 30px 20px;
-      max-width: 220px;
-      box-shadow: 0 2px 10px rgba(0,100,0,0.1);
-    }
-    .step .icon { font-size: 2.5rem; margin-bottom: 15px; }
-    .step h3 { color: #006400; margin-bottom: 8px; }
-    .step p { font-size: 0.9rem; color: #555; }
-
-    /* PRODUITS */
-    .products {
-      padding: 60px 20px;
-      background: #f9f9f9;
-    }
-    .products h2 {
-      text-align: center;
-      font-size: 1.8rem;
-      color: #006400;
-      margin-bottom: 40px;
-    }
-    .product-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .product-card {
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      width: 200px;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      transition: transform 0.2s;
-    }
-    .product-card:hover { transform: translateY(-5px); }
-    .product-card .emoji { font-size: 3rem; margin-bottom: 10px; }
-    .product-card h3 { font-size: 1rem; color: #333; margin-bottom: 5px; }
-    .product-card .price {
-      color: #006400;
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-    }
-    .product-card button {
-      background: #006400;
-      color: white;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.85rem;
-    }
-    .product-card button:hover { background: #228B22; }
-
-    /* VENDEURS */
-    .vendors {
-      background: #006400;
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .vendors h2 { font-size: 1.8rem; margin-bottom: 15px; }
-    .vendors p { max-width: 500px; margin: 0 auto 30px; opacity: 0.9; }
-    .vendors .price-box {
-      display: inline-block;
-      background: #FFD700;
-      color: #006400;
-      padding: 20px 40px;
-      border-radius: 15px;
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    .vendors a {
-      display: inline-block;
-      background: white;
-      color: #006400;
-      padding: 12px 30px;
-      border-radius: 50px;
-      font-weight: bold;
-      text-decoration: none;
-      margin-top: 15px;
-    }
-
-    /* CONTACT */
-    .contact {
-      padding: 60px 20px;
-      text-align: center;
-      background: white;
-    }
-    .contact h2 { font-size: 1.8rem; color: #006400; margin-bottom: 30px; }
-    .contact-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-    .contact-buttons a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px 30px;
-      border-radius: 50px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-    .whatsapp-btn { background: #25D366; color: white; }
-    .email-btn { background: #006400; color: white; }
-
-    /* FOOTER */
-    footer {
-      background: #222;
-      color: #aaa;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.85rem;
-    }
-    footer span { color: #FFD700; }
-  </style>
-</head>
-<body>
-
-  <!-- NAVBAR -->
   <nav>
-    <div class="logo">🎙️ Vocal Commerce BJ</div>
+    <div class="logo">📱 Vocal Commerce BJ</div>
     <ul>
-      <li><a href="#produits">Produits</a></li>
-      <li><a href="#comment">Comment ça marche</a></li>
-      <li><a href="#vendeurs">Devenir vendeur</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#">Produits</a></li>
+      <li><a href="#">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Commandez au <span>Bénin</span><br/>avec votre voix 🎙️</h1>
-    <p>La première plateforme e-commerce vocale du Bénin. Nourriture, produits divers et services — commandez simplement en parlant !</p>
-    <button class="mic-btn" id="micBtn" onclick="startVoice()">
-      🎤 Parler pour commander
-    </button>
-    <div id="voice-result">Appuyez sur le bouton et parlez...</div>
-  </section>
+  <div class="hero">
+    <h1>🛒 Vocal Commerce <span>Bénin</span></h1>
+    <p>Achetez vos appareils électroniques facilement avec votre voix</p>
+    <button class="mic-btn" onclick="demarrerVoix()">🎤 Rechercher par voix</button>
+    <div id="voice-result">Dites le nom d'un produit...</div>
+  </div>
 
-  <!-- COMMENT ÇA MARCHE -->
-  <section class="how" id="comment">
+  <div class="auteur">Auteur : Anael DESSOUASSI</div>
+
+  <div class="how">
     <h2>Comment ça marche ?</h2>
     <div class="steps">
       <div class="step">
         <div class="icon">🎤</div>
-        <h3>1. Parlez</h3>
-        <p>Appuyez sur le bouton et dites ce que vous voulez commander</p>
+        <h3>Parlez</h3>
+        <p>Dites le nom du produit que vous cherchez</p>
       </div>
       <div class="step">
         <div class="icon">🔍</div>
-        <h3>2. On cherche</h3>
-        <p>Notre système trouve le produit disponible près de chez vous</p>
+        <h3>Trouvez</h3>
+        <p>Le site trouve automatiquement le produit</p>
       </div>
       <div class="step">
-        <div class="icon">📦</div>
-        <h3>3. Livraison</h3>
-        <p>Votre commande est confirmée et livrée rapidement</p>
-      </div>
-      <div class="step">
-        <div class="icon">💰</div>
-        <h3>4. Paiement</h3>
-        <p>Payez via MTN Mobile Money ou Moov Money facilement</p>
+        <div class="icon">🛒</div>
+        <h3>Commandez</h3>
+        <p>Cliquez sur Commander et payez via Mobile Money</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- PRODUITS -->
-  <section class="products" id="produits">
-    <h2>Nos produits disponibles</h2>
-    <div class="product-grid">
-      <div class="product-card">
-        <div class="emoji">🍚</div>
-        <h3>Riz local</h3>
-        <div class="price">500 FCFA/kg</div>
-        <button onclick="addToCart('Riz local')">Commander</button>
-      </div>
-      <div class="product-card">
-        <div class="emoji">🐟</div>
-        <h3>Poisson frais</h3>
-        <div class="price">1 500 FCFA</div>
-        <button onclick="addToCart('Poisson frais')">Commander</button>
-      </div>
-      <div class="product-card">
-        <div class="emoji">🥬</div>
-        <h3>Légumes frais</h3>
-        <div class="price">300 FCFA</div>
-        <button onclick="addToCart('Légumes frais')">Commander</button>
-      </div>
-      <div class="product-card">
-        <div class="emoji">🍗</div>
-        <h3>Poulet local</h3>
-        <div class="price">3 500 FCFA</div>
-        <button onclick="addToCart('Poulet local')">Commander</button>
-      </div>
-      <div class="product-card">
-        <div class="emoji">🧴</div>
-        <h3>Produits ménagers</h3>
-        <div class="price">800 FCFA</div>
-        <button onclick="addToCart('Produits ménagers')">Commander</button>
-      </div>
-      <div class="product-card">
-        <div class="emoji">💊</div>
-        <h3>Médicaments</h3>
-        <div class="price">Sur ordonnance</div>
-        <button onclick="addToCart('Médicaments')">Commander</button>
-      </div>
-    </div>
-  </section>
+  <div class="recherche">
+    <input type="text" id="searchInput" placeholder="Rechercher un produit...">
+    <button onclick="demarrerVoix()">🎤</button>
+    <button onclick="rechercherProduit()">🔍</button>
+  </div>
 
-  <!-- DEVENIR VENDEUR -->
-  <section class="vendors" id="vendeurs">
-    <h2>Devenez vendeur partenaire 🏪</h2>
-    <p>Rejoignez notre plateforme et accédez à des milliers de clients au Bénin grâce à la technologie vocale.</p>
-    <div class="price-box">📦 Abonnement : 3500 FCFA / mois</div>
-    <br/>
-    <a href="https://wa.me/2290140109306
-      ?text=Je veux devenir vendeur sur Vocal Commerce BJ">
-      💬 S'inscrire via WhatsApp
-    </a>
-  </section>
+  <div class="categories">
+    <button class="active" onclick="filtrer('tous', this)">🛍️ Tous</button>
+    <button onclick="filtrer('telephone', this)">📱 Téléphones</button>
+    <button onclick="filtrer('television', this)">📺 Télévisions</button>
+    <button onclick="filtrer('montre', this)">⌚ Montres</button>
+    <button onclick="filtrer('console', this)">🎮 Consoles</button>
+  </div>
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <h2>Contactez-nous</h2>
-    <div class="contact-buttons">
-      <a class="whatsapp-btn" href="https://wa.me/22940109306">
-        💬 WhatsApp
-      </a>
-      <a class="email-btn" href="mailto:contact@vocal-commerce.bj">
-        📧 Email:dessouassianael51@gmail.com
-      </a>
-    </div>
-  </section>
+  <h2 class="titre-section" id="titreSection">Tous les produits</h2>
 
-  <!-- FOOTER -->
+  <div class="grille" id="grille"></div>
+
   <footer>
-    <p>© 2026 <span>Vocal Commerce BJ</span> — Plateforme e-commerce vocale du Bénin 🇧🇯</p>
-    <p style="margin-top:5px;">Développé par <span>Anael DESSOUASSI</span> | HTML · CSS · JavaScript · Web Speech API</p>
+    © 2026 Vocal Commerce Bénin – Anael DESSOUASSI
   </footer>
 
-  <!-- JAVASCRIPT -->
   <script>
-    // Commande vocale
-    function startVoice() {
-      const btn = document.getElementById('micBtn');
-      const result = document.getElementById('voice-result');
+    const produits = [
+      { nom: "Samsung Galaxy A55", prix: 185000, categorie: "telephone", emoji: "📱", desc: "6.6 pouces, 128Go, 5G" },
+      { nom: "iPhone 14", prix: 420000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, Face ID" },
+      { nom: "Tecno Spark 20", prix: 75000, categorie: "telephone", emoji: "📱", desc: "6.56 pouces, 128Go" },
+      { nom: "Infinix Hot 40", prix: 65000, categorie: "telephone", emoji: "📱", desc: "6.78 pouces, 256Go" },
+      { nom: "Samsung Smart TV 43 pouces", prix: 320000, categorie: "television", emoji: "📺", desc: "4K UHD, WiFi, Netflix" },
+      { nom: "LG TV 55 pouces", prix: 480000, categorie: "television", emoji: "📺", desc: "OLED 4K, HDR, Smart TV" },
+      { nom: "Hisense 32 pouces", prix: 145000, categorie: "television", emoji: "📺", desc: "HD Ready, Android TV" },
+      { nom: "TCL 50 pouces 4K", prix: 290000, categorie: "television", emoji: "📺", desc: "4K UHD, Google TV" },
+      { nom: "Samsung Galaxy Watch 6", prix: 125000, categorie: "montre", emoji: "⌚", desc: "GPS, cardiaque, Android" },
+      { nom: "Apple Watch SE", prix: 195000, categorie: "montre", emoji: "⌚", desc: "GPS, sport, iOS" },
+      { nom: "Huawei Watch GT4", prix: 110000, categorie: "montre", emoji: "⌚", desc: "14 jours batterie, sport" },
+      { nom: "Amazfit GTS 4", prix: 65000, categorie: "montre", emoji: "⌚", desc: "AMOLED, GPS, 150 sports" },
+      { nom: "PS5 Standard", prix: 550000, categorie: "console", emoji: "🎮", desc: "Console Sony, 825Go SSD" },
+      { nom: "PS5 Digital Edition", prix: 450000, categorie: "console", emoji: "🎮", desc: "Sans lecteur, 825Go" },
+      { nom: "Manette PS5 DualSense", prix: 45000, categorie: "console", emoji: "🕹️", desc: "Vibration haptique" },
+      { nom: "Jeu FIFA 25 PS5", prix: 35000, categorie: "console", emoji: "⚽", desc: "EA Sports, mode carriere" },
+    ];
 
-      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-        result.textContent = "❌ Navigateur non compatible. Utilisez Chrome.";
-        return;
-      }
+    function afficherProduits(liste) {
+      const grille = document.getElementById('grille');
+      grille.innerHTML = '';
+      liste.forEach(p => {
+        grille.innerHTML += `
+          <div class="carte">
+            <div class="emoji">${p.emoji}</div>
+            <div class="carte-info">
+              <h3>${p.nom}</h3>
+              <p>${p.desc}</p>
+              <div class="prix">${p.prix.toLocaleString()} FCFA</div>
+              <button class="btn-commander" onclick="commander('${p.nom}', ${p.prix})">🛒 Commander</button>
+            </div>
+          </div>`;
+      });
+    }
 
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const recognition = new SpeechRecognition();
-      recognition.lang = 'fr-FR';
-      recognition.interimResults = false;
-
+    function filtrer(categorie, btn) {
+      document.querySelectorAll('.categories button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      btn.textContent = '🔴 Écoute en cours...';
-      result.textContent = '🎙️ Parlez maintenant...';
+      const titres = {
+        tous: "Tous les produits",
+        telephone: "📱 Telephones",
+        television: "📺 Televisions",
+        montre: "⌚ Montres connectees",
+        console: "🎮 Consoles et Jeux"
+      };
+      document.getElementById('titreSection').textContent = titres[categorie];
+      const resultat = categorie === 'tous' ? produits : produits.filter(p => p.categorie === categorie);
+      afficherProduits(resultat);
+    }
 
+    function rechercherProduit() {
+      const terme = document.getElementById('searchInput').value.toLowerCase();
+      const resultat = produits.filter(p => p.nom.toLowerCase().includes(terme));
+      document.getElementById('titreSection').textContent = 'Resultats pour ' + terme;
+      afficherProduits(resultat);
+    }
+
+    function demarrerVoix() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'fr-FR';
+      const btn = document.querySelector('.mic-btn');
+      btn.classList.add('active');
       recognition.start();
-
-      recognition.onresult = function(event) {
-        const transcript = event.results[0][0].transcript;
-        result.textContent = '🛒 Vous avez dit : "' + transcript + '"';
+      recognition.onresult = (e) => {
+        const texte = e.results[0][0].transcript;
+        document.getElementById('searchInput').value = texte;
+        document.getElementById('voice-result').textContent = '🎤 ' + texte;
         btn.classList.remove('active');
-        btn.textContent = '🎤 Parler pour commander';
-        handleVoiceCommand(transcript.toLowerCase());
+        rechercherProduit();
       };
-
-      recognition.onerror = function() {
-        result.textContent = '❌ Erreur. Réessayez.';
-        btn.classList.remove('active');
-        btn.textContent = '🎤 Parler pour commander';
-      };
+      recognition.onerror = () => btn.classList.remove('active');
     }
 
-    function handleVoiceCommand(text) {
-      if (text.includes('riz')) {
-        alert('🍚 Riz local ajouté à votre commande ! Prix : 500 FCFA/kg');
-      } else if (text.includes('poisson')) {
-        alert('🐟 Poisson frais ajouté ! Prix : 1 500 FCFA');
-      } else if (text.includes('poulet')) {
-        alert('🍗 Poulet local ajouté ! Prix : 3 500 FCFA');
-      } else if (text.includes('légume')) {
-        alert('🥬 Légumes frais ajoutés ! Prix : 300 FCFA');
-      } else {
-        alert('🔍 Produit recherché : "' + text + '"\nNous allons trouver ça pour vous !');
-      }
+    function commander(nom, prix) {
+      alert('Commande recue ! Produit : ' + nom + ' - Prix : ' + prix.toLocaleString() + ' FCFA. Nous vous contacterons via WhatsApp.');
     }
 
-    function addToCart(product) {
-      const msg = encodeURIComponent('Bonjour, je voudrais commander : ' + product + ' via Vocal Commerce BJ');
-      window.open('https://wa.me/22900000000?text=' + msg, '_blank');
-    }
+    afficherProduits(produits);
   </script>
 
 </body>
-</html><!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vocal commerce BJ</title>
-</head>
-<body>
-    <h1>Bienvenue sur vocal commerce BJ/ !</h1>
-    <p> acheter de la nourriture et des produits divers au benin grace a votre voix .</p>
-</body>
-</html
+</html>
