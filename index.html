@@ -168,6 +168,12 @@
 </div>
 
 <div class="categories">
+  <button class="active" onclick="filtrer('tous', this)">🛍 Tous</button>
+  <button onclick="filtrer('telephone', this)">📱 Téléphones</button>
+  <button onclick="filtrer('television', this)">📺 Télévisions</button>
+  <button onclick="filtrer('montre', this)">⌚ Montres</button>
+  <button onclick="filtrer('console', this)">🎮 Consoles</button>
+</div><div class="categories">
   <button class="active" onclick="filtrer('tous', this)">🛍️ Tous</button>
   <button onclick="filtrer('alimentation', this)">🍎 Alimentation</button>
   <button onclick="filtrer('vetements', this)">👕 Vêtements</button>
@@ -185,7 +191,24 @@
 
 <script>
   const produits = [
-    { nom: "Riz local 5kg", prix: 3500, categorie: "alimentation", emoji: "🍚", desc: "Riz de qualité du Bénin" },
+  const produits = [
+  { nom: "Samsung Galaxy A55", prix: 185000, categorie: "telephone", emoji: "📱", desc: "6.6 pouces, 128Go, 5G" },
+  { nom: "iPhone 14", prix: 420000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, Face ID" },
+  { nom: "Tecno Spark 20", prix: 75000, categorie: "telephone", emoji: "📱", desc: "6.56 pouces, 128Go" },
+  { nom: "Infinix Hot 40", prix: 65000, categorie: "telephone", emoji: "📱", desc: "6.78 pouces, 256Go" },
+  { nom: "Samsung Smart TV 43\"", prix: 320000, categorie: "television", emoji: "📺", desc: "4K UHD, WiFi, Netflix" },
+  { nom: "LG TV 55 pouces", prix: 480000, categorie: "television", emoji: "📺", desc: "OLED 4K, HDR, Smart TV" },
+  { nom: "Hisense 32 pouces", prix: 145000, categorie: "television", emoji: "📺", desc: "HD Ready, Android TV" },
+  { nom: "TCL 50 pouces 4K", prix: 290000, categorie: "television", emoji: "📺", desc: "4K UHD, Google TV" },
+  { nom: "Samsung Galaxy Watch 6", prix: 125000, categorie: "montre", emoji: "⌚", desc: "GPS, cardiaque, Android" },
+  { nom: "Apple Watch SE", prix: 195000, categorie: "montre", emoji: "⌚", desc: "GPS, sport, iOS" },
+  { nom: "Huawei Watch GT4", prix: 110000, categorie: "montre", emoji: "⌚", desc: "14 jours batterie, sport" },
+  { nom: "Amazfit GTS 4", prix: 65000, categorie: "montre", emoji: "⌚", desc: "AMOLED, GPS, 150 sports" },
+  { nom: "PS5 Standard", prix: 550000, categorie: "console", emoji: "🎮", desc: "Console Sony, 825Go SSD" },
+  { nom: "PS5 Digital Edition", prix: 450000, categorie: "console", emoji: "🎮", desc: "Sans lecteur, 825Go" },
+  { nom: "Manette PS5 DualSense", prix: 45000, categorie: "console", emoji: "🕹️", desc: "Vibration haptique" },
+  { nom: "Jeu FIFA 25 PS5", prix: 35000, categorie: "console", emoji: "⚽", desc: "EA Sports, mode carrière" },
+];  { nom: "Riz local 5kg", prix: 3500, categorie: "alimentation", emoji: "🍚", desc: "Riz de qualité du Bénin" },
     { nom: "Huile de palme 1L", prix: 1200, categorie: "alimentation", emoji: "🫙", desc: "Huile naturelle locale" },
     { nom: "Tomates fraîches", prix: 500, categorie: "alimentation", emoji: "🍅", desc: "Tomates du marché" },
     { nom: "Poulet entier", prix: 4500, categorie: "alimentation", emoji: "🍗", desc: "Poulet fermier frais" },
@@ -224,7 +247,13 @@
     document.querySelectorAll('.categories button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const titres = {
-      tous: "Tous les produits",
+      tous: "Tous les produits",const titres = {
+  tous: "Tous les produits",
+  telephone: "📱 Téléphones",
+  television: "📺 Télévisions",
+  montre: "⌚ Montres connectées",
+  console: "🎮 Consoles & Jeux"
+};
       alimentation: "🍎 Alimentation",
       vetements: "👕 Vêtements",
       electrique: "⚡ Électrique",
