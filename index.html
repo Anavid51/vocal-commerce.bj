@@ -405,7 +405,23 @@
 
   <script>
     const produits = [
-      { nom: "iPhone 11", prix: 125000, categorie: "telephone", emoji: "📱", desc: "Apple, 64Go, Face ID" },
+{ nom: "Infinix Note 40", prix: 135000, categorie: "telephone", emoji: "📱", desc: "256Go, Charge rapide" },
+
+{ nom: "Infinix Smart 8", prix: 55000, categorie: "telephone", emoji: "📱", desc: "64Go, Android 14" },
+
+{ nom: "Infinix Zero 30", prix: 195000, categorie: "telephone", emoji: "📱", desc: "256Go, AMOLED" } { nom: "Samsung Galaxy S24", prix: 450000, categorie: "telephone", emoji: "📱", desc: "256Go, IA Galaxy" },
+
+{ nom: "Samsung Galaxy A35", prix: 160000, categorie: "telephone", emoji: "📱", desc: "128Go, 5G" },
+
+{ nom: "Samsung Galaxy A15", prix: 95000, categorie: "telephone", emoji: "📱", desc: "128Go, Batterie 5000mAh" }  prix: 320000, categorie: "menager", emoji: "🧊", desc: "Économie d'énergie" },
+
+{ nom: "Machine à laver LG 8Kg", prix: 275000, categorie: "menager", emoji: "🧺", desc: "Automatique" },
+
+{ nom: "Micro-ondes Hisense", prix: 85000, categorie: "menager", emoji: "🍲", desc: "20 Litres" },
+
+{ nom: "Ventilateur Binatone", prix: 25000, categorie: "menager", emoji: "🌀", desc: "3 vitesses" },
+
+{ nom: "Cuisinière 4 feux", prix: 135000, categorie: "menager", emoji: "🍳", desc: "Gaz + Four" }   { nom: "iPhone 11", prix: 125000, categorie: "telephone", emoji: "📱", desc: "Apple, 64Go, Face ID" },
       { nom: "iPhone 12", prix: 145000, categorie: "telephone", emoji: "📱", desc: "Apple, 64Go, 5G" },
       { nom: "iPhone 13", prix: 175000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, puce A15" },
       { nom: "iPhone 14", prix: 240000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, mode action" },
@@ -481,7 +497,8 @@
 
     function demarrerVoix() {
       const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = 'fr-FR';
+      recognition.lang = 'fr-FR';recognition.continuous = false;
+recognition.interimResults = false;
       const btn = document.querySelector('.mic-btn');
       btn.classList.add('active');
       recognition.start();
@@ -491,13 +508,30 @@
         document.getElementById('voice-result').textContent = '🎤 ' + texte;
         btn.classList.remove('active');
         rechercherProduit();
-      };
+      };function commander(nom, prix) {
+  const message =
+    Bonjour, je souhaite commander : ${nom} (%0A) +
+    Prix : ${prix.toLocaleString()} FCFA;
+[21:26, 23/06/2026] An@el: {
+  nom: "iPhone 15",
+  prix: 275000,
+  image: "images/iphone15.jpg",
+  categorie: "telephone"
+}
+[21:26, 23/06/2026] An@el: img src="${p.image}" alt="${p.nom}">
+  window.open(
+    https://wa.me/22940109396?text=${message},
+    '_blank'
+  );
+}
       recognition.onerror = () => btn.classList.remove('active');
     }
+{ nom: "Infinix Note 40", prix: 135000, categorie: "telephone", emoji: "📱", desc: "256Go, Charge rapide" },
 
-    function commander(nom, prix) {
-      alert('Commande recue !\n\nProduit : ' + nom + '\nPrix : ' + prix.toLocaleString() + ' FCFA\n\nNous vous contacterons au 0140109396 ou 0162552778 pour confirmer.');
-    }
+{ nom: "Infinix Smart 8", prix: 55000, categorie: "telephone", emoji: "📱", desc: "64Go, Android 14" },
+
+{ nom: "Infinix Zero 30", prix: 195000, categorie: "telephone", emoji: "📱", desc: "256Go, AMOLED" }
+    
 
     afficherProduits(produits);
   </script>
