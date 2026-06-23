@@ -215,17 +215,12 @@
       color: #006233;
     }
 
-    /* SECTION A PROPOS */
     .apropos {
       background: white;
       padding: 60px 20px;
       text-align: center;
     }
-    .apropos h2 {
-      font-size: 1.8rem;
-      color: #006400;
-      margin-bottom: 30px;
-    }
+    .apropos h2 { font-size: 1.8rem; color: #006400; margin-bottom: 30px; }
     .apropos-carte {
       display: inline-block;
       background: #f0fff0;
@@ -235,26 +230,19 @@
       box-shadow: 0 4px 20px rgba(0,100,0,0.1);
       border: 2px solid #006233;
     }
-    .apropos-carte .avatar {
-      font-size: 80px;
-      margin-bottom: 15px;
-    }
-    .apropos-carte h3 {
-      font-size: 1.5rem;
-      color: #006400;
-      margin-bottom: 5px;
-    }
-    .apropos-carte .titre {
-      font-size: 1rem;
-      color: #888;
+    .apropos-carte .avatar { font-size: 80px; margin-bottom: 15px; }
+    .apropos-carte h3 { font-size: 1.5rem; color: #006400; margin-bottom: 5px; }
+    .apropos-carte .titre-dev { font-size: 1rem; color: #888; margin-bottom: 20px; }
+    .apropos-carte p { font-size: 0.95rem; color: #555; line-height: 1.6; margin-bottom: 20px; }
+    .apropos-infos {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
       margin-bottom: 20px;
+      text-align: left;
     }
-    .apropos-carte p {
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
+    .apropos-infos p { margin-bottom: 8px; font-size: 0.95rem; color: #333; }
+    .apropos-infos p span { font-weight: bold; color: #006400; }
     .apropos-badges {
       display: flex;
       justify-content: center;
@@ -275,11 +263,7 @@
       text-align: center;
       padding: 40px 20px;
     }
-    .contact h2 {
-      font-size: 1.8rem;
-      margin-bottom: 25px;
-      color: #FFD700;
-    }
+    .contact h2 { font-size: 1.8rem; margin-bottom: 25px; color: #FFD700; }
     .contact-liens {
       display: flex;
       justify-content: center;
@@ -298,6 +282,7 @@
     .contact-liens a:hover { transform: scale(1.05); }
     .btn-whatsapp { background: #25D366; color: white; }
     .btn-telephone { background: #FFD700; color: #006400; }
+    .btn-telephone2 { background: #FFA500; color: white; }
     .btn-email { background: white; color: #006400; }
 
     footer {
@@ -306,6 +291,7 @@
       background: #004d00;
       color: white;
       font-size: 13px;
+      line-height: 1.8;
     }
   </style>
 </head>
@@ -328,7 +314,7 @@
     <div id="voice-result">Dites le nom d'un produit...</div>
   </div>
 
-  <div class="auteur">Auteur : Anael DESSOUASSI</div>
+  <div class="auteur">Developpeur : DESSOUASSI Anael</div>
 
   <div class="how">
     <h2>Comment ca marche ?</h2>
@@ -371,20 +357,26 @@
 
   <div class="grille" id="grille"></div>
 
-  <!-- SECTION A PROPOS -->
   <div class="apropos" id="apropos">
-    <h2>👤 A propos de l'auteur</h2>
+    <h2>👤 A propos du developpeur</h2>
     <div class="apropos-carte">
       <div class="avatar">👨‍💻</div>
-      <h3>Anael DESSOUASSI</h3>
-      <div class="titre">Createur de Vocal Commerce BJ</div>
+      <h3>DESSOUASSI Anael</h3>
+      <div class="titre-dev">Developpeur et Createur de Vocal Commerce BJ</div>
       <p>
         Entrepreneur beninois passionne par le numerique,
-        Anael DESSOUASSI a cree Vocal Commerce BJ pour
+        DESSOUASSI Anael a cree Vocal Commerce BJ pour
         permettre aux Beninois d'acheter facilement
         en utilisant simplement leur voix.
         Une innovation locale au service de tous.
       </p>
+      <div class="apropos-infos">
+        <p>👨‍💻 <span>Developpeur :</span> DESSOUASSI Anael</p>
+        <p>📞 <span>Tel 1 :</span> 0140109396</p>
+        <p>📞 <span>Tel 2 :</span> 0162552778</p>
+        <p>✉️ <span>Email :</span> dessouassianael51@gmail.com</p>
+        <p>🇧🇯 <span>Pays :</span> Benin</p>
+      </div>
       <div class="apropos-badges">
         <span class="badge">🇧🇯 Benin</span>
         <span class="badge">💡 Innovation</span>
@@ -394,25 +386,34 @@
     </div>
   </div>
 
-  <!-- SECTION CONTACT -->
   <div class="contact" id="contact">
     <h2>📞 Contactez-nous</h2>
     <div class="contact-liens">
       <a href="https://wa.me/22901401093" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
-      <a href="tel:+22901401093" class="btn-telephone">📞 0140109306</a>
+      <a href="tel:+22901401093" class="btn-telephone">📞 0140109396</a>
+      <a href="tel:+22901625527" class="btn-telephone2">📞 0162552778</a>
       <a href="mailto:dessouassianael51@gmail.com" class="btn-email">✉️ dessouassianael51@gmail.com</a>
     </div>
   </div>
 
   <footer>
-    2026 Vocal Commerce Benin - Anael DESSOUASSI |
-    Tel : 0140109306 | dessouassianael51@gmail.com
+    2026 Vocal Commerce Benin<br>
+    Developpe par DESSOUASSI Anael<br>
+    Tel : 0140109396 | 0162552778<br>
+    dessouassianael51@gmail.com
   </footer>
 
   <script>
     const produits = [
+      { nom: "iPhone 11", prix: 125000, categorie: "telephone", emoji: "📱", desc: "Apple, 64Go, Face ID" },
+      { nom: "iPhone 12", prix: 145000, categorie: "telephone", emoji: "📱", desc: "Apple, 64Go, 5G" },
+      { nom: "iPhone 13", prix: 175000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, puce A15" },
+      { nom: "iPhone 14", prix: 240000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, mode action" },
+      { nom: "iPhone 14 Pro", prix: 330000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, Dynamic Island" },
+      { nom: "iPhone 15", prix: 275000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, USB-C" },
+      { nom: "iPhone 16", prix: 480000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, puce A18" },
+      { nom: "iPhone 17 Pro", prix: 650000, categorie: "telephone", emoji: "📱", desc: "Apple, 256Go, dernier modele" },
       { nom: "Samsung Galaxy A55", prix: 185000, categorie: "telephone", emoji: "📱", desc: "6.6 pouces, 128Go, 5G" },
-      { nom: "iPhone 14", prix: 420000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, Face ID" },
       { nom: "Tecno Spark 20", prix: 75000, categorie: "telephone", emoji: "📱", desc: "6.56 pouces, 128Go" },
       { nom: "Infinix Hot 40", prix: 65000, categorie: "telephone", emoji: "📱", desc: "6.78 pouces, 256Go" },
       { nom: "Samsung Smart TV 43 pouces", prix: 320000, categorie: "television", emoji: "📺", desc: "4K UHD, WiFi, Netflix" },
@@ -495,7 +496,7 @@
     }
 
     function commander(nom, prix) {
-      alert('Commande recue !\n\nProduit : ' + nom + '\nPrix : ' + prix.toLocaleString() + ' FCFA\n\nNous vous contacterons au 0140109306 ou via WhatsApp pour confirmer.');
+      alert('Commande recue !\n\nProduit : ' + nom + '\nPrix : ' + prix.toLocaleString() + ' FCFA\n\nNous vous contacterons au 0140109396 ou 0162552778 pour confirmer.');
     }
 
     afficherProduits(produits);
