@@ -1,564 +1,745 @@
-<!DOCTYPE html>
+c!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vocal Commerce BJ</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #222;
-    }
+<title>Vocal Commerce BJ</title>
 
-    nav {
-      background: #006400;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    nav .logo {
-      color: #FFD700;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
+<style>
 
-    .hero {
-      background: linear-gradient(135deg, #006400, #228B22);
-      color: white;
-      text-align: center;
-      padding: 80px 20px 60px;
-    }
-    .hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
-    .hero h1 span { color: #FFD700; }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto 30px;
-      opacity: 0.9;
-    }
-FCFA
-            </div>
-
-            <p style="color:green;font-weight:bold;">
-              En stock : ${p.stock}
-            </p>
-
-            <button class="btn-commander"
-              onclick="commander('${p.nom}', ${p.prix})">
-              🛒 Commander
-            </button>
-          </div>
-        </div>
-      `;
-    });
-}
-{
-  nom: "Samsung Galaxy A55",
-  prix: 185000,
-  categorie: "telephone",
-  emoji: "📱",
-  desc: "128Go, 5G",
-  stock: 0
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
 }
 
-    .mic-btn {
-      background: #FFD700;
-      color: #006400;
-      border: none;
-      padding: 18px 40px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .mic-btn.active {
-      background: #ff4444;
-      color: white;
-      animation: pulse 1s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
+body{
+background:#f5f5f5;
+color:#222;
+}
 
-    #voice-result {
-      margin-top: 20px;
-      font-size: 1rem;
-      background: rgba(255,255,255,0.15);
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: 20px;
-      min-width: 200px;
-    }
 
-    .how {
-      padding: 60px 20px;
-      text-align: center;
-      background: white;
-    }
-    .how h2 { font-size: 1.8rem; color: #006400; margin-bottom: 40px; }
-    .steps { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; }
-    .step {
-      background: #f0fff0;
-      border-radius: 15px;
-      padding: 30px 20px;
-      max-width: 220px;
-      box-shadow: 0 2px 10px rgba(0,100,0,0.1);
-    }
-    .step .icon { font-size: 2.5rem; margin-bottom: 15px; }
-    .step h3 { color: #006400; margin-bottom: 8px; }
-    .step p { font-size: 0.9rem; color: #555; }
+/* NAVIGATION */
 
-    .recherche {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      padding: 20px;
-      background: white;
+nav{<button onclick=couvrirAdmin(){
+    Admin
+ </button>
+    function ouvrirAdmin(){
+      let code = prompt(
+       (Mot de passe administrateur");
+      if(code=="Anael2009"){
+        windows.location.href="admin.html"
+      }else{
+        alert("Acces refuse");
+      }
     }
-    .recherche input {
-      width: 60%;
-      padding: 12px;
-      border: 2px solid #006233;
-      border-radius: 25px;
-      font-size: 16px;
-      outline: none;
-    }
-    .recherche button {
-      padding: 12px 20px;
-      background: #006233;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 18px;
-    }
+    
+  
 
-    .categories {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      padding: 15px;
-      flex-wrap: wrap;
-      background: white;
-      border-bottom: 2px solid #eee;
-    }
-    .categories button {
-      padding: 10px 20px;
-      border: 2px solid #006233;
-      background: white;
-      color: #006233;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: all 0.3s;
-    }
-    .categories button.active,
-    .categories button:hover {
-      background: #006233;
-      color: white;
-    }
 
-    .titre-section {
-      text-align: center;
-      padding: 20px;
-      font-size: 22px;
-      color: #006233;
-    }
+background:#006400;
+color:white;
+padding:15px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:10;
+}
 
-    .grille {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 0 20px 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#ffd700;
+}
 
-    .carte {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.2s;
-    }
-    .carte:hover { transform: translateY(-4px); }
-    .carte .emoji {
-      font-size: 60px;
-      text-align: center;
-      padding: 20px;
-      background: #f9f9f9;
-    }
-    .carte-info { padding: 15px; }
-    .carte-info h3 { font-size: 16px; margin-bottom: 5px; }
-    .carte-info p { font-size: 13px; color: #777; margin-bottom: 10px; }
+nav button{
+background:#ffd700;
+border:none;
+padding:10px 15px;
+border-radius:20px;
+cursor:pointer;
+}
 
-    .prix {
-      font-size: 18px;
-      font-weight: bold;
-      color: #006233;
-      margin-bottom: 10px;
-    }
 
-    .btn-commander {
-      width: 100%;
-      padding: 10px;
-      background: #006233;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 15px;
-      transition: background 0.3s;
-    }
-    .btn-commander:hover { background: #004d26; }
+/* HERO */
 
-    .auteur {
-      text-align: center;
-      background: #ffd700;
-      padding: 8px;
-      font-weight: bold;
-      color: #006233;
-    }
+.hero{
+background:linear-gradient(135deg,#006400,#228b22);
+color:white;
+text-align:center;
+padding:50px 20px;
+}
 
-    .apropos {
-      background: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .apropos h2 { font-size: 1.8rem; color: #006400; margin-bottom: 30px; }
-    .apropos-carte {
-      display: inline-block;
-      background: #f0fff0;
-      border-radius: 20px;
-      padding: 40px;
-      max-width: 500px;
-      box-shadow: 0 4px 20px rgba(0,100,0,0.1);
-      border: 2px solid #006233;
-    }
-    .apropos-carte .avatar { font-size: 80px; margin-bottom: 15px; }
-    .apropos-carte h3 { font-size: 1.5rem; color: #006400; margin-bottom: 5px; }
-    .apropos-carte .titre-dev { font-size: 1rem; color: #888; margin-bottom: 20px; }
-    .apropos-carte p { font-size: 0.95rem; color: #555; line-height: 1.6; margin-bottom: 20px; }
-    .apropos-infos {
-      background: white;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 20px;
-      text-align: left;
-    }
-    .apropos-infos p { margin-bottom: 8px; font-size: 0.95rem; color: #333; }
-    .apropos-infos p span { font-weight: bold; color: #006400; }
-    .apropos-badges {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .badge {
-      background: #006233;
-      color: white;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-    }
+.hero h1{
+font-size:35px;
+}
 
-    .contact {
-      background: #006400;
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .contact h2 { font-size: 1.8rem; margin-bottom: 25px; color: #FFD700; }
-    .contact-liens {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-    .contact-liens a {
-      display: inline-block;
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-size: 1rem;
-      font-weight: bold;
-      text-decoration: none;
-      transition: transform 0.2s;
-    }
-    .contact-liens a:hover { transform: scale(1.05); }
-    .btn-whatsapp { background: #25D366; color: white; }
-    .btn-telephone { background: #FFD700; color: #006400; }
-    .btn-telephone2 { background: #FFA500; color: white; }
-    .btn-email { background: white; color: #006400; }
+.hero span{
+color:#ffd700;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #004d00;
-      color: white;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-  </style>
+.hero p{
+margin:15px;
+}
+
+.mic{
+background:#ffd700;
+border:none;
+padding:15px 30px;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+}
+
+
+
+/* RECHERCHE */
+
+.search{
+background:white;
+padding:20px;
+display:flex;
+justify-content:center;
+gap:10px;
+}
+
+.search input{
+width:60%;
+padding:12px;
+border-radius:25px;
+border:2px solid green;
+}
+
+.search button{
+background:#006400;
+color:white;
+border:none;
+padding:12px;
+border-radius:25px;
+}
+
+
+
+/* CATEGORIES */
+
+.categories{
+display:flex;
+gap:10px;
+justify-content:center;
+flex-wrap:wrap;
+padding:20px;
+}
+
+.categories button{
+padding:10px 15px;
+border-radius:20px;
+border:2px solid #006400;
+background:white;
+cursor:pointer;
+}
+
+.categories button:hover{
+background:#006400;
+color:white;
+}
+
+
+
+/* PRODUITS */
+
+#produits{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+
+}
+
+
+.card{
+
+background:white;
+border-radius:15px;
+padding:15px;
+box-shadow:0 3px 10px #ccc;
+
+}
+
+
+.card .image{
+
+font-size:70px;
+text-align:center;
+}
+
+
+.card h3{
+color:#006400;
+}
+
+
+.price{
+font-size:20px;
+font-weight:bold;
+color:#006400;
+margin:10px 0;
+}
+
+
+.stock{
+color:green;
+font-weight:bold;
+}
+
+
+.card button{
+
+width:100%;
+padding:10px;
+border:none;
+background:#006400;
+color:white;
+border-radius:10px;
+cursor:pointer;
+
+}
+
+
+/* PANIER */
+
+.panier{
+
+position:fixed;
+right:20px;
+bottom:20px;
+background:#ffd700;
+padding:15px;
+border-radius:50%;
+font-size:25px;
+cursor:pointer;
+
+}
+
+
+/* CONTACT */
+
+.contact{
+
+background:#006400;
+color:white;
+padding:30px;
+text-align:center;
+
+}
+
+
+.contact a{
+
+display:inline-block;
+margin:10px;
+padding:12px 20px;
+background:#25d366;
+color:white;
+text-decoration:none;
+border-radius:20px;
+
+}
+
+
+footer{
+
+background:#004d00;
+color:white;
+text-align:center;
+padding:15px;
+
+}
+
+</style>
+
 </head>
+
+
 <body>
 
-  <nav>
-    <div class="logo">🛒 Vocal Commerce BJ</div>
-    <ul>
-      <li><a href="#">Accueil</a></li>
-      <li><a href="#">Produits</a></li>
-      <li><a href="#apropos">A propos</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
 
-  <div class="hero">
-    <h1>🛒 Vocal Commerce <span>Benin</span></h1>
-    <p>Achetez facilement avec votre voix</p>
-    <button class="mic-btn" onclick="demarrerVoix()">🎤 Rechercher par voix</button>
-    <div id="voice-result">Dites le nom d'un produit...</div>
-  </div>
+<nav>
 
-  <div class="auteur">Developpeur : DESSOUASSI Anael</div>
+<div class="logo">
+🛒 Vocal Commerce BJ
+</div>
 
-  <div class="how">
-    <h2>Comment ca marche ?</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="icon">🎤</div>
-        <h3>Parlez</h3>
-        <p>Dites le nom du produit que vous cherchez</p>
-      </div>
-      <div class="step">
-        <div class="icon">🔍</div>
-        <h3>Trouvez</h3>
-        <p>Le site trouve automatiquement le produit</p>
-      </div>
-      <div class="step">
-        <div class="icon">🛒</div>
-        <h3>Commandez</h3>
-        <p>Cliquez sur Commander et payez via Mobile Money</p>
-      </div>
-    </div>
-  </div>
+<button onclick="voirPanier()">
+🛒 Panier (<span id="count">0</span>)
+</button>
 
-  <div class="recherche">
-    <input type="text" id="searchInput" placeholder="Rechercher un produit...">
-    <button onclick="demarrerVoix()">🎤</button>
-    <button onclick="rechercherProduit()">🔍</button>
-  </div>
+</nav>
 
-  <div class="categories">
-    <button class="active" onclick="filtrer('tous', this)">🛍️ Tous</button>
-    <button onclick="filtrer('telephone', this)">📱 Telephones</button>
-    <button onclick="filtrer('television', this)">📺 Televisions</button>
-    <button onclick="filtrer('ordinateur', this)">💻 Ordinateurs</button>
-    <button onclick="filtrer('montre', this)">⌚ Montres</button>
-    <button onclick="filtrer('console', this)">🎮 Consoles</button>
-    <button onclick="filtrer('alimentation', this)">🍎 Alimentation</button>
-  </div>
 
-  <h2 class="titre-section" id="titreSection">Tous les produits</h2>
+<section class="hero">
 
-  <div class="grille" id="grille"></div>
+<h1>
+Vocal Commerce <span>Benin</span>
+</h1>
 
-  <div class="apropos" id="apropos">
-    <h2>👤 A propos du developpeur</h2>
-    <div class="apropos-carte">
-      <div class="avatar">👨‍💻</div>
-      <h3>DESSOUASSI Anael</h3>
-      <div class="titre-dev">Developpeur et Createur de Vocal Commerce BJ</div>
-      <p>
-        Entrepreneur beninois passionne par le numerique,
-        DESSOUASSI Anael a cree Vocal Commerce BJ pour
-        permettre aux Beninois d'acheter facilement
-        en utilisant simplement leur voix.
-        Une innovation locale au service de tous.
-      </p>
-      <div class="apropos-infos">
-        <p>👨‍💻 <span>Developpeur :</span> DESSOUASSI Anael</p>
-        <p>📞 <span>Tel 1 :</span> 0140109396</p>
-        <p>📞 <span>Tel 2 :</span> 0162552778</p>
-        <p>✉️ <span>Email :</span> dessouassianael51@gmail.com</p>
-        <p>🇧🇯 <span>Pays :</span> Benin</p>
-      </div>
-      <div class="apropos-badges">
-        <span class="badge">🇧🇯 Benin</span>
-        <span class="badge">💡 Innovation</span>
-        <span class="badge">🛒 E-commerce</span>
-        <span class="badge">🎤 Vocal Tech</span>
-      </div>
-    </div>
-  </div>
+<p>
+Achetez avec votre voix facilement
+</p>
 
-  <div class="contact" id="contact">
-    <h2>📞 Contactez-nous</h2>
-    <div class="contact-liens">
-      <a href="https://wa.me/22901401093" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
-      <a href="tel:+22901401093" class="btn-telephone">📞 0140109396</a>
-      <a href="tel:+22901625527" class="btn-telephone2">📞 0162552778</a>
-      <a href="mailto:dessouassianael51@gmail.com" class="btn-email">✉️ dessouassianael51@gmail.com</a>
-    </div>
-  </div>
+<button class="mic" onclick="voiceSearch()">
+🎤 Recherche vocale
+</button>
 
-  <footer>
-    2026 Vocal Commerce Benin<br>
-    Developpe par DESSOUASSI Anael<br>
-    Tel : 0140109396 | 0162552778<br>
-    dessouassianael51@gmail.com
-  </footer>
+</section>
 
-  <script>
-    const produits = [
-{ nom: "Infinix Note 40", prix: 135000, categorie: "telephone", emoji: "📱", desc: "256Go, Charge rapide" },
 
-{ nom: "Infinix Smart 8", prix: 55000, categorie: "telephone", emoji: "📱", desc: "64Go, Android 14" },
 
-{ nom: "Infinix Zero 30", prix: 195000, categorie: "telephone", emoji: "📱", desc: "256Go, AMOLED" } { nom: "Samsung Galaxy S24", prix: 450000, categorie: "telephone", emoji: "📱", desc: "256Go, IA Galaxy" },
+<div class="search">
 
-{ nom: "Samsung Galaxy A35", prix: 160000, categorie: "telephone", emoji: "📱", desc: "128Go, 5G" },
+<input id="search" placeholder="Rechercher un produit">
 
-{ nom: "Samsung Galaxy A15", prix: 95000, categorie: "telephone", emoji: "📱", desc: "128Go, Batterie 5000mAh" }  prix: 320000, categorie: "menager", emoji: "🧊", desc: "Économie d'énergie" },
+<button onclick="searchProduct()">
+🔍
+</button>
 
-{ nom: "Machine à laver LG 8Kg", prix: 275000, categorie: "menager", emoji: "🧺", desc: "Automatique" },
+</div>
 
-{ nom: "Micro-ondes Hisense", prix: 85000, categorie: "menager", emoji: "🍲", desc: "20 Litres" },
 
-{ nom: "Ventilateur Binatone", prix: 25000, categorie: "menager", emoji: "🌀", desc: "3 vitesses" },
 
-{ nom: "Cuisinière 4 feux", prix: 135000, categorie: "menager", emoji: "🍳", desc: "Gaz + Four" }   { nom: "iPhone 11", prix: 125000, categorie: "telephone", emoji: "📱", desc: "Apple, 64Go, Face ID" },
-      { nom: "iPhone 12", prix: 145000, categorie: "telephone", emoji: "📱", desc: "Apple, 64Go, 5G" },
-      { nom: "iPhone 13", prix: 175000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, puce A15" },
-      { nom: "iPhone 14", prix: 240000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, mode action" },
-      { nom: "iPhone 14 Pro", prix: 330000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, Dynamic Island" },
-      { nom: "iPhone 15", prix: 275000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, USB-C" },
-      { nom: "iPhone 16", prix: 480000, categorie: "telephone", emoji: "📱", desc: "Apple, 128Go, puce A18" },
-      { nom: "iPhone 17 Pro", prix: 650000, categorie: "telephone", emoji: "📱", desc: "Apple, 256Go, dernier modele" },
-      { nom: "Samsung Galaxy A55", prix: 185000, categorie: "telephone", emoji: "📱", desc: "6.6 pouces, 128Go, 5G" },
-      { nom: "Tecno Spark 20", prix: 75000, categorie: "telephone", emoji: "📱", desc: "6.56 pouces, 128Go" },
-      { nom: "Infinix Hot 40", prix: 65000, categorie: "telephone", emoji: "📱", desc: "6.78 pouces, 256Go" },
-      { nom: "Samsung Smart TV 43 pouces", prix: 320000, categorie: "television", emoji: "📺", desc: "4K UHD, WiFi, Netflix" },
-      { nom: "LG TV 55 pouces", prix: 480000, categorie: "television", emoji: "📺", desc: "OLED 4K, HDR, Smart TV" },
-      { nom: "Hisense 32 pouces", prix: 145000, categorie: "television", emoji: "📺", desc: "HD Ready, Android TV" },
-      { nom: "TCL 50 pouces 4K", prix: 290000, categorie: "television", emoji: "📺", desc: "4K UHD, Google TV" },
-      { nom: "HP Pavilion 15", prix: 350000, categorie: "ordinateur", emoji: "💻", desc: "Intel i5, 8Go RAM, 512Go SSD" },
-      { nom: "Lenovo IdeaPad 3", prix: 280000, categorie: "ordinateur", emoji: "💻", desc: "AMD Ryzen 5, 8Go RAM" },
-      { nom: "Asus VivoBook 14", prix: 310000, categorie: "ordinateur", emoji: "💻", desc: "Intel i3, 8Go RAM, 256Go" },
-      { nom: "Dell Inspiron 15", prix: 420000, categorie: "ordinateur", emoji: "💻", desc: "Intel i7, 16Go RAM, 512Go" },
-      { nom: "Samsung Galaxy Watch 6", prix: 125000, categorie: "montre", emoji: "⌚", desc: "GPS, cardiaque, Android" },
-      { nom: "Apple Watch SE", prix: 195000, categorie: "montre", emoji: "⌚", desc: "GPS, sport, iOS" },
-      { nom: "Huawei Watch GT4", prix: 110000, categorie: "montre", emoji: "⌚", desc: "14 jours batterie, sport" },
-      { nom: "Amazfit GTS 4", prix: 65000, categorie: "montre", emoji: "⌚", desc: "AMOLED, GPS, 150 sports" },
-      { nom: "PS5 Standard", prix: 550000, categorie: "console", emoji: "🎮", desc: "Console Sony, 825Go SSD" },
-      { nom: "PS5 Digital Edition", prix: 450000, categorie: "console", emoji: "🎮", desc: "Sans lecteur, 825Go" },
-      { nom: "Manette PS5 DualSense", prix: 45000, categorie: "console", emoji: "🕹️", desc: "Vibration haptique" },
-      { nom: "Jeu FIFA 25 PS5", prix: 35000, categorie: "console", emoji: "⚽", desc: "EA Sports, mode carriere" },
-      { nom: "Riz local 5kg", prix: 3500, categorie: "alimentation", emoji: "🍚", desc: "Riz de qualite du Benin" },
-      { nom: "Huile de palme 1L", prix: 1200, categorie: "alimentation", emoji: "🫙", desc: "Huile naturelle locale" },
-      { nom: "Tomates fraiches 1kg", prix: 500, categorie: "alimentation", emoji: "🍅", desc: "Tomates du marche" },
-      { nom: "Poulet entier", prix: 4500, categorie: "alimentation", emoji: "🍗", desc: "Poulet fermier frais" },
-    ];
+<div class="categories">
 
-    function afficherProduits(liste) {
-      const grille = document.getElementById('grille');
-      grille.innerHTML = '';
-      liste.forEach(p => {
-        grille.innerHTML += `
-          <div class="carte">
-            <div class="emoji">${p.emoji}</div>
-            <div class="carte-info">
-              <h3>${p.nom}</h3>
-              <p>${p.desc}</p>
-              <div class="prix">${p.prix.toLocaleString()} FCFA</div>
-              <button class="btn-commander" onclick="commander('${p.nom}', ${p.prix})">🛒 Commander</button>
-            </div>
-          </div>`;
-      });
-    }
+<button onclick="filter('all')">Tous</button>
 
-    function filtrer(categorie, btn) {
-      document.querySelectorAll('.categories button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const titres = {
-        tous: "Tous les produits",
-        telephone: "📱 Telephones",
-        television: "📺 Televisions",
-        ordinateur: "💻 Ordinateurs",
-        montre: "⌚ Montres connectees",
-        console: "🎮 Consoles et Jeux",
-        alimentation: "🍎 Alimentation"
-      };
-      document.getElementById('titreSection').textContent = titres[categorie];
-      const resultat = categorie === 'tous' ? produits : produits.filter(p => p.categorie === categorie);
-      afficherProduits(resultat);
-    }
+<button onclick="filter('telephone')">📱 Téléphones</button>
 
-    function rechercherProduit() {
-      const terme = document.getElementById('searchInput').value.toLowerCase();
-      const resultat = produits.filter(p => p.nom.toLowerCase().includes(terme));
-      document.getElementById('titreSection').textContent = 'Resultats pour ' + terme;
-      afficherProduits(resultat);
-    }
+<button onclick="filter('tv')">📺 TV</button>
 
-    function demarrerVoix() {
-      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = 'fr-FR';recognition.continuous = false;
-recognition.interimResults = false;
-      const btn = document.querySelector('.mic-btn');
-      btn.classList.add('active');
-      recognition.start();
-      recognition.onresult = (e) => {
-        const texte = e.results[0][0].transcript;
-        document.getElementById('searchInput').value = texte;
-        document.getElementById('voice-result').textContent = '🎤 ' + texte;
-        btn.classList.remove('active');
-        rechercherProduit();
-      };function commander(nom, prix) {
-  const message =
-    Bonjour, je souhaite commander : ${nom} (%0A) +
-    Prix : ${prix.toLocaleString()} FCFA;
-[21:26, 23/06/2026] An@el: {
-  nom: "iPhone 15",
-  prix: 275000,
-  image: "images/iphone15.jpg",
-  categorie: "telephone"
+<button onclick="filter('pc')">💻 PC</button>
+
+<button onclick="filter('menager')">🏠 Ménager</button>
+
+<button onclick="filter('food')">🍎 Alimentation</button>
+
+</div>
+
+
+
+<div id="produits"></div>
+
+
+<div class="panier" onclick="voirPanier()">
+🛒
+</div><script>
+
+const produits = [
+
+{
+nom:"iPhone 15",
+prix:275000,
+cat:"telephone",
+image:"images/iphone15.jpg"
+stock:5,
+desc:"Apple 128Go USB-C"
+},
+
+{
+nom:"iPhone 16",
+prix:480000,
+cat:"telephone",
+image:"📱",
+stock:3,
+desc:"Puce A18 128Go"
+},
+
+{
+nom:"Samsung Galaxy A55",
+prix:185000,
+cat:"telephone",
+image:"📱",
+stock:8,
+desc:"5G 128Go"
+},
+
+{
+nom:"Infinix Hot 40",
+prix:65000,
+cat:"telephone",
+image:"📱",
+stock:10,
+desc:"256Go"
+},
+
+{
+nom:"Tecno Spark 20",
+prix:75000,
+cat:"telephone",
+image:"📱",
+stock:6,
+desc:"128Go"
+},
+
+{
+nom:"TV Samsung 43 pouces",
+prix:320000,
+cat:"tv",
+image:"📺",
+stock:4,
+desc:"Smart TV 4K"
+},
+
+{
+nom:"TV LG 55 pouces",
+prix:480000,
+cat:"tv",
+image:"📺",
+stock:2,
+desc:"OLED 4K"
+},
+
+{
+nom:"HP Pavilion",
+prix:350000,
+cat:"pc",
+image:"💻",
+stock:5,
+desc:"Intel i5 8Go RAM"
+},
+
+{
+nom:"Dell Inspiron",
+prix:420000,
+cat:"pc",
+image:"💻",
+stock:3,
+desc:"Intel i7"
+},
+
+{
+nom:"Réfrigérateur",
+prix:320000,
+cat:"menager",
+image:"🧊",
+stock:2,
+desc:"Économie énergie"
+},
+
+{
+nom:"Machine à laver",
+prix:275000,
+cat:"menager",
+image:"🧺",
+stock:3,
+desc:"Automatique"
+},
+
+{
+nom:"Riz 5Kg",
+prix:3500,
+cat:"food",
+image:"🍚",
+stock:20,
+desc:"Riz local"
 }
-[21:26, 23/06/2026] An@el: img src="${p.image}" alt="${p.nom}">
-  window.open(
-    https://wa.me/22940109396?text=${message},
-    '_blank'
-  );
+
+];
+
+
+let panier=[];
+
+
+
+function afficher(liste){
+
+let zone=document.getElementById("produits");
+
+zone.innerHTML="";
+
+
+liste.forEach(p=>{
+
+
+zone.innerHTML+=`
+
+<div class="card">
+
+<div class="image">${p.image}</div>
+
+<h3>${p.nom}</h3>
+
+<p>${p.desc}</p>
+
+<div class="price">
+${p.prix.toLocaleString()} FCFA
+</div>
+
+
+<div class="stock">
+✅ Disponible : ${p.stock}
+</div>
+
+
+<button onclick="ajouter('${p.nom}')">
+Ajouter au panier
+</button>
+
+
+</div>
+
+`;
+
+});
+
+
 }
-      recognition.onerror = () => btn.classList.remove('active');
-    }
-{ nom: "Infinix Note 40", prix: 135000, categorie: "telephone", emoji: "📱", desc: "256Go, Charge rapide" },
 
-{ nom: "Infinix Smart 8", prix: 55000, categorie: "telephone", emoji: "📱", desc: "64Go, Android 14" },
 
-{ nom: "Infinix Zero 30", prix: 195000, categorie: "telephone", emoji: "📱", desc: "256Go, AMOLED" }
-    
 
-    afficherProduits(produits);
-  </script>
+function filter(cat){
+
+if(cat=="all"){
+afficher(produits);
+return;
+}
+
+
+afficher(
+produits.filter(p=>p.cat==cat)
+);
+
+}
+
+
+
+function searchProduct(){
+
+let mot=document
+.getElementById("search")
+.value
+.toLowerCase();
+
+
+afficher(
+produits.filter(
+p=>p.nom.toLowerCase()
+.includes(mot)
+)
+);
+
+}
+
+
+
+function ajouter(nom){
+
+let produit =
+produits.find(
+p=>p.nom==nom
+);
+
+
+panier.push(produit);
+
+
+document.getElementById("count")
+.innerHTML=panier.length;
+
+
+alert(nom+" ajouté au panier");
+
+}
+
+
+
+function voirPanier(){
+
+let texte="Votre panier :\n\n";
+
+
+panier.forEach(p=>{
+
+texte+=
+p.nom+" - "+
+p.prix+
+" FCFA\n";
+
+});
+
+
+texte+=
+"\nCommander sur WhatsApp";
+
+
+if(panier.length>0){
+
+window.open(
+"https://wa.me/22940109306?text="+
+encodeURIComponent(texte),
+"_blank"
+);
+
+}else{
+
+alert("Votre panier est vide");
+
+}
+
+}
+
+
+
+function voiceSearch(){
+
+let recognition =
+new(window.SpeechRecognition ||
+window.webkitSpeechRecognition)();
+
+
+recognition.lang="fr-FR";
+
+
+recognition.start();
+
+
+
+recognition.onresult=function(e){
+
+document.getElementById("search")
+.value =
+e.results[0][0].transcript;
+
+
+searchProduct();
+
+}
+
+
+}
+
+
+
+afficher(produits);
+
+
+</script><section class="contact">
+
+<h2>📞 Contactez-nous</h2>
+
+<p>
+Développeur : <b>DESSOUASSI Anael</b>
+</p>
+
+<p>
+📧 dessouassianael51@gmail.com
+</p>
+
+<p>
+📞 0140109306
+</p>
+
+<p>
+📞 0162552778
+</p>
+
+
+<a href="https://wa.me/22940109306" target="_blank">
+💬 WhatsApp
+</a>
+
+
+<a href="tel:+2290140109306">
+📞 Appeler
+</a>
+
+
+<a href="mailto:dessouassianael51@gmail.com">
+✉️ Email
+</a>
+
+
+</section>
+
+
+
+<section style="
+background:white;
+padding:40px;
+text-align:center;
+">
+
+
+<h2 style="color:#006400;">
+👨‍💻 À propos du développeur
+</h2>
+
+
+<div style="
+margin:auto;
+max-width:500px;
+background:#f0fff0;
+padding:25px;
+border-radius:20px;
+border:2px solid #006400;
+">
+
+
+<h3>
+DESSOUASSI Anael
+</h3>
+
+
+<p>
+
+Créateur de Vocal Commerce BJ,
+une plateforme e-commerce qui permet
+aux clients d'acheter facilement avec
+la recherche vocale.
+
+</p>
+
+
+<p>
+
+🇧🇯 Innovation béninoise  
+<br>
+🛒 Commerce en ligne  
+<br>
+🎤 Technologie vocale
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+<footer>
+
+© 2026 Vocal Commerce BJ
+
+<br>
+
+Développé par DESSOUASSI Anael
+
+<br>
+
+📞 0140109306 | 0162552778
+
+<br>
+
+✉️ dessouassianael51@gmail.com
+
+</footer>
+
+
 
 </body>
+
 </html>
