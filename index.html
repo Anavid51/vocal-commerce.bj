@@ -3,97 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vocal Commerce BJ – Téléphones & Électronique</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <title>Vocal Commerce BJ — Première Plateforme Vocale du Bénin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    /* ===== VARIABES & RESET ===== */
     :root {
-      --vert: #006400;
-      --vert2: #228B22;
+      --vert: #004d00;
+      --vert2: #006400;
       --or: #FFD700;
-      --or2: #FFA500;
+      --or2: #FF8C00;
       --blanc: #ffffff;
       --gris: #f4f4f4;
-      --texte: #1a1a1a;
-      --ombre: 0 4px 20px rgba(0,0,0,0.1);
+      --texte: #333333;
+      --ombre: 0 4px 15px rgba(0,0,0,0.1);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: var(--gris); color: var(--texte); }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--gris);
+      color: var(--texte);
+      line-height: 1.6;
+    }
 
     /* ===== NAVBAR ===== */
     nav {
       background: var(--vert);
-      padding: 12px 30px;
+      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
+
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
-    .logo-icon {
-      width: 45px;
-      height: 45px;
-      background: var(--or);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--vert);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+    .logo-img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--or);
+      box-shadow: 0 0 10px rgba(255,215,0,0.3);
     }
+
     .logo-text {
       display: flex;
       flex-direction: column;
-      line-height: 1.1;
     }
+
     .logo-text span:first-child {
       color: var(--or);
-      font-size: 1.1rem;
       font-weight: 800;
-      letter-spacing: 1px;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
     }
+
     .logo-text span:last-child {
-      color: rgba(255,255,255,0.8);
-      font-size: 0.7rem;
-      font-weight: 300;
+      color: var(--blanc);
+      font-size: 0.75rem;
+      opacity: 0.8;
     }
+
     nav ul {
-      list-style: none;
       display: flex;
-      gap: 5px;
+      list-style: none;
+      gap: 10px;
       align-items: center;
     }
+
     nav ul li a {
-      color: white;
+      color: var(--blanc);
       text-decoration: none;
       font-size: 0.85rem;
       font-weight: 500;
       padding: 8px 14px;
-      border-radius: 20px;
-      transition: all 0.3s;
+      border-radius: 8px;
+      transition: all 0.3s ease;
     }
-    nav ul li a:hover { background: rgba(255,255,255,0.15); color: var(--or); }
+
+    nav ul li a:hover {
+      background: rgba(255,255,255,0.15);
+      color: var(--or);
+    }
+
     .nav-panier {
       background: var(--or) !important;
       color: var(--vert) !important;
       font-weight: 700 !important;
       position: relative;
     }
-    .nav-panier:hover { background: var(--or2) !important; }
+
+    .nav-panier:hover {
+      background: var(--or2) !important;
+      color: var(--blanc) !important;
+    }
+
     #badge-panier {
       position: absolute;
       top: -5px;
       right: -5px;
-      background: red;
+      background: #ff4444;
       color: white;
       border-radius: 50%;
       width: 18px;
@@ -114,6 +136,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .hero::before {
       content: '';
       position: absolute;
@@ -124,7 +147,9 @@
       background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 60%);
       animation: rotate 20s linear infinite;
     }
+
     @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
     .hero-badge {
       display: inline-block;
       background: rgba(255,215,0,0.2);
@@ -136,26 +161,44 @@
       font-weight: 600;
       margin-bottom: 20px;
       letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
     }
+
     .hero h1 {
       font-size: 2.8rem;
       font-weight: 800;
       margin-bottom: 15px;
       line-height: 1.2;
+      position: relative;
+      z-index: 1;
     }
-    .hero h1 span { color: var(--or); }
+
+    .hero h1 span {
+      color: var(--or);
+      background: linear-gradient(to right, var(--or), var(--or2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     .hero p {
       font-size: 1.1rem;
-      max-width: 550px;
-      margin: 0 auto 35px;
-      opacity: 0.85;
       font-weight: 300;
+      max-width: 650px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
     }
+
     .hero-buttons {
       display: flex;
-      justify-content: center;
       gap: 15px;
-      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
     }
     .btn-voix {
       background: var(--or);
@@ -170,9 +213,20 @@
       transition: all 0.3s;
       font-family: 'Poppins', sans-serif;
     }
-    .btn-voix:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,215,0,0.5); }
-    .btn-voix.active { background: #ff4444; color: white; animation: pulse 1s infinite; }
+
+    .btn-voix:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255,215,0,0.5);
+    }
+
+    .btn-voix.active {
+      background: #ff4444;
+      color: white;
+      animation: pulse 1s infinite;
+    }
+
     @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+
     .btn-produits {
       background: transparent;
       color: white;
@@ -185,7 +239,12 @@
       transition: all 0.3s;
       font-family: 'Poppins', sans-serif;
     }
-    .btn-produits:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    .btn-produits:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: white;
+    }
+
     #voice-result {
       margin-top: 20px;
       font-size: 0.9rem;
@@ -194,14 +253,20 @@
       padding: 10px 25px;
       border-radius: 25px;
       border: 1px solid rgba(255,255,255,0.2);
+      position: relative;
+      z-index: 1;
     }
+
     .hero-stats {
       display: flex;
       justify-content: center;
       gap: 40px;
       margin-top: 50px;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
+
     .stat { text-align: center; }
     .stat-num { font-size: 1.8rem; font-weight: 800; color: var(--or); }
     .stat-label { font-size: 0.75rem; opacity: 0.7; font-weight: 300; }
@@ -209,11 +274,12 @@
     /* ===== BANDEAU AUTEUR ===== */
     .auteur {
       background: var(--or);
-      padding: 10px;
+      padding: 12px 10px;
       text-align: center;
       font-weight: 700;
       color: var(--vert);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      box-shadow: var(--ombre);
     }
 
     /* ===== RECHERCHE ===== */
@@ -222,12 +288,14 @@
       padding: 25px 20px;
       box-shadow: var(--ombre);
     }
+
     .recherche-inner {
       max-width: 700px;
       margin: 0 auto;
       display: flex;
       gap: 10px;
     }
+
     .recherche-inner input {
       flex: 1;
       padding: 14px 20px;
@@ -236,30 +304,38 @@
       font-size: 0.95rem;
       outline: none;
       font-family: 'Poppins', sans-serif;
-      transition: border 0.3s;
+      transition: border-color 0.3s ease;
     }
-    .recherche-inner input:focus { border-color: var(--vert); }
+
+    .recherche-inner input:focus {
+      border-color: var(--vert);
+    }
+
     .recherche-inner button {
-      padding: 14px 20px;
       background: var(--vert);
       color: white;
       border: none;
+      padding: 0 25px;
       border-radius: 30px;
+      font-weight: 600;
       cursor: pointer;
-      font-size: 1.1rem;
-      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.3s;
     }
-    .recherche-inner button:hover { background: var(--vert2); transform: scale(1.05); }
 
-    /* ===== CATEGORIES ===== */
+    .recherche-inner button:hover {
+      background: var(--vert2);
+    }
+   /* ===== CATEGORIES ===== */
     .categories-section {
-      background: white;
-      padding: 15px 20px;
       border-bottom: 2px solid #eee;
       position: sticky;
-      top: 70px;
-      z-index: 100;
+      top: 68px;
+      z-index: 90;
+      background: white;
+      padding: 12px 10px;
     }
+
     .categories-inner {
       display: flex;
       justify-content: center;
@@ -268,6 +344,7 @@
       max-width: 900px;
       margin: 0 auto;
     }
+
     .categories-inner button {
       padding: 9px 18px;
       border: 2px solid var(--vert);
@@ -280,6 +357,7 @@
       transition: all 0.3s;
       font-family: 'Poppins', sans-serif;
     }
+
     .categories-inner button.active,
     .categories-inner button:hover {
       background: var(--vert);
@@ -315,7 +393,12 @@
       transition: all 0.3s;
       position: relative;
     }
-    .carte:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+
+    .carte:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
     .carte-badge {
       position: absolute;
       top: 12px;
@@ -328,6 +411,7 @@
       font-weight: 700;
       z-index: 1;
     }
+
     .carte-img {
       width: 100%;
       height: 200px;
@@ -335,11 +419,13 @@
       background: linear-gradient(135deg, #f8f8f8, #efefef);
       padding: 15px;
     }
+
     .carte-info { padding: 15px; }
     .carte-info h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 5px; color: #1a1a1a; }
     .carte-info p { font-size: 0.8rem; color: #888; margin-bottom: 12px; line-height: 1.4; }
     .carte-footer { display: flex; justify-content: space-between; align-items: center; }
     .prix { font-size: 1.1rem; font-weight: 800; color: var(--vert); }
+
     .btn-panier {
       background: var(--vert);
       color: white;
@@ -352,31 +438,176 @@
       transition: all 0.3s;
       font-family: 'Poppins', sans-serif;
     }
-    .btn-panier:hover { background: var(--or); color: var(--vert); transform: scale(1.05); }
 
+    .btn-panier:hover {
+      background: var(--or);
+      color: var(--vert);
+      transform: scale(1.05);
+    } 
+    /* ===== CATEGORIES ===== */
+    .categories-section {
+      border-bottom: 2px solid #eee;
+      position: sticky;
+      top: 68px;
+      z-index: 90;
+      background: white;
+      padding: 12px 10px;
+    }
+
+    .categories-inner {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .categories-inner button {
+      padding: 9px 18px;
+      border: 2px solid var(--vert);
+      background: white;
+      color: var(--vert);
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .categories-inner button.active,
+    .categories-inner button:hover {
+      background: var(--vert);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,100,0,0.3);
+    }
+
+    /* ===== TITRE SECTION ===== */
+    .titre-section {
+      text-align: center;
+      padding: 30px 20px 10px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--vert);
+    }
+
+    /* ===== GRILLE PRODUITS ===== */
+    .grille {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+      padding: 20px 30px 50px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .carte {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .carte:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .carte-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--or);
+      color: var(--vert);
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 1;
+    }
+
+    .carte-img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      background: linear-gradient(135deg, #f8f8f8, #efefef);
+      padding: 15px;
+    }
+
+    .carte-info { padding: 15px; }
+    .carte-info h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 5px; color: #1a1a1a; }
+    .carte-info p { font-size: 0.8rem; color: #888; margin-bottom: 12px; line-height: 1.4; }
+    .carte-footer { display: flex; justify-content: space-between; align-items: center; }
+    .prix { font-size: 1.1rem; font-weight: 800; color: var(--vert); }
+
+    .btn-panier {
+      background: var(--vert);
+      color: white;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .btn-panier:hover {
+      background: var(--or);
+      color: var(--vert);
+      transform: scale(1.05);
+    }
     /* ===== PANIER MODAL ===== */
-    .panier-overlay {
+    .panier-overlay, .admin-overlay, .cart-overlay {
       display: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.6);
       z-index: 2000;
       justify-content: center;
-      align-items: flex-start;
-      padding-top: 60px;
+      align-items: center;
+      padding: 15px;
     }
-    .panier-overlay.open { display: flex; }
-    .panier-modal {
+
+    .panier-overlay.open, .admin-overlay.open {
+      display: flex;
+    }
+
+    .cart-overlay.show {
+      display: block;
+    }
+
+    .panier-modal, .admin-modal, .modal-whatsapp {
       background: white;
       border-radius: 20px;
-      width: 90%;
+      width: 95%;
       max-width: 500px;
-      max-height: 80vh;
+      max-height: 85vh;
       overflow-y: auto;
       padding: 25px;
       position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
-    .panier-modal h2 {
+
+    .modal-whatsapp {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2005;
+      display: none;
+    }
+
+    .modal-whatsapp.open {
+      display: block;
+    }
+
+    .panier-modal h2, .admin-modal h2, .modal-whatsapp h3 {
       font-size: 1.3rem;
       font-weight: 700;
       color: var(--vert);
@@ -385,6 +616,7 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .fermer-panier {
       background: none;
       border: none;
@@ -392,6 +624,7 @@
       cursor: pointer;
       color: #888;
     }
+
     .panier-item {
       display: flex;
       align-items: center;
@@ -399,6 +632,7 @@
       padding: 12px 0;
       border-bottom: 1px solid #eee;
     }
+
     .panier-item img {
       width: 60px;
       height: 60px;
@@ -407,9 +641,11 @@
       border-radius: 10px;
       padding: 5px;
     }
+
     .panier-item-info { flex: 1; }
     .panier-item-info h4 { font-size: 0.85rem; font-weight: 600; }
     .panier-item-info p { font-size: 0.8rem; color: var(--vert); font-weight: 700; }
+
     .btn-supprimer {
       background: #ff4444;
       color: white;
@@ -420,111 +656,85 @@
       cursor: pointer;
       font-size: 0.8rem;
     }
+
     .panier-total {
-      background: var(--gris);
+      background: #fdfdfd;
+      border: 1px solid #eee;
       border-radius: 12px;
       padding: 15px;
       margin-top: 15px;
       text-align: right;
     }
-    .panier-total strong { font-size: 1.2rem; color: var(--vert); }
-    .btn-commander-panier {
-      width: 100%;
-      padding: 15px;
-      background: var(--vert);
+
+    .panier-total h3 { font-size: 1.1rem; font-weight: 700; color: #333; }
+    .panier-total span { color: var(--vert); font-weight: 800; }
+    .panier-actions { display: flex; gap: 10px; margin-top: 20px; }
+
+    .btn-commander, .btn-checkout {
+      flex: 1;
+      background: linear-gradient(45deg, var(--vert), var(--vert2));
       color: white;
       border: none;
+      padding: 12px;
       border-radius: 12px;
-      font-size: 1rem;
       font-weight: 700;
+      font-size: 0.9rem;
       cursor: pointer;
-      margin-top: 15px;
       font-family: 'Poppins', sans-serif;
-      transition: all 0.3s;
+      text-align: center;
     }
-    .btn-commander-panier:hover { background: var(--vert2); }
-    .panier-vide { text-align: center; padding: 30px; color: #888; font-size: 1rem; }
 
-    /* ===== ADMIN MODAL ===== */
-    .admin-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 3000;
-      justify-content: center;
-      align-items: center;
+    .btn-vider {
+      background: #eee;
+      color: #666;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
     }
-    .admin-overlay.open { display: flex; }
-    .admin-modal {
-      background: white;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 600px;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 30px;
+
+    /* ===== FORMULAIRE COMMANDE ===== */
+    .form-group { margin-bottom: 15px; text-align: left; }
+    .form-group label { display: block; margin-bottom: 5px; font-size: 0.85rem; font-weight: 600; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 11px; border: 1px solid #ccc; border-radius: 8px; font-family: inherit; font-size: 0.9rem;
     }
-    .admin-modal h2 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--vert);
-      margin-bottom: 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+
+    /* ===== ADMIN PANEL ===== */
     .admin-login { text-align: center; }
     .admin-login input {
-      width: 100%;
-      padding: 14px;
-      border: 2px solid #ddd;
-      border-radius: 12px;
-      font-size: 1rem;
-      margin-bottom: 15px;
-      font-family: 'Poppins', sans-serif;
-      outline: none;
+      width: 100%; padding: 14px; border: 2px solid #ddd; border-radius: 12px; font-size: 1rem; margin-bottom: 15px; font-family: inherit; outline: none;
     }
     .admin-login input:focus { border-color: var(--vert); }
     .btn-login {
-      width: 100%;
-      padding: 14px;
-      background: var(--vert);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Poppins', sans-serif;
+      width: 100%; padding: 14px; background: var(--vert); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: inherit;
     }
     .admin-panel { display: none; }
-    .commandes-liste { margin-top: 15px; }
     .commande-item {
-      background: var(--gris);
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-left: 4px solid var(--vert);
+      background: #fafafa; border-radius: 12px; padding: 15px; margin-bottom: 12px; border-left: 4px solid var(--vert); box-shadow: 0 2px 5px rgba(0,0,0,0.03); text-align: left;
     }
     .commande-item h4 { font-size: 0.9rem; font-weight: 700; color: var(--vert); }
-    .commande-item p { font-size: 0.85rem; color: #555; margin-top: 5px; }
+    .commande-item p { font-size: 0.85rem; color: #555; margin-top: 4px; }
+    /* ===== COMMENT CA MARCHE ===== */
+    .how { padding: 60px 20px; text-align: center; background: white; border-bottom: 1px solid #eee; }
+    .how h2 { font-size: 1.8rem; font-weight: 800; color: var(--vert); margin-bottom: 40px; }
+    .steps { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
+    .step {
+      background: var(--gris); border-radius: 16px; padding: 30px 20px; width: 100%; max-width: 220px; box-shadow: var(--ombre); transition: transform 0.3s;
+    }
+    .step:hover { transform: translateY(-5px); }
+    .step .icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .step h3 { color: var(--vert); font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 0.82rem; color: #666; line-height: 1.5; }
 
     /* ===== SECTION A PROPOS ===== */
-    .apropos {
-      background: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
+    .apropos { background: white; padding: 60px 20px; text-align: center; }
     .apropos h2 { font-size: 1.8rem; font-weight: 800; color: var(--vert); margin-bottom: 30px; }
     .apropos-carte {
-      display: inline-block;
-      background: linear-gradient(135deg, #f0fff0, #e8f5e9);
-      border-radius: 20px;
-      padding: 40px;
-      max-width: 500px;
-      box-shadow: var(--ombre);
-      border: 2px solid rgba(0,100,0,0.1);
+      display: inline-block; background: linear-gradient(135deg, #f0fff0, #e8f5e9); border-radius: 20px; padding: 40px; max-width: 500px; box-shadow: var(--ombre); border: 2px solid rgba(0,100,0,0.1);
     }
     .apropos-carte .avatar { font-size: 70px; margin-bottom: 15px; }
     .apropos-carte h3 { font-size: 1.4rem; font-weight: 800; color: var(--vert); margin-bottom: 5px; }
@@ -536,173 +746,750 @@
     .apropos-badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
     .badge { background: var(--vert); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
 
-    /* ===== CONTACT ===== */
-    .contact {
-      background: linear-gradient(135deg, #004d00, var(--vert));
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    .contact h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 10px; }
-    .contact p { opacity: 0.8; margin-bottom: 30px; }
-    .contact-liens { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
-    .contact-liens a {
-      display: inline-block;
-      padding: 14px 25px;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-    .contact-liens a:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-    .btn-whatsapp { background: #25D366; color: white; }
-    .btn-tel1 { background: var(--or); color: var(--vert); }
-    .btn-tel2 { background: var(--or2); color: white; }
-    .btn-email { background: white; color: var(--vert); }
-
     /* ===== VENDEUR ===== */
-    .vendeur {
-      background: #f9f9f9;
-      padding: 0 0 60px;
-    }
-    .vendeur-hero {
-      background: linear-gradient(135deg, #004d00, #006400, #228B22);
-      color: white;
-      text-align: center;
-      padding: 70px 20px 50px;
-    }
-    .vendeur-hero-badge {
-      display: inline-block;
-      background: rgba(255,215,0,0.2);
-      border: 1px solid rgba(255,215,0,0.5);
-      color: var(--or);
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
-    .vendeur-hero h2 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 15px;
-      line-height: 1.2;
-    }
+    .vendeur { background: #f9f9f9; padding: 0 0 60px; }
+    .vendeur-hero { background: linear-gradient(135deg, #004d00, #006400, #228B22); color: white; text-align: center; padding: 70px 20px 50px; }
+    .vendeur-hero-badge { display: inline-block; background: rgba(255,215,0,0.2); border: 1px solid rgba(255,215,0,0.5); color: var(--or); padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; letter-spacing: 1px; }
+    .vendeur-hero h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; line-height: 1.2; }
     .vendeur-hero h2 span { color: var(--or); }
-    .vendeur-hero .sous-titre {
-      font-size: 1rem;
-      opacity: 0.85;
-      max-width: 550px;
-      margin: 0 auto 35px;
-      line-height: 1.6;
-    }
-    .vendeur-stats {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
+    .vendeur-hero .sous-titre { font-size: 1rem; opacity: 0.85; max-width: 550px; margin: 0 auto 35px; line-height: 1.6; }
+    .vendeur-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
     .v-stat { text-align: center; }
     .v-stat-num { font-size: 1.8rem; font-weight: 800; color: var(--or); }
     .v-stat-label { font-size: 0.75rem; opacity: 0.8; }
-
-    .vendeur-section {
-      max-width: 1100px;
-      margin: 50px auto 0;
-      padding: 0 20px;
-    }
-    .vendeur-section-titre {
-      text-align: center;
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--vert);
-      margin-bottom: 30px;
-    }
-
-    .vendeur-avantages {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .avantage {
-      background: white;
-      border-radius: 16px;
-      padding: 25px 20px;
-      width: 180px;
-      box-shadow: var(--ombre);
-      border-top: 4px solid var(--or);
-      text-align: center;
-      transition: transform 0.3s;
-    }
+    .vendeur-section { max-width: 1100px; margin: 50px auto 0; padding: 0 20px; }
+    .vendeur-section-titre { text-align: center; font-size: 1.4rem; font-weight: 800; color: var(--vert); margin-bottom: 30px; }
+    .vendeur-avantages { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+    .avantage { background: white; border-radius: 16px; padding: 25px 20px; width: 180px; box-shadow: var(--ombre); border-top: 4px solid var(--or); text-align: center; transition: transform 0.3s; }
     .avantage:hover { transform: translateY(-5px); }
     .avantage .icone { font-size: 2rem; margin-bottom: 10px; }
     .avantage h4 { font-size: 0.9rem; font-weight: 700; color: var(--vert); margin-bottom: 5px; }
     .avantage p { font-size: 0.78rem; color: #888; line-height: 1.4; }
 
-    .plans {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      flex-wrap: wrap;
-    }
-    .plan {
-      background: white;
-      border-radius: 20px;
-      padding: 30px 25px;
-      width: 280px;
-      box-shadow: var(--ombre);
-      text-align: center;
-      position: relative;
-      border: 2px solid #eee;
-      transition: transform 0.3s;
-    }
+    /* PLANS */
+    .plans { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-top: 30px; }
+    .plan { background: white; border-radius: 20px; padding: 30px 25px; width: 100%; max-width: 280px; box-shadow: var(--ombre); text-align: center; position: relative; border: 2px solid #eee; transition: transform 0.3s; }
     .plan:hover { transform: translateY(-5px); }
-    .plan-pro {
-      border: 2px solid var(--or);
-      box-shadow: 0 8px 30px rgba(255,215,0,0.3);
-    }
-    .plan-badge-pro {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--or);
-      color: var(--vert);
-      padding: 4px 16px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 800;
-    }
+    .plan-pro { border: 2px solid var(--or); box-shadow: 0 8px 30px rgba(255,215,0,0.3); }
+    .plan-badge-pro { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--or); color: var(--vert); padding: 4px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; }
     .plan-nom { font-size: 1.2rem; font-weight: 800; color: var(--vert); margin-bottom: 10px; }
     .plan-prix { font-size: 2rem; font-weight: 800; color: var(--vert); margin-bottom: 20px; }
     .plan-prix span { font-size: 0.85rem; color: #888; font-weight: 400; }
     .plan-features { list-style: none; text-align: left; margin-bottom: 25px; }
     .plan-features li { font-size: 0.85rem; color: #555; padding: 6px 0; border-bottom: 1px solid #f0f0f0; }
+    
     .btn-plan {
-      width: 100%;
-      padding: 13px;
-      background: var(--vert);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      transition: all 0.3s;
+      width: 100%; padding: 13px; background: var(--vert); color: white; border: none; border-radius: 12px; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: inherit;
     }
     .btn-plan:hover { background: var(--vert2); }
     .btn-plan-pro { background: var(--or); color: var(--vert); }
     .btn-plan-pro:hover { background: var(--or2); color: white; }
 
-    .temoignages {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+    .temoignages { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .temoignage { background: white; border-radius: 16px; padding: 25px; max-width: 400px; box-shadow: var(--ombre); border-left: 4px solid var(--or); text-align: left; }
+    .temo-texte { font-size: 0.9rem; color: #555; line-height: 1.7; font-style: italic; margin-bottom: 12px; }
+    .temo-auteur { font-size: 0.8rem; font-weight: 700; color: var(--vert); }
+
+    /* VENDEUR FORM */
+    .vendeur-form { background: white; border-radius: 20px; padding: 35px; max-width: 500px; margin: 40px auto 0; box-shadow: var(--ombre); text-align: left; }
+    .vendeur-form h3 { font-size: 1.2rem; font-weight: 700; color: var(--vert); margin-bottom: 20px; text-align: center; }
+    .vendeur-form input, .vendeur-form select, .vendeur-form textarea { width: 100%; padding: 13px 16px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 0.9rem; font-family: inherit; margin-bottom: 14px; outline: none; transition: border 0.3s; }
+    .vendeur-form input:focus, .vendeur-form select:focus, .vendeur-form textarea:focus { border-color: var(--vert); }
+    .vendeur-form textarea { height: 100px; resize: none; }
+    
+    .btn-inscrire { width: 100%; padding: 15px; background: linear-gradient(135deg, var(--vert), var(--vert2)); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,100,0,0.3); font-family: inherit; }
+    .btn-inscrire:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,100,0,0.4); }
+    
+    .tarif-box { background: linear-gradient(135deg, var(--vert), var(--vert2)); color: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; text-align: center; }
+    .tarif-box .prix-abonnement { font-size: 2rem; font-weight: 800; color: var(--or); }
+    .tarif-box p { font-size: 0.85rem; opacity: 0.9; }
+
+    /* ===== CONTACT ===== */
+    .contact { background: linear-gradient(135deg, #004d00, var(--vert)); color: white; text-align: center; padding: 60px 20px; }
+    .contact h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 10px; }
+    .contact p { opacity: 0.8; margin-bottom: 30px; }
+    .contact-liens { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+    .contact-liens a { display: inline-block; padding: 14px 25px; border-radius: 30px; font-size: 0.9rem; font-weight: 700; text-decoration: none; transition: all 0.3s; }
+    .contact-liens a:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    .btn-whatsapp { background: #25D366; color: white; }
+    .btn-tel1 { background: var(--or); color: var(--vert); }
+    .btn-tel2 { background: var(--or2); color: white; }
+    .btn-email { background: white; color: var(--vert); }
+    .btn-email:hover { background: #eee; }
+
+    /* ===== FOOTER ===== */
+    footer { background: #002200; color: rgba(255,255,255,0.7); text-align: center; padding: 25px 20px; font-size: 0.8rem; line-height: 2; }
+    footer strong { color: var(--or); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav { flex-direction: column; gap: 15px; text-align: center; }
+      nav ul { flex-wrap: wrap; justify-content: center; gap: 5px; }
+      nav ul li a { padding: 6px 10px; font-size: 0.75rem; }
+      .categories-section { top: 110px; }
+      .hero h1 { font-size: 1.9rem; }
+      .grille { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; padding: 15px; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .btn-voix, .btn-produits { width: 100%; max-width: 280px; }
+      .plans { gap: 20px; }
+      .plan { max-width: 100%; }
+      .contact-liens { flex-direction: column; align-items: center; }
+      .contact-liens a { width: 100%; max-width: 280px; }
     }
-    .temoignage {
-      b
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-container">
+    <img src="data:image/jpeg;base64,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" class="logo-img" alt="Vocal Commerce BJ Logo">
+    <div class="logo-text">
+      <span>VOCAL COMMERCE</span>
+      <span>Bénin — Électronique & Plus</span>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#">Accueil</a></li>
+    <li><a href="#produits">Produits</a></li>
+    <li><a href="#vendeur">Devenir vendeur</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" class="nav-panier" onclick="ouvrirPanier(event)">🛒 Panier <span id="badge-panier">0</span></a></li>
+    <li><a href="#" onclick="ouvrirAdmin(event)" style="background:rgba(255,215,0,0.2);border-radius:20px;">⚙️ Admin</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🇧🇯 PREMIÈRE PLATEFORME VOCALE DU BÉNIN</div>
+  <h1>Achetez avec<br><span>votre voix</span> 🎤</h1>
+  <p>Téléphones, TV, ordinateurs, alimentation — commandez facilement en parlant simplement.</p>
+  <div class="hero-buttons">
+    <button class="btn-voix" onclick="demarrerVoix()">🎤 Parler pour chercher</button>
+    <button class="btn-produits" onclick="document.getElementById('produits').scrollIntoView({behavior:'smooth'})">Voir les produits</button>
+  </div>
+  <div id="voice-result">Appuyez sur le bouton et parlez...</div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Produits</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Catégories</div></div>
+    <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Livraison</div></div>
+  </div>
+</div>
+
+<div class="auteur">👨‍💻 Développé par DESSOUASSI Anael — dessouassianael51@gmail.com — 0140109396 | 0162552778</div>
+
+<div class="how">
+  <h2>Comment ça marche ?</h2>
+  <div class="steps">
+    <div class="step"><div class="icon">🎤</div><h3>Parlez</h3><p>Dites le nom du produit que vous cherchez</p></div>
+    <div class="step"><div class="icon">🔍</div><h3>Trouvez</h3><p>Le site trouve automatiquement le produit</p></div>
+    <div class="step"><div class="icon">🛒</div><h3>Ajoutez</h3><p>Ajoutez au panier en un clic</p></div>
+    <div class="step"><div class="icon">💳</div><h3>Payez</h3><p>Payez via MTN ou Moov Mobile Money</p></div>
+  </div>
+</div>
+
+<div class="recherche-section">
+  <div class="recherche-inner">
+    <input type="text" id="searchInput" placeholder="🔍 Rechercher un produit...">
+    <button onclick="demarrerVoix()" title="Recherche vocale">🎤</button>
+    <button onclick="rechercherProduit()" title="Rechercher">🔍</button>
+  </div>
+</div>
+<div class="categories-section" id="produits">
+  <div class="categories-inner">
+    <button class="active" onclick="filtrer('tous', this)">🛍️ Tous</button>
+    <button onclick="filtrer('iphone', this)">🍎 iPhones</button>
+    <button onclick="filtrer('telephone', this)">📱 Téléphones</button>
+    <button onclick="filtrer('television', this)">📺 Télévisions</button>
+    <button onclick="filtrer('ordinateur', this)">💻 Ordinateurs</button>
+    <button onclick="filtrer('montre', this)">⌚ Montres</button>
+    <button onclick="filtrer('console', this)">🎮 Consoles</button>
+    <button onclick="filtrer('alimentation', this)">🍎 Alimentation</button>
+  </div>
+</div>
+
+<h2 class="titre-section" id="titreSection">Tous les produits</h2>
+<div class="grille" id="grille"></div>
+
+<div class="apropos" id="apropos">
+  <h2>👤 À propos du développeur</h2>
+  <div class="apropos-carte">
+    <div class="avatar">👨‍💻</div>
+    <h3>DESSOUASSI Anael</h3>
+    <div class="titre-dev">Développeur & Créateur de Vocal Commerce BJ</div>
+    <p>Entrepreneur béninois passionné par le numérique, DESSOUASSI Anael a créé Vocal Commerce BJ pour permettre aux Béninois d'acheter facilement en utilisant simplement leur voix. Une innovation locale au service de tous.</p>
+    <div class="apropos-infos">
+      <p>👨‍💻 <span>Développeur :</span> DESSOUASSI Anael</p>
+      <p>📞 <span>Tél 1 :</span> 0140109396</p>
+      <p>📞 <span>Tél 2 :</span> 0162552778</p>
+      <p>✉️ <span>Email :</span> dessouassianael51@gmail.com</p>
+      <p>🇧🇯 <span>Pays :</span> Bénin</p>
+    </div>
+    <div class="apropos-badges">
+      <span class="badge">🇧🇯 Bénin</span>
+      <span class="badge">💡 Innovation</span>
+      <span class="badge">🛒 E-commerce</span>
+      <span class="badge">🎤 Vocal Tech</span>
+    </div>
+  </div>
+</div>
+
+<div class="vendeur" id="vendeur">
+  <div class="vendeur-hero">
+    <div class="vendeur-hero-badge">🚀 OPPORTUNITÉ BUSINESS AU BÉNIN</div>
+    <h2>Devenez Vendeur sur<br><span>Vocal Commerce BJ</span></h2>
+    <p class="sous-titre">Rejoignez la première plateforme e-commerce vocale du Bénin.<br>Vendez plus, gagnez plus — dès aujourd'hui.</p>
+    <div class="vendeur-stats">
+      <div class="v-stat"><div class="v-stat-num">500+</div><div class="v-stat-label">Clients actifs</div></div>
+      <div class="v-stat"><div class="v-stat-num">2 000</div><div class="v-stat-label">FCFA/mois seulement</div></div>
+      <div class="v-stat"><div class="v-stat-num">24h</div><div class="v-stat-label">Pour démarrer</div></div>
+    </div>
+  </div>
+
+  <div class="vendeur-section">
+    <h3 class="vendeur-section-titre">✅ Pourquoi nous rejoindre ?</h3>
+    <div class="vendeur-avantages">
+      <div class="avantage">
+        <div class="icone">📈</div>
+        <h4>Visibilité maximale</h4>
+        <p>Vos produits vus par des milliers de clients béninois chaque jour</p>
+      </div>
+      <div class="avantage">
+        <div class="icone">🎤</div>
+        <h4>Technologie vocale</h4>
+        <p>Les clients trouvent vos produits juste en parlant — unique au Bénin</p>
+      </div>
+      <div class="avantage">
+        <div class="icone">💳</div>
+        <h4>MTN & Moov Money</h4>
+        <p>Paiements sécurisés via Mobile Money — rapide et fiable</p>
+      </div>
+      <div class="avantage">
+        <div class="icone">📦</div>
+        <h4>Zéro stress</h4>
+        <p>Nous gérons les commandes, vous gérez votre stock</p>
+      </div>
+      <div class="avantage">
+        <div class="icone">📊</div>
+        <h4>Tableau de bord</h4>
+        <p>Suivez vos ventes et commandes en temps réel</p>
+      </div>
+      <div class="avantage">
+        <div class="icone">🤝</div>
+        <h4>Support dédié</h4>
+        <p>Une équipe disponible 7j/7 pour vous accompagner</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="vendeur-section">
+    <h3 class="vendeur-section-titre">💰 Nos Offres</h3>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-nom">Starter</div>
+        <div class="plan-prix">2 000 <span>FCFA/mois</span></div>
+        <ul class="plan-features">
+          <li>✅ Jusqu'à 20 produits</li>
+          <li>✅ Page boutique personnalisée</li>
+          <li>✅ Commandes vocales incluses</li>
+          <li>✅ Paiement Mobile Money</li>
+          <li>✅ Support WhatsApp</li>
+        </ul>
+        <button class="btn-plan" onclick="document.getElementById('v-nom').focus()">Choisir Starter</button>
+      </div>
+      <div class="plan plan-pro">
+        <div class="plan-badge-pro">⭐ POPULAIRE</div>
+        <div class="plan-nom">Pro</div>
+        <div class="plan-prix">5 000 <span>FCFA/mois</span></div>
+        <ul class="plan-features">
+          <li>✅ Produits illimités</li>
+          <li>✅ Mise en avant prioritaire</li>
+          <li>✅ Publicité sur la page d'accueil</li>
+          <li>✅ Statistiques détaillée</li>
+          <li>✅ Support prioritaire 24h/24</li>
+          <li>✅ Commission réduite à 3%</li>
+        </ul>
+        <button class="btn-plan btn-plan-pro" onclick="document.getElementById('v-nom').focus()">Choisir Pro</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="vendeur-section">
+    <h3 class="vendeur-section-titre">💬 Ce que disent nos vendeurs</h3>
+    <div class="temoignages">
+      <div class="temoignage">
+        <div class="temo-texte">"Depuis que j'ai rejoint Vocal Commerce BJ, mes ventes ont doublé en 2 mois. Mes clients adorent commander par la voix !"</div>
+        <div class="temo-auteur">— Kofi A., vendeur de téléphones à Cotonou</div>
+      </div>
+      <div class="temoignage">
+        <div class="temo-texte">"Le paiement Mobile Money m'a simplifié la vie. Je reçois mes paiements directement sur mon téléphone."</div>
+        <div class="temo-auteur">— Aminata D., boutique alimentation à Porto-Novo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vendeur-form">
+    <div class="tarif-box">
+      <div class="prix-abonnement">2 000 FCFA</div>
+      <p>par mois — Commencez à vendre dès aujourd'hui !</p>
+    </div>
+    <h3>📝 Inscription Vendeur</h3>
+    <input type="text" id="v-nom" placeholder="Votre nom complet *">
+    <input type="tel" id="v-tel" placeholder="Votre numéro de téléphone *">
+    <input type="email" id="v-email" placeholder="Votre adresse email">
+    <input type="text" id="v-boutique" placeholder="Nom de votre boutique *">
+    <input type="text" id="v-ville" placeholder="Votre ville (ex: Cotonou, Porto-Novo...) *">
+    <select id="v-plan">
+      <option value="">-- Choisir un plan --</option>
+      <option>Starter — 2 000 FCFA/mois</option>
+      <option>Pro — 5 000 FCFA/mois</option>
+    </select>
+    <select id="v-categorie">
+      <option value="">-- Catégorie de produits --</option>
+      <option>Téléphones & Électronique</option>
+      <option>Alimentation</option>
+      <option>Vêtements & Mode</option>
+      <option>Ordinateurs</option>
+      <option>Montres & Accessoires</option>
+      <option>Consoles & Jeux</option>
+      <option>Autres</option>
+    </select>
+    <textarea id="v-message" placeholder="Décrivez vos produits (optionnel)..."></textarea>
+    <button class="btn-inscrire" onclick="inscrireVendeur()">🚀 S'inscrire maintenant — Gratuit 7 jours !</button>
+    <p style="text-align:center;font-size:0.8rem;color:#888;margin-top:10px;">✅ Aucun engagement — Annulation à tout moment</p>
+  </div>
+</div>
+
+<div class="contact" id="contact">
+  <h2>📞 Contactez-nous</h2>
+  <p>Disponible 7j/7 pour vos commandes et questions</p>
+  <div class="contact-liens">
+    <a href="https://wa.me/2290140109396" class="btn-whatsapp" target="_blank">💬 WhatsApp</a>
+    <a href="tel:+2290140109396" class="btn-tel1">📞 0140109396</a>
+    <a href="tel:+2290162552778" class="btn-tel2">📞 0162552778</a>
+    <a href="mailto:dessouassianael51@gmail.com" class="btn-email">✉️ Email</a>
+  </div>
+</div>
+
+<footer>
+  <strong>© 2026 Vocal Commerce BJ</strong><br>
+  Développé par <strong>DESSOUASSI Anael</strong><br>
+  📞 0140109396 | 0162552778 | ✉️ dessouassianael51@gmail.com
+</footer>
+
+<div class="panier-overlay" id="panierOverlay">
+  <div class="panier-modal">
+    <h2>🛒 Mon Panier <button class="fermer-panier" onclick="fermerPanier()">✕</button></h2>
+    <div id="panier-contenu"></div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="fermerCommande()"></div>
+<div class="modal-whatsapp" id="orderModal">
+  <h3>📦 Finaliser ma commande</h3>
+  <div class="form-group">
+    <label for="clientNom">Nom complet *</label>
+    <input type="text" id="clientNom" placeholder="Ex: Jean Dodo">
+  </div>
+  <div class="form-group">
+    <label for="clientVille">Ville de livraison *</label>
+    <input type="text" id="clientVille" placeholder="Ex: Cotonou, Calavi">
+  </div>
+  <div class="form-group">
+    <label for="clientQuartier">Quartier & Précisions *</label>
+    <input type="text" id="clientQuartier" placeholder="Ex: Fidjrossé, face pharmacie">
+  </div>
+  <div class="form-group">
+    <label for="clientPaiement">Mode de paiement préféré *</label>
+    <select id="clientPaiement">
+      <option value="MTN Mobile Money">MTN MoMo</option>
+      <option value="Moov Money">Moov Money</option>
+      <option value="Paiement à la livraison">À la livraison</option>
+    </select>
+  </div>
+  <button class="btn-checkout" onclick="envoyerCommandeWhatsApp()">🚀 Envoyer via WhatsApp</button>
+</div>
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-modal">
+    <h2>⚙️ Espace Admin <button class="fermer-panier" onclick="fermerAdmin()">✕</button></h2>
+    <div class="admin-login" id="adminLogin">
+      <p style="margin-bottom:20px;color:#888;">Entrez le mot de passe admin</p>
+      <input type="password" id="adminPassword" placeholder="Mot de passe...">
+      <button class="btn-login" onclick="connecterAdmin()">Se connecter</button>
+    </div>
+    <div class="admin-panel" id="adminPanel">
+      <h3 style="color:var(--vert);margin-bottom:15px;">📋 Commandes reçues</h3>
+      <div class="commandes-liste" id="commandesListe"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const produits = [
+    { nom: "iPhone 11", prix: 125000, categorie: "iphone", img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-11-black-select-2019?wid=300&hei=300&fmt=png-alpha", desc: "64Go, Face ID, Double caméra", badge: "Occasion" },
+    { nom: "iPhone 12", prix: 145000, categorie: "iphone", img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-black-select-2020?wid=300&hei=300&fmt=png-alpha", desc: "64Go, 5G, OLED Super Retina", badge: "" },
+    { nom: "iPhone 13", prix: 175000, categorie: "iphone", img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-black-select-2021?wid=300&hei=300&fmt=png-alpha", desc: "128Go, Puce A15, Cinematic mode", badge: "" },
+    { nom: "iPhone 14", prix: 240000, categorie: "iphone", img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-black-select-202209?wid=300&hei=300&fmt=png-alpha", desc: "128Go, Mode Action, Crash Detection", badge: "" },
+    { nom: "iPhone 14 Pro", prix: 330000, categorie: "iphone", img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-spacenoir-select?wid=300&hei=300&fmt=png-alpha", desc: "128Go, Dynamic Island, 48MP", badge: "Pro" },
+    { nom: "iPhone 15", prix: 275000, categorie: "iphone", img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-black-select-202309?wid=300&hei=300&fmt=png-alpha", desc: "128Go, USB-C, Puce A16", badge: "" },
+    { nom: "iPhone 16", prix: 480000, categorie: "iphone", img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-black-select-202409?wid=300&hei=300&fmt=png-alpha", desc: "128Go, Puce A18, Apple Intelligence", badge: "Nouveau" },
+    { nom: "iPhone 17 Pro", prix: 650000, categorie: "iphone", img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-black-select-202409?wid=300&hei=300&fmt=png-alpha", desc: "256Go, Titane, Caméra Pro 5x", badge: "Top" },
+    { nom: "Samsung Galaxy A55", prix: 185000, categorie: "telephone", img: "https://images.samsung.com/is/image/samsung/p6pim/africa_fr/2404/gallery/africa-fr-galaxy-a55-5g-sm-a556-sm-a556ezkaeub-thumb-539418135?$UX_ROOT_THUMBNAIL$", desc: "6.6 pouces, 128Go, 5G", badge: "" },
+    { nom: "Tecno Spark 20", prix: 75000, categorie: "telephone", img: "https://www.tecno-mobile.com/uploads/product/img/20240123/SPARK_20_Series_4d72b84e2d.png", desc: "6.56 pouces, 128Go, 90Hz", badge: "" },
+    { nom: "Infinix Hot 40", prix: 65000, categorie: "telephone", img: "https://f.nooncdn.com/p/pnsku/N70073481V/45/_/1710921628/8700f0ca-d12c-4c1a-b46e-38e6484c0a15.jpg", desc: "6.78 pouces, 256Go, 5000mAh", badge: "" },
+    { nom: "Samsung 43 pouces 4K", prix: 320000, categorie: "television", img: "https://images.samsung.com/is/image/samsung/p6pim/africa_fr/ua43cu7100uxmv/gallery/africa-fr-uhd-cu7100-ua43cu7100uxmv-536858418?$UX_ROOT_THUMBNAIL$", desc: "4K UHD, WiFi, Netflix intégré", badge: "" },
+    { nom: "LG OLED 55 pouces", prix: 480000, categorie: "television", img: "https://www.lg.com/fr/images/televiseurs/md07549756/gallery/medium01.jpg", desc: "OLED 4K, HDR, Smart TV", badge: "Top" },
+    { nom: "Hisense 32 pouces", prix: 145000, categorie: "television", img: "https://www.hisense.com/medias/sys_master/root/h4b/h56/9362000125982/32A4K-front.png", desc: "HD Ready, Android TV", badge: "" },
+    { nom: "TCL 50 pouces 4K", prix: 290000, categorie: "television", img: "https://www.tcl.com/fr_FR/medias/images/TCL-50P739-front.png", desc: "4K UHD, Google TV", badge: "" },
+    { nom: "HP Pavilion 15", prix: 350000, categorie: "ordinateur", img: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/knowledgebase/c08221474.png", desc: "Intel i5, 8Go RAM, 512Go SSD", badge: "" },
+    { nom: "Lenovo IdeaPad 3", prix: 280000, categorie: "ordinateur", img: "https://p1-ofp.static.pub/fes/cms/2022/09/26/ua0bkfjqzslm84m5zbdwho5gy3kk00928796.png", desc: "AMD Ryzen 5, 8Go RAM, 256Go", badge: "" },
+    { nom: "Asus VivoBook 14", prix: 310000, categorie: "ordinateur", img: "https://dlcdnwebimgs.asus.com/gain/4D81B5DB-B7F7-4A1B-B0EE-4F7FFCF2B7DC/", desc: "Intel i3, 8Go RAM, 256Go SSD", badge: "" },
+    { nom: "Dell Inspiron 15", prix: 420000, categorie: "ordinateur", img: "https://i.dell.com/is/image/DellContent/content/dam/images/products/laptops/inspiron/inspiron-15-3000/pdp/notebook-inspiron-15-3521-pdp-polaris-black-430-zoom.psd?fmt=png-alpha&pscan=auto&scl=1&hei=300", desc: "Intel i7, 16Go RAM, 512Go SSD", badge: "Pro" },
+    { nom: "Samsung Galaxy Watch 6", prix: 125000, categorie: "montre", img: "https://images.samsung.com/is/image/samsung/p6pim/africa_fr/sm-r930nzkaeub/gallery/africa-fr-galaxy-watch6-sm-r930-sm-r930nzkaeub-thumb-537033580?$UX_ROOT_THUMBNAIL$", desc: "GPS, Cardiaque, Android", badge: "" },
+    { nom: "Apple Watch SE", prix: 195000, categorie: "montre", img: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQGQ3ref_VW_34FR+watch-45-alum-midnight-nc-se_VW_34FR_WF_CO?wid=300&hei=300&fmt=png-alpha", desc: "GPS, Sport, iOS", badge: "" },
+    { nom: "Huawei Watch GT4", prix: 110000, categorie: "montre", img: "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/huawei-watch-gt4-46mm/img/huawei-watch-gt-4-46mm-overview-kv.jpg", desc: "14 jours batterie, Sport", badge: "" },
+    { nom: "PS5 Standard", prix: 550000, categorie: "console", img: "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21?$native--t$", desc: "Console Sony, 825Go SSD, 4K", badge: "Top" },
+    { nom: "PS5 Digital Edition", prix: 450000, categorie: "console", img: "https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-02-en-14sep21?$native--t$", desc: "Sans lecteur, 825Go SSD", badge: "" },
+    { nom: "Manette PS5 DualSense", prix: 45000, categorie: "console", img: "https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$native--t$", desc: "Vibration haptique, USB-C", badge: "" },
+    { nom: "Riz local 5kg", prix: 3500, categorie: "alimentation", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/White_rice.jpg/400px-White_rice.jpg", desc: "Riz de qualité du Bénin", badge: "Local" },
+    { nom: "Huile de palme 1L", prix: 1200, categorie: "alimentation", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Palm_oil.jpg/400px-Palm_oil.jpg", desc: "Huile naturelle locale", badge: "Local" },
+    { nom: "Poulet entier", prix: 4500, categorie: "alimentation", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Standing_chicken.jpg/400px-Standing_chicken.jpg", desc: "Poulet fermier frais", badge: "Frais" },
+    { nom: "Tomates 1kg", prix: 500, categorie: "alimentation", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/400px-Tomato_je.jpg", desc: "Tomates fraîches du marché", badge: "Frais" }
+  ];
+
+  let panier = [];
+  let commandes = JSON.parse(localStorage.getItem('commandes') || '[]');
+
+  // ===== AFFICHAGE PRODUITS =====
+  function afficherProduits(liste) {
+    const grille = document.getElementById('grille');
+    grille.innerHTML = '';
+    if (liste.length === 0) {
+      grille.innerHTML = '<p style="text-align:center;grid-column:1/-1;padding:40px;color:#888;">Aucun produit trouvé.</p>';
+      return;
+    }
+    liste.forEach(p => {
+      grille.innerHTML += `
+        <div class="carte">
+          ${p.badge ? <div class="carte-badge">${p.badge}</div> : ''}
+          <img class="carte-img" src="${p.img}" alt="${p.nom}" onerror="this.src='https://via.placeholder.com/300x200?text=${encodeURIComponent(p.nom)}'">
+          <div class="carte-info">
+            <h3>${p.nom}</h3>
+            <p>${p.desc}</p>
+            <div class="carte-footer">
+              <div class="prix">${p.prix.toLocaleString()} FCFA</div>
+              <button class="btn-panier" onclick="ajouterPanier('${p.nom}', ${p.prix}, '${p.img}')">🛒 Ajouter</button>
+            </div>
+          </div>
+        </div>`;
+    });
+  }
+
+  // ===== FILTRAGE PAR CATEGORIE =====
+  function filtrer(categorie, btn) {
+    document.querySelectorAll('.categories-inner button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const titres = {
+      tous: "Tous les produits",
+      iphone: "🍎 iPhones (11 → 17)",
+      telephone: "📱 Téléphones",
+      television: "📺 Télévisions",
+      ordinateur: "💻 Ordinateurs",
+      montre: "⌚ Montres connectées",
+      console: "🎮 Consoles & Jeux",
+      alimentation: "🍎 Alimentation"
+    };
+    document.getElementById('titreSection').textContent = titres[categorie];
+    const resultat = categorie === 'tous' ? produits : produits.filter(p => p.categorie === categorie);
+    afficherProduits(resultat);
+  }
+
+  // ===== RECHERCHE CLASSIQUE =====
+  function rechercherProduit() {
+    const terme = document.getElementById('searchInput').value.toLowerCase();
+    const resultat = produits.filter(p => p.nom.toLowerCase().includes(terme) || p.desc.toLowerCase().includes(terme));
+    document.getElementById('titreSection').textContent = 'Résultats pour : "' + terme + '"';
+    afficherProduits(resultat);
+  }
+
+  document.getElementById('searchInput').addEventListener('keyup', e => {
+    if (e.key === 'Enter') rechercherProduit();
+  });
+
+  // ===== RECHERCHE VOCALE =====
+  function demarrerVoix() {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+      alert('La reconnaissance vocale n\'est pas supportée sur votre navigateur. Veuillez utiliser Google Chrome.');
+      return;
+    }
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'fr-FR';
+    const btn = document.querySelector('.btn-voix');
+    btn.classList.add('active');
+    btn.textContent = '🔴 Écoute active...';
+    
+    recognition.start();
+    
+    recognition.onresult = (e) => {
+      const texte = e.results[0][0].transcript;
+      document.getElementById('searchInput').value = texte;
+      document.getElementById('voice-result').textContent = '🎤 Vous avez dit : "' + texte + '"';
+      btn.classList.remove('active');
+      btn.textContent = '🎤 Parler pour chercher';
+      rechercherProduit();
+    };
+    
+    recognition.onerror = () => {
+      btn.classList.remove('active');
+      btn.textContent = '🎤 Parler pour chercher';
+      alert("Une erreur est survenue lors de l'écoute vocale.");
+    };
+  }
+
+  // ===== GESTION PANIER =====
+  function ajouterPanier(nom, prix, img) {
+    const existe = panier.find(p => p.nom === nom);
+    if (existe) {
+      existe.qte++;
+    } else {
+      panier.push({ nom, prix, img, qte: 1 });
+    }
+    mettreAJourBadge();
+    afficherNotif(nom + ' ajouté au panier !');
+  }
+
+  function mettreAJourBadge() {
+    const total = panier.reduce((s, p) => s + p.qte, 0);
+    const badge = document.getElementById('badge-panier');
+    badge.textContent = total;
+    badge.style.display = total > 0 ? 'flex' : 'none';
+  }
+
+  function afficherNotif(msg) {
+    const notif = document.createElement('div');
+    notif.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#006400;color:white;padding:12px 20px;border-radius:12px;font-family:inherit;font-size:0.85rem;z-index:9999;box-shadow:0 4px 15px rgba(0,0,0,0.2);';
+    notif.textContent = '✅ ' + msg;
+    document.body.appendChild(notif);
+    setTimeout(() => notif.remove(), 2500);
+  }
+
+  function ouvrirPanier(e) {
+    e.preventDefault();
+    document.getElementById('panierOverlay').classList.add('open');
+    afficherPanier();
+  }
+
+  function fermerPanier() {
+    document.getElementById('panierOverlay').classList.remove('open');
+  }
+
+  function afficherPanier() {
+    const contenu = document.getElementById('panier-contenu');
+    if (panier.length === 0) {
+      contenu.innerHTML = '<p style="text-align:center;padding:20px;color:#888;">Votre panier est vide.</p>';
+      return;
+    }
+    let html = '';
+    let total = 0;
+    panier.forEach((p, index) => {
+      const sousTotal = p.prix * p.qte;
+      total += sousTotal;
+      html += `
+        <div class="panier-item">
+          <img src="${p.img}" alt="${p.nom}" onerror="this.src='https://via.placeholder.com/60x60?text=Tech'">
+          <div class="panier-item-info">
+            <h4>${p.nom}</h4>
+            <p>${p.prix.toLocaleString()} x ${p.qte} = ${sousTotal.toLocaleString()} FCFA</p>
+          </div>
+          <button class="btn-supprimer" onclick="supprimerDuPanier(${index})">✕</button>
+        </div>`;
+      });
+    html += `
+      <div class="panier-total">
+        <h3>Total : <span>${total.toLocaleString()} FCFA</span></h3>
+      </div>
+      <div class="panier-actions">
+        <button class="btn-vider" onclick="viderPanier()">Vider</button>
+        <button class="btn-commander" onclick="passerCommande()">Commander via WhatsApp 🚀</button>
+      </div>`;
+    contenu.innerHTML = html;
+  }
+
+  function supprimerDuPanier(index) {
+    panier.splice(index, 1);
+    mettreAJourBadge();
+    afficherPanier();
+  }
+
+  function viderPanier() {
+    panier = [];
+    mettreAJourBadge();
+    afficherPanier();
+  }
+
+  // ===== DEBUT PROCESSUS COMMANDE CLIENT =====
+  function passerCommande() {
+    if (panier.length === 0) return;
+    fermerPanier();
+    document.getElementById('cartOverlay').classList.add('show');
+    document.getElementById('orderModal').classList.add('open');
+  }
+
+  function fermerCommande() {
+    document.getElementById('cartOverlay').classList.remove('show');
+    document.getElementById('orderModal').classList.remove('open');
+  }
+
+  function envoyerCommandeWhatsApp() {
+    const nom = document.getElementById('clientNom').value.trim();
+    const ville = document.getElementById('clientVille').value.trim();
+    const quartier = document.getElementById('clientQuartier').value.trim();
+    const paiement = document.getElementById('clientPaiement').value;
+
+    if (!nom || !ville || !quartier) {
+      alert('Veuillez remplir tous les champs obligatoires (*)');
+      return;
+    }
+
+    let articlesTexte = '';
+    let total = 0;
+    panier.forEach(p => {
+      const sousTotal = p.prix * p.qte;
+      total += sousTotal;
+      articlesTexte += ${p.nom} x${p.qte} — (${sousTotal.toLocaleString()} FCFA)\n;
+    });
+
+    // Enregistrement de la commande dans la base de données locale simulée
+    const localOrder = {
+      id: Date.now(),
+      date: new Date().toLocaleString('fr-FR'),
+      client: nom,
+      contact: ville + ' (' + quartier + ')',
+      items: articlesTexte,
+      total: total,
+      mode: paiement
+    };
+    commandes.unshift(localOrder);
+    localStorage.setItem('commandes', JSON.stringify(commandes));
+
+    // Création du lien API WhatsApp
+    const msgWhatsApp = encodeURIComponent(
+      'Bonjour Vocal Commerce BJ,\n\n' +
+      'Une nouvelle commande vient d\'être effectuée !\n\n' +
+      '👤 Client : ' + nom + '\n' +
+      '📍 Lieu : ' + ville + ' — ' + quartier + '\n' +
+      '💳 Paiement choisi : ' + paiement + '\n\n' +
+      '🛒 Articles :\n' + articlesTexte + '\n' +
+      '💰 TOTAL : ' + total.toLocaleString() + ' FCFA\n\n' +
+      'Merci de confirmer ma livraison.'
+    );
+
+    alert('✅ Commande enregistrée localement !\nRedirection vers le gestionnaire WhatsApp de confirmation.');
+    
+    // Reset général
+    viderPanier();
+    fermerCommande();
+    
+    // Ouvrir le WhatsApp de Anael
+    window.open('https://wa.me/2290140109396?text=' + msgWhatsApp, '_blank');
+  }
+
+  // ===== FORMULAIRE DEVENIR VENDEUR =====
+  function inscrireVendeur() {
+    const nom = document.getElementById('v-nom').value.trim();
+    const tel = document.getElementById('v-tel').value.trim();
+    const boutique = document.getElementById('v-boutique').value.trim();
+    const ville = document.getElementById('v-ville').value.trim();
+    const plan = document.getElementById('v-plan').value;
+    const categorie = document.getElementById('v-categorie').value;
+    const note = document.getElementById('v-message').value.trim();
+
+    if (!nom || !tel || !boutique || !ville || !plan || !categorie) {
+      alert('Veuillez renseigner l\'ensemble des champs obligatoires (*)');
+      return;
+    }
+
+    const msgVendeur = encodeURIComponent(
+      'Bonjour DESSOUASSI Anael,\n\n' +
+      'Je souhaite m\'inscrire en tant que vendeur sur Vocal Commerce BJ.\n\n' +
+      '👤 Nom complet : ' + nom + '\n' +
+      '📞 Téléphone : ' + tel + '\n' +
+      '🏪 Boutique : ' + boutique + '\n' +
+      '📍 Ville : ' + ville + '\n' +
+      '💎 Formule : ' + plan + '\n' +
+      '📂 Catégorie : ' + categorie + '\n' +
+      (note ? '📝 Note additionnelle : ' + note : '')
+    );
+
+    // Vider les champs du formulaire vendeur
+    document.getElementById('v-nom').value = '';
+    document.getElementById('v-tel').value = '';
+    document.getElementById('v-email').value = '';
+    document.getElementById('v-boutique').value = '';
+    document.getElementById('v-ville').value = '';
+    document.getElementById('v-plan').value = '';
+    document.getElementById('v-categorie').value = '';
+    document.getElementById('v-message').value = '';
+
+    alert('✅ Votre formulaire de vendeur a été généré avec succès !');
+    window.open('https://wa.me/2290140109396?text=' + msgVendeur, '_blank');
+  }
+
+  // ===== CONTEXTE ADMINISTRATION SIMULÉ =====
+  function ouvrirAdmin(e) {
+    e.preventDefault();
+    document.getElementById('adminOverlay').classList.add('open');
+    document.getElementById('adminLogin').style.display = 'block';
+    document.getElementById('adminPanel').style.display = 'none';
+  }
+
+  function fermerAdmin() {
+    document.getElementById('adminOverlay').classList.remove('open');
+    document.getElementById('adminPassword').value = '';
+  }
+
+  function connecterAdmin() {
+    const mdp = document.getElementById('adminPassword').value;
+    if (mdp === 'Anael2009' || mdp === 'admin123') {
+      document.getElementById('adminLogin').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+      afficherCommandes();
+    } else {
+      alert('Mot de passe administrateur incorrect !');
+    }
+  }
+
+  function afficherCommandes() {
+    const liste = document.getElementById('commandesListe');
+    if (commandes.length === 0) {
+      liste.innerHTML = '<p style="color:#888;text-align:center;padding:20px;">Aucune commande en cache local.</p>';
+      return;
+    }
+    liste.innerHTML = commandes.map(c => `
+      <div class="commande-item">
+        <h4>Commande de : ${c.client}</h4>
+        <p>📅 Date : ${c.date}</p>
+        <p>📍 Adresse : ${c.contact}</p>
+        <p style="white-space: pre-wrap; background: #fff; padding: 10px; border-radius: 8px; margin: 8px 0; font-size: 0.8rem; border: 1px solid #eee;">${c.items}</p>
+        <p>💰 Montant : <strong>${c.total.toLocaleString()} FCFA</strong></p>
+        <p>📌 Facturation : <strong>${c.mode}</strong></p>
+      </div>
+    `).join('');
+  }
+
+  // Fermetures par clic extérieur sur les Overlays
+  document.getElementById('panierOverlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('panierOverlay')) fermerPanier();
+  });
+  document.getElementById('adminOverlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('adminOverlay')) fermerAdmin();
+  });
+
+  // INITIALISATION
+  window.onload = () => {
+    afficherProduits(produits);
+  };
+</script>
+
+</body>
+</html>
+      
