@@ -1,1246 +1,118 @@
-
-M
-
-<!DOCTYPE htmlc
-<html lang=cfr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=dev
-    ice-width, initial-scale=1.0">
-
-<title>Vocal Commerce Bénin</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-
-<style>
-
-:root{
---vert:#006400;
---or:#FFD700;
---gris:#f4f4f4;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-font-family:Poppins,sans-serif;
-background:var(--gris);
-}
-
-
-/* NAV */
-
-nav{
-background:var(--vert);
-color:white;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:1000;
-}
-
-
-.logo{
-font-size:22px;
-font-weight:800;
-color:var(--or);
-}
-
-
-nav button{
-background:var(--or);
-border:0;
-padding:10px 15px;
-border-radius:20px;
-cursor:pointer;
-}
-
-
-/* HERO */
-
-.hero{
-background:linear-gradient(135deg,#004d00,#228B22);
-color:white;
-text-align:center;
-padding:70px 20px;
-}
-
-
-.hero h1{
-font-size:40px;
-}
-
-
-.hero span{
-color:var(--or);
-}
-
-
-.hero button{
-margin-top:20px;
-padding:15px 30px;
-border-radius:30px;
-border:0;
-background:var(--or);
-font-weight:bold;
-cursor:pointer;
-}
-
-
-
-/* RECHERCHE */
-
-.search{
-background:white;
-padding:20px;
-display:flex;
-gap:10px;
-justify-content:center;
-}
-
-
-.search input{
-width:60%;
-padding:15px;
-border-radius:30px;
-border:1px solid #ccc;
-}
-
-
-.search button{
-background:var(--vert);
-color:white;
-border:0;
-padding:15px;
-border-radius:30px;
-}
-
-
-
-/* PRODUITS */
-
-.container{
-padding:30px;
-}
-
-
-.grid{
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-
-}
-
-
-.card{
-
-background:white;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 5px 20px #0002;
-
-}
-
-
-.card img{
-
-width:100%;
-height:220px;
-object-fit:contain;
-
-}
-
-
-.info{
-
-padding:20px;
-
-}
-
-
-.prix{
-
-color:var(--vert);
-font-size:22px;
-font-weight:bold;
-
-}
-
-
-.btn{
-
-background:var(--vert);
-color:white;
-border:0;
-padding:10px;
-border-radius:20px;
-cursor:pointer;
-margin-top:10px;
-
-}
-
-
-.btn:hover{
-background:var(--or);
-color:black;
-}
-
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<nav>
-
-<div class="logo">
-🎤 VOCAL COMMERCE BJ
-</div>
-
-
-<button onclick="ouvrirPanier()">
-🛒 Panier
-</button>
-
-
-</nav>
-
-
-<section class="hero">
-<!-- FLYER PROMOTIONNEL -->
-
-<section class="flyer">
-
-    <div class="flyer-content">
-
-        <h1>🎤 VOCAL COMMERCE BÉNIN</h1>
-
-        <h2>
-            Votre boutique en ligne intelligente
-        </h2>
-
-        <p>
-            📱 Smartphones iPhone & Samsung <br>
-            💻 Ordinateurs & tablettes <br>
-            👕 Vêtements & chaussures <br>
-            🍲 Produits alimentaires <br>
-            🧴 Produits ménagers
-        </p>
-
-
-        <div class="flyer-contact">
-
-            <strong>
-            Commandez facilement par la voix !
-            </strong>
-
-            <br><br>
-
-            📞 0140109306 <br>
-            📞 0162552778 <br>
-
-            📧 dessouassianael51@gmail.com
-
-        </div>
-
-
-        <button onclick="document.getElementById('produits').scrollIntoView()">
-            Voir les produits
-        </button>
-
-    </div>
-
-
-</section>
-<h1>
-Achetez par la <span>voix</span>
-</h1>
-
-
-<p>
-Téléphones, ordinateurs, vêtements, alimentation et plus.
-</p>
-
-
-<button onclick="demarrerVocal()">
-🎤 Recherche vocale
-</button>
-
-
-</section>
-
-
-
-<div class="search">
-
-<input id="recherche"
-placeholder="Rechercher un produit...">
-
-
-<button onclick="chercher()">
-🔎
-</button>
-
-</div>
-
-
-
-<section class="container">
-
-
-<h2>
-Nos produits
-</h2>
-
-
-<div id="produits" class="grid"></div>
-
-
-</section>
-
-
-
-<script>
-// ===== ACHAT PAR COMMANDE VOCALE =====
-
-function commandeAchatVocale(){
-
-const SpeechRecognition =
-window.SpeechRecognition ||
-window.webkitSpeechRecognition;
-
-
-if(!SpeechRecognition){
-
-alert("La commande vocale n'est pas disponible sur cet appareil.");
-return;
-
-}
-
-
-let reconnaissance = new SpeechRecognition();
-
-reconnaissance.lang = "fr-FR";
-
-reconnaissance.start();
-
-
-reconnaissance.onstart = function(){
-
-alert("Dites : acheter iPhone 15, Samsung, PC...");
-
-};
-
-
-
-reconnaissance.onresult = function(event){
-
-
-let phrase =
-event.results[0][0].transcript.toLowerCase();
-
-
-console.log("Commande :", phrase);
-
-
-
-let produitTrouve =
-produits.find(p =>
-phrase.includes(
-p.nom.toLowerCase()
-)
-);
-
-
-
-if(produitTrouve){
-
-
-let index =
-produits.indexOf(produitTrouve);
-
-
-ajouter(index);
-
-
-
-alert(
-"✅ "+produitTrouve.nom+
-" ajouté au panier"
-);
-
-
-}
-
-else{
-
-
-alert(
-"❌ Produit non trouvé. Essayez avec le nom exact."
-);
-
-
-}
-
-
-};
-
-
-reconnaissance.onerror=function(){
-
-alert("Erreur de reconnaissance vocale.");
-
-};
-
-
-}
-
-let produits=[
-
-
-{
-nom:"iPhone 11",
-prix:250000,
-image:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab"
-},
-
-{
-nom:"iPhone 12",
-prix:350000,
-categorie:"Téléphone",
-image:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab"
-},
-
-{
-nom:"iPhone 13 Pro",
-prix:450000,
-categorie:"Téléphone",
-image:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab"
-},
-
-{
-nom:"iPhone 14",
-prix:500000,
-categorie:"Téléphone",
-image:"https://images.unsplash.com/photo-1678685888221-cda773a3dcdb"
-},
-
-{
-nom:"iPhone 14 Pro Max",
-prix:650000,
-categorie:"Téléphone",
-image:"https://images.unsplash.com/photo-1678685888221-cda773a3dcdb"
-},
-
-{
-nom:"iPhone 15",
-prix:600000,
-categorie:"Téléphone",
-image:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"
-},
-
-{
-nom:"iPhone 15 Pro Max",
-prix:850000,
-categorie:"Téléphone",
-image:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"
-},
-
-{
-nom:"iPhone 16",
-prix:750000,
-categorie:"Téléphone",
-image:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"
-},
-
-
-{
-nom:"Samsung Galaxy S24",
-prix:600000,
-categorie:"Téléphone",
-image:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf"
-},
-
-
-{
-nom:"Tablette Android",
-prix:150000,
-categorie:"Tablette",
-image:"https://images.unsplash.com/photo-1544244015-0df4b2f0b2f5"
-},
-
-
-{
-nom:"iPad Air",
-prix:400000,
-categorie:"iPad",
-image:"https://images.unsplash.com/photo-1544244015-0df4b2f0b2f5"
-},
-
-
-{
-nom:"iPad Pro",
-prix:700000,
-categorie:"iPad",
-image:"https://images.unsplash.com/photo-1544244015-0df4b2f0b2f5"
-},
-
-
-{
-nom:"AirPods Pro",
-prix:120000,
-categorie:"Audio",
-image:"https://images.unsplash.com/photo-1600294037681-c80b4cb5b434"
-},
-
-
-{
-nom:"PC Portable HP",
-prix:350000,
-categorie:"Ordinateur",
-image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
-},
-
-
-{
-nom:"PC Portable Dell",
-prix:450000,
-categorie:"Ordinateur",
-image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
-},
-
-
-{
-nom:"Chaussures Sport",
-prix:25000,
-categorie:"Chaussures",
-image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
-},
-
-
-{
-nom:"Vêtement Homme",
-prix:30000,
-categorie:"Vêtement",
-image:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b"
-},
-
-
-{
-nom:"Produits alimentaires",
-prix:5000,
-categorie:"Alimentation",
-image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"
-},
-
-
-{
-nom:"Produits ménagers",
-prix:10000,
-categorie:"Ménager",
-image:"https://images.unsplash.com/photo-1583947215259-38e31be8751f"
-}
-
-];
-{
-nom:"iPhone 17",
-prix:850000,
-image:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"
-},
-
-
-{
-nom:"Samsung Galaxy S24",
-prix:600000,
-image:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf"
-},
-
-
-{
-nom:"iPad",
-prix:400000,
-image:"https://images.unsplash.com/photo-1544244015-0df4b2f0b2f5"
-},
-
-
-{
-nom:"Ordinateur portable",
-prix:350000,
-image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
-},
-
-
-{
-nom:"Chaussures",
-prix:20000,
-image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
-},
-
-
-{
-nom:"Produits alimentaires",
-prix:5000,
-image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"
-},
-
-
-{
-nom:"Produits ménagers",
-prix:10000,
-image:"https://images.unsplash.com/photo-1583947215259-38e31be8751f"
-}
-
-// ===== JEUX VIDEO =====
-
-{
-    nom:"Console PlayStation 5 PS5",
-    prix:450000,
-    categorie:"Console",
-    image:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
-},
-
-{
-    nom:"Console PlayStation 4 PS4",
-    prix:250000,
-    categorie:"Console",
-    image:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
-},
-
-{
-    nom:"Console PlayStation 3 PS3",
-    prix:150000,
-    categorie:"Console",
-    image:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
-},
-
-{
-    nom:"Console PlayStation 2 PS2",
-    prix:80000,
-    categorie:"Console",
-    image:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
-},
-
-{
-    nom:"Console PlayStation 1 PS1",
-    prix:50000,
-    categorie:"Console",
-    image:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
-},
-
-{
-    nom:"Manette PS5 Sans Fil",
-    prix:60000,
-    categorie:"Accessoire Gaming",
-    image:"https://images.unsplash.com/photo-1592840496694-26d035b52b48"
-},
-
-{
-    nom:"Manette PS4 DualShock",
-    prix:35000,
-    categorie:"Accessoire Gaming",
-    image:"https://images.unsplash.com/photo-1592840496694-26d035b52b48"
-},
-
-{
-    nom:"Manette de jeu Bluetooth",
-    prix:20000,
-    categorie:"Accessoire Gaming",
-    image:"https://images.unsplash.com/photo-1592840496694-26d035b52b48"
-},
-
-{
-    nom:"Console de jeu portable",
-    prix:75000,
-    categorie:"Console",
-    image:"https://images.unsplash.com/photo-1606144042614-b2417e99c4e3"
-}
-];
-
-
-
-let panier=[];
-
-
-
-function afficher(){
-
-let zone=document.getElementById("produits");
-
-zone.innerHTML="";
-
-
-produits.forEach((p,i)=>{
-
-
-zone.innerHTML+=`
-
-<div class="card">
-
-
-<img src="${p.image}">
-
-
-<div class="info">
-
-<h3>${p.nom}</h3>
-
-<p class="prix">
-${p.prix.toLocaleString()} FCFA
-</p>
-
-
-<button class="btn" onclick="ajouter(${i})">
-Ajouter au panier
-</button>
-
-
-<button class="btn" onclick="voir(${i})">
-👁️ Voir
-</button>
-
-
-</div>
-
-
-</div>`;
-
-
-});
-
-
-}
-
-
-
-afficher();
-
-
-function ajouter(i){
-
-panier.push(produits[i]);
-
-alert("Produit ajouté au panier");
-
-}
-
-
-
-function ouvrirPanier(){
-
-alert(
-"Votre panier contient : "+panier.length+" produit(s)"
-);
-
-}
-
-
-
-function chercher(){
-
-let mot=document
-.getElementById("recherche")
-.value.toLowerCase();
-
-
-let resultat=produits.filter(p=>
-p.nom.toLowerCase().includes(mot)
-);
-
-
-document.getElementById("produits").innerHTML="";
-
-
-resultat.forEach(p=>{
-
-
-document.getElementById("produits").innerHTML+=`
-
-<div class="card">
-
-<img src="${p.image}">
-
-<div class="info">
-
-<h3>${p.nom}</h3>
-
-<p class="prix">
-${p.prix} FCFA
-</p>
-
-</div>
-
-</div>`;
-
-
-});
-
-}
-
-
-
-function voir(i){
-
-alert(
-produits[i].nom+
-"\nPrix : "+
-produits[i].prix+
-" FCFA"
-);
-
-}
-
-
-</script>
-<div style="position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:10px;">
-
-
-<a href="tel:0140109306"
-class="btn"
-style="text-decoration:none;text-align:center;">
-📞 Appeler
-</a>
-
-
-<a href="https://wa.me/2290140109306"
-target="_blank"
-class="btn"
-style="text-decoration:none;text-align:center;background:#25D366;">
-💬 WhatsApp
-</a>
-
-
-</div>
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Vocal Commerce Bénin</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Vocal Commerce Benin</title>
 
 <style>
-/* ===== NOUVEAU THEME ORANGE ACCUEIL ===== */
-
-:root{
-    --orange:#ff7a00;
-    --orange2:#ffb347;
-    --fonce:#8a3d00;
-    --blanc:#ffffff;
-    --gris:#fff7ef;
-}
-
-
-/* Corps du site */
 
 body{
-    background:#fff4e8;
-}
-
-
-
-/* Navigation */
-
-nav{
-    background:linear-gradient(135deg,#ff7a00,#ff4500);
-    box-shadow:0 5px 20px #ff7a0055;
-}
-
-
-.logo{
-    color:white;
-}
-
-
-
-/* Hero */
-
-.hero{
-
-background:
-linear-gradient(
-135deg,
-#ff7a00,
-#ff4500
-);
-
-padding:90px 20px;
-
-border-bottom-left-radius:50px;
-border-bottom-right-radius:50px;
-
-}
-
-
-.hero h1{
-
-font-size:45px;
-color:white;
-
-}
-
-
-.hero span{
-
-color:#fff200;
-
-}
-
-
-
-.hero button{
-
-background:white;
-
-color:#ff5700;
-
-box-shadow:
-0 8px 20px #0003;
-
-}
-
-
-
-
-
-/* Flyer */
-
-.flyer{
-
-background:
-linear-gradient(
-135deg,
-#ff8c00,
-#ff4500
-);
-
-}
-
-
-
-/* Recherche */
-
-.search{
-
-background:white;
-
-border-radius:30px;
-
-margin:25px;
-
-box-shadow:
-0 5px 20px #ff7a0030;
-
-}
-
-
-
-.search button{
-
-background:#ff7a00;
-
-}
-
-
-
-
-
-/* Cartes produits */
-
-.card{
-
-border-radius:25px;
-
-border:2px solid #ffe0c2;
-
-transition:.3s;
-
-}
-
-
-
-.card:hover{
-
-transform:translateY(-10px);
-
-box-shadow:
-0 15px 30px #ff7a0040;
-
-}
-
-
-
-.prix{
-
-color:#ff5700;
-
-}
-
-
-
-/* Boutons */
-
-.btn{
-
-background:#ff7a00;
-
-}
-
-
-.btn:hover{
-
-background:#ffb000;
-
-color:white;
-
-}
-
-
-
-/* Titres */
-
-h2{
-
-color:#d94b00;
-
-}
-
-
-
-/* Footer */
-
-footer{
-
-background:
-linear-gradient(
-135deg,
-#ff5700,
-#8a3d00
-);
-
-}
-
-
-
-/* Effet accueil */
-
-.container{
-
-animation:apparition 0.8s;
-
-}
-
-
-@keyframes apparition{
-
-from{
-
-opacity:0;
-transform:translateY(20px);
-
-}
-
-to{
-
-opacity:1;
-transform:translateY(0);
-
-}
-
-}
-:root{
---vert:#006400;
---or:#FFD700;
---gris:#f4f4f4;
-}
-
-*{
 margin:0;
-padding:0;
-box-sizing:border-box;
+font-family:Arial,sans-serif;
+background:#f5f5f5;
 }
 
-body{
-font-family:Poppins,sans-serif;
-background:var(--gris);
-}
-
-
-/* NAV */
-
-nav{
-background:var(--vert);
-color:white;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:1000;
-}
-
-
-.logo{
-font-size:22px;
-font-weight:800;
-color:var(--or);
-}
-
-
-nav button{
-background:var(--or);
-border:0;
-padding:10px 15px;
-border-radius:20px;
-cursor:pointer;
-}
-
-
-/* HERO */
-
-.hero{
-background:linear-gradient(135deg,#004d00,#228B22);
-color:white;
+header{
+background:linear-gradient(90deg,#008751,#FCD116,#E8112D);
 text-align:center;
-padding:70px 20px;
-}
-
-
-.hero h1{
-font-size:40px;
-}
-
-
-.hero span{
-color:var(--or);
-}
-
-
-.hero button{
-margin-top:20px;
-padding:15px 30px;
-border-radius:30px;
-border:0;
-background:var(--or);
-font-weight:bold;
-cursor:pointer;
-}
-
-
-
-/* RECHERCHE */
-
-.search{
-background:white;
-padding:20px;
-display:flex;
-gap:10px;
-justify-content:center;
-}
-
-
-.search input{
-width:60%;
-padding:15px;
-border-radius:30px;
-border:1px solid #ccc;
-}
-
-
-.search button{
-background:var(--vert);
-color:white;
-border:0;
-padding:15px;
-border-radius:30px;
-}
-
-
-
-/* PRODUITS */
-
-.container{
 padding:30px;
 }
 
-
-.grid{
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-
-}
-
-
-.card{
-
+header h1{
 background:white;
+color:#008751;
+padding:15px;
 border-radius:20px;
-overflow:hidden;
-box-shadow:0 5px 20px #0002;
-
+display:inline-block;
 }
 
-
-.card img{
-
-width:100%;
-height:220px;
-object-fit:contain;
-
-}
-
-
-.info{
-
-padding:20px;
-
-}
-
-
-.prix{
-
-color:var(--vert);
-font-size:22px;
-font-weight:bold;
-
-}
-
-
-.btn{
-
-background:var(--vert);
+.burger{
+position:fixed;
+top:15px;
+left:15px;
+font-size:30px;
+background:#008751;
 color:white;
-border:0;
+padding:10px;
+border-radius:12px;
+cursor:pointer;
+z-index:10;
+}
+
+nav{
+display:none;
+position:fixed;
+top:70px;
+left:15px;
+background:white;
+padding:15px;
+border-radius:15px;
+z-index:9;
+}
+
+nav button{
+display:block;
+margin:8px;
+width:170px;
+}
+
+button{
+background:#FCD116;
+border:none;
 padding:10px;
 border-radius:20px;
 cursor:pointer;
-margin-top:10px;
-
 }
 
-
-.btn:hover{
-background:var(--or);
-color:black;
+#produits{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
 }
 
+.card{
+background:white;
+padding:15px;
+border-radius:15px;
+box-shadow:0 4px 15px #ccc;
+}
+
+.card img{
+width:100%;
+height:170px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.prix{
+color:#E8112D;
+font-weight:bold;
+}
+
+.page{
+padding:20px;
+}
+
+#panier{
+position:fixed;
+right:15px;
+bottom:15px;
+background:white;
+padding:15px;
+border-radius:15px;
+box-shadow:0 5px 15px #aaa;
+}
+
+footer{
+background:#008751;
+color:white;
+text-align:center;
+padding:25px;
+}
 
 </style>
 
@@ -1250,601 +122,286 @@ color:black;
 <body>
 
 
-<nav>
-
-<div class="logo">
-🎤 VOCAL COMMERCE BJ
-</div>
+<div class="burger" onclick="menu()">☰</div>
 
 
-<button onclick="ouvrirPanier()">
-🛒 Panier
-</button>
+<nav id="menu">
 
+<button onclick="ouvrir('boutique')">Boutique</button>
+<button onclick="admin()">Admin</button>
+<button onclick="ouvrir('vendeur')">Vendeur</button>
+<button onclick="ouvrir('blog')">Blog</button>
+<button onclick="ouvrir('avis')">Avis clients</button>
 
 </nav>
 
 
-<section class="hero">
 
-<h1>
-Achetez par la <span>voix</span>
-</h1>
+<header>
 
+<h1>Focal Commerce Benin</h1>
+
+<p>Marketplace intelligente 🇧🇯</p>
+
+</header>
+
+
+
+
+<section id="boutique" class="page">
+
+<h2>🛒 Produits</h2>
+
+<div id="produits"></div>
+
+</section>
+
+
+
+
+<section id="admin" class="page" style="display:none">
+
+<h2>👨‍💻 Administrateur</h2>
 
 <p>
-Téléphones, ordinateurs, vêtements, alimentation et plus.
+Gestion produits, commandes et utilisateurs.
 </p>
-
-
-<button onclick="demarrerVocal()">
-🎤 Recherche vocale
-</button>
-
 
 </section>
 
 
 
-<div class="search">
 
-<input id="recherche"
-placeholder="Rechercher un produit...">
+<section id="vendeur" class="page" style="display:none">
 
-
-<button onclick="chercher()">
-🔎
-</button>
-
-</div>
-
-
-
-<section class="container">
-
-
-<h2>
-Nos produits
-</h2>
-
-
-<div id="produits" class="grid"></div>
-
-
-</section>
-
-
-
-<script>
-
-
-let produits=[
-
-
-{
-nom:"iPhone 11",
-prix:250000,
-image:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab"
-},
-
-
-{
-nom:"iPhone 17",
-prix:850000,
-image:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"
-},
-
-
-{
-nom:"Samsung Galaxy S24",
-prix:600000,
-image:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf"
-},
-
-
-{
-nom:"iPad",
-prix:400000,
-image:"https://images.unsplash.com/photo-1544244015-0df4b2f0b2f5"
-},
-
-
-{
-nom:"Ordinateur portable",
-prix:350000,
-image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
-},
-
-
-{
-nom:"Chaussures",
-prix:20000,
-image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
-},
-
-
-{
-nom:"Produits alimentaires",
-prix:5000,
-image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"
-},
-
-
-{
-nom:"Produits ménagers",
-prix:10000,
-image:"https://images.unsplash.com/photo-1583947215259-38e31be8751f"
-}
-
-
-];
-
-
-
-let panier=[];
-
-
-function afficher(){
-<a 
-class="btn"
-href="https://wa.me/2290140109306?text=Bonjour je suis intéressé par ${p.nom}"
-target="_blank">
-Contacter
-</a>
-let zone=document.getElementById("produits");
-
-zone.innerHTML="";
-
-
-produits.forEach((p,i)=>{
-
-
-zone.innerHTML+=`
-
-<div class="card">
-
-
-<img src="${p.image}">
-
-
-<div class="info">
-
-<h3>${p.nom}</h3>
-
-<p class="prix">
-${p.prix.toLocaleString()} FCFA
-</p>
-
-
-<button class="btn" onclick="ajouter(${i})">
-Ajouter au panier
-</button>
-
-
-<button class="btn" onclick="voir(${i})">
-👁️ Voir
-</button>
-
-
-</div>
-
-
-</div>`;
-
-
-});
-
-
-}
-
-
-
-afficher();
-
-
-function ajouter(i){
-
-panier.push(produits[i]);
-
-alert("Produit ajouté au panier");
-
-}
-
-
-
-function ouvrirPanier(){
-
-alert(
-"Votre panier contient : "+panier.length+" produit(s)"
-);
-
-}
-
-
-
-function chercher(){
-
-let mot=document
-.getElementById("recherche")
-.value.toLowerCase();
-
-<button onclick="commandeAchatVocale()" class="btn">
-🗣️ Acheter par la voix
-</button>
-let resultat=produits.filter(p=>
-p.nom.toLowerCase().includes(mot)
-);
-
-
-document.getElementById("produits").innerHTML="";
-
-
-resultat.forEach(p=>{
-
-
-document.getElementById("produits").innerHTML+=`
-
-<div class="card">
-
-<img src="${p.image}">
-
-<div class="info">
-
-<h3>${p.nom}</h3>
-
-<p class="prix">
-${p.prix} FCFA
-</p>
-
-</div>
-
-</div>`;
-
-
-});
-
-}
-
-
-
-function voir(i){
-
-alert(
-produits[i].nom+
-"\nPrix : "+
-produits[i].prix+
-" FCFA"
-);
-
-}
-
-
-</script>
-
-</body>
-</html>
-<!-- PANIER COMPLET -->
-
-<section class="container" id="panierZone">
-
-<h2>🛒 Mon panier</h2>
-
-<div class="card" style="padding:20px;">
-
-<div id="listePanier">
+<h2>🛍️ Vendeur</h2>
 
 <p>
-Votre panier est vide.
+Gestion de la boutique vendeur.
 </p>
 
-</div>
+</section>
 
 
-<h3 id="totalPanier">
-Total : 0 FCFA
-</h3>
 
 
-<button class="btn" onclick="commanderWhatsApp()">
+<section id="blog" class="page" style="display:none">
 
-Commander sur WhatsApp
+<h2>📰 Blog</h2>
 
-</button>
+<p>
+Actualités et promotions.
+</p>
+
+</section>
 
 
+
+
+<section id="avis" class="page" style="display:none">
+
+<h2>⭐ Avis clients</h2>
+
+<div class="card">
+⭐⭐⭐⭐⭐
+<p>Très bon service et produits fiables.</p>
 </div>
 
 </section>
 
 
 
-<!-- STYLE FINAL -->
-
-<style>
 
 
-#panierZone{
+<div id="panier">
 
-margin-bottom:50px;
+🛒 Panier
 
-}
+<p>
+Total :
+<span id="total">0</span> FCFA
+</p>
 
-
-
-.badge{
-
-background:var(--or);
-padding:5px 12px;
-border-radius:20px;
-font-weight:bold;
-
-}
+</div>
 
 
-
-footer{
-
-background:var(--vert);
-color:white;
-text-align:center;
-padding:30px;
-margin-top:40px;
-
-}
-
-
-
-footer span{
-
-color:var(--or);
-
-}
-
-
-
-</style>
 
 
 
 <footer>
 
+<h3>Développeur</h3>
 
-<h3>
-🎤 Vocal Commerce Bénin
-</h3>
+<p>DESSOUASSI Anael</p>
 
+<p>WhatsApp : +2290140109306</p>
 
-<p>
-Créé par <span>DESSOUASSI Anael</span>
-</p>
+<p>Email : dessouassianael51@gmail.com</p>
 
-
-<p>
-📞 0140109306 | 0162552778
-</p>
-
-
-<p>
-📧 dessouassianael51@gmail.com
-</p>
-
-
-<p>
-© 2026 Tous droits réservés
-</p>
-
+© 2026 Focal Commerce Benin
 
 </footer>
 
 
 
 
+
 <script>
-
-
-/* ===== PANIER ===== */
-
-
-function ajouter(i){
-
-
-panier.push(produits[i]);
-
-
-actualiserPanier();
-
-
-alert(
-produits[i].nom+
-" ajouté au panier"
-);
-
-
-}
-
-
-
-
-
-function actualiserPanier(){
-
-
-let zone =
-document.getElementById("listePanier");
 
 
 let total=0;
 
 
+const produits=[
 
-if(panier.length===0){
+{
+nom:"iPhone 17 Pro Max",
+cat:"Apple Premium",
+prix:1400000,
+img:"https://images.unsplash.com/photo-1696446700330-1f6b1b2c1c1f"
+},
 
+{
+nom:"Samsung Galaxy S24 Ultra",
+cat:"Android Premium",
+prix:850000,
+img:"https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00"
+},
 
-zone.innerHTML=
-"<p>Votre panier est vide.</p>";
+{
+nom:"iPad Pro",
+cat:"Tablette",
+prix:900000,
+img:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0"
+},
 
-document.getElementById("totalPanier")
-.innerHTML="Total : 0 FCFA";
+{
+nom:"Apple Watch",
+cat:"Montre connectée",
+prix:200000,
+img:"https://images.unsplash.com/photo-1544117519-31a4b719223d"
+},
 
+{
+nom:"PS5",
+cat:"Gaming",
+prix:450000,
+img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
+},
 
-return;
+{
+nom:"PC Portable",
+cat:"Ordinateur",
+prix:350000,
+img:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
+},
 
+{
+nom:"Smart TV",
+cat:"Télévision",
+prix:250000,
+img:"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1"
+},
 
+{
+nom:"Chaussures",
+cat:"Mode",
+prix:15000,
+img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
 }
 
-
-
-zone.innerHTML="";
+];
 
 
 
-panier.forEach((p,index)=>{
+let zone=document.getElementById("produits");
 
 
-total+=p.prix;
-
-
+produits.forEach(p=>{
 
 zone.innerHTML+=`
 
-<div style="
-display:flex;
-justify-content:space-between;
-padding:10px;
-border-bottom:1px solid #ddd;">
+<div class="card">
 
+<img src="${p.img}">
 
-<div>
+<h3>${p.nom}</h3>
 
-<strong>
-${p.nom}
-</strong>
+<p>${p.cat}</p>
 
-<br>
-
+<p class="prix">
 ${p.prix.toLocaleString()} FCFA
+</p>
 
-
-</div>
-
-
-<button 
-class="btn"
-onclick="supprimerPanier(${index})">
-
-❌
-
+<button onclick="achat(${p.prix})">
+Ajouter
 </button>
-
 
 </div>
 
 `;
 
-
-
 });
 
 
 
-document.getElementById("totalPanier")
-.innerHTML=
+function achat(p){
 
-"Total : "+
-total.toLocaleString()+
-" FCFA";
+total+=p;
 
+document.getElementById("total").innerHTML=
+total.toLocaleString();
+
+}
+
+
+
+function menu(){
+
+let m=document.getElementById("menu");
+
+m.style.display=
+m.style.display==="block"?"none":"block";
 
 }
 
 
 
 
+function ouvrir(id){
 
-function supprimerPanier(index){
+document.querySelectorAll(".page")
+.forEach(x=>x.style.display="none");
 
-
-panier.splice(index,1);
-
-
-actualiserPanier();
-
+document.getElementById(id).style.display="block";
 
 }
 
 
 
 
+function admin(){
 
-function commanderWhatsApp(){
+let md=prompt("Mot de passe administrateur :");
 
 
+if(md==="Anael2009"){
 
-if(panier.length===0){
-
-alert(
-"Votre panier est vide"
-);
-
-return;
+ouvrir("admin");
 
 }
 
+else{
 
-
-let message =
-"Bonjour Vocal Commerce Bénin,%0A%0A";
-
-
-panier.forEach(p=>{
-
-
-message +=
-"- "+p.nom+
-" : "+
-p.prix+
-" FCFA%0A";
-
-
-});
-
-
-
-message +=
-"%0ATotal : "+
-document
-.getElementById("totalPanier")
-.innerText;
-
-
-
-window.open(
-
-"https://wa.me/2290140109306?text="
-+
-message
-
-);
-
+alert("Accès refusé");
 
 }
 
-
-
-
-
-/* Actualisation automatique de l'affichage */
-
-
-setInterval(()=>{
-
-sauvegarder();
-
-},5000);
-
-
-
-actualiserPanier();
+}
 
 
 </script>
+
+
+</body>
+</html>
