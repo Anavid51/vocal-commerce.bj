@@ -1,4 +1,4 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
             --card-bg: #ffffff;
             --text-dark: #1e293b;
             --grid-color: #cbd5e1;
+            --success-green: #10b981;
         }
 
         body {
@@ -21,14 +22,12 @@
             padding: 0;
             color: var(--text-dark);
             background-color: var(--light-bg);
-            /* Grille technique moderne en arrière-plan */
             background-image: 
                 linear-gradient(var(--grid-color) 1px, transparent 1px),
                 linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 25px 25px;
         }
 
-        /* En-tête / Navigation */
         header {
             background-color: var(--primary-blue);
             color: white;
@@ -54,7 +53,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
         }
 
         .logo-icon i {
@@ -65,7 +63,6 @@
         .logo-text h1 {
             margin: 0;
             font-size: 1.3rem;
-            letter-spacing: 0.5px;
         }
 
         .logo-text span {
@@ -96,7 +93,6 @@
             color: var(--accent-orange);
         }
 
-        /* Zone de recherche Vocale */
         .search-area {
             max-width: 750px;
             margin: 2.5rem auto;
@@ -141,16 +137,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 6px rgba(249, 115, 22, 0.2);
         }
-
         #vocalBtn.active {
             background-color: #ef4444;
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
         }
 
-        /* Conteneur Principal */
         .main-container {
             max-width: 1200px;
             margin: 0 auto 4rem auto;
@@ -166,7 +157,6 @@
             margin: 2.5rem 0 1.5rem 0;
         }
 
-        /* Grille des Produits */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -178,7 +168,6 @@
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
             display: flex;
             flex-direction: column;
             transition: transform 0.2s;
@@ -192,12 +181,11 @@
             width: 100%;
             height: 200px;
             background-color: #cbd5e1;
-        }
-
-        .product-img-holder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #94a3b8;
         }
 
         .product-info {
@@ -232,7 +220,6 @@
             font-size: 0.8rem;
             padding: 4px 10px;
             border-radius: 6px;
-            font-weight: 500;
         }
 
         .buy-btn {
@@ -244,14 +231,8 @@
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            transition: background 0.2s;
         }
 
-        .buy-btn:hover {
-            background-color: #1e293b;
-        }
-
-        /* Bannière d'abonnement Vendeur */
         .promo-banner {
             background: linear-gradient(135deg, var(--primary-blue) 0%, #1e293b 100%);
             color: white;
@@ -259,74 +240,104 @@
             padding: 2.5rem;
             margin: 3rem 0;
             border-bottom: 4px solid var(--accent-orange);
-            position: relative;
-            overflow: hidden;
         }
 
         .promo-banner h3 {
             margin: 0 0 10px 0;
-            font-size: 1.6rem;
             color: var(--accent-orange);
         }
 
-        .promo-badge {
+        .pricing-card {
+            background: white;
+            border: 2px solid var(--accent-orange);
+            border-radius: 16px;
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .badge-trial {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: var(--accent-orange);
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--success-green);
             color: white;
-            padding: 6px 12px;
+            padding: 6px 16px;
             font-weight: 700;
-            border-radius: 6px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            font-size: 0.8rem;
         }
 
-        /* Avis Clients */
-        .reviews-wrapper {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 2rem;
+        .price-tag {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin: 1.5rem 0;
         }
 
-        .review-box {
-            border-left: 3px solid var(--accent-orange);
-            padding-left: 15px;
-            margin-bottom: 1.5rem;
+        .price-tag span {
+            font-size: 1.2rem;
+            color: #64748b;
+            font-weight: 400;
         }
 
-        .stars-gold {
-            color: #fbbf24;
-            margin-bottom: 5px;
+        .features-list {
+            text-align: left;
+            margin: 2rem 0;
+            padding: 0;
+            list-style: none;
         }
 
-        /* Espaces Dashboards */
-        .dashboard-panel {
-            background: white;
-            border: 1px solid #cbd5e1;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        .features-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
         }
 
-        .form-input-item {
-            margin-bottom: 15px;
+        .features-list i {
+            color: var(--success-green);
         }
 
-        .form-input-item label {
+        .form-pay {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .form-pay label {
             display: block;
             margin-bottom: 6px;
             font-weight: 600;
-            font-size: 0.9rem;
         }
 
-        .form-input-item input, .form-input-item select {
+        .form-pay input, .form-pay select {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
+            padding: 10px;
+            margin-bottom: 15px;
             border-radius: 6px;
+            border: 1px solid #cbd5e1;
             box-sizing: border-box;
+        }
+
+        footer {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 4px solid var(--accent-orange);
+        }
+
+        footer p {
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -343,18 +354,19 @@
             </div>
         </div>
         <nav>
-            <ul class="nav-links">
+            <ul>
                 <li><a onclick="ouvrirFenetre('page-accueil')">Boutique</a></li>
-                <li><a onclick="ouvrirFenetre('page-vendeur')">Espace Vendeur</a></li>
+                <li><a onclick="ouvrirFenetre('page-abonnement')">Abonnement Vendeur</a></li>
+                <li><a onclick="ouvrirFenetre('page-vendeur')">Espace Articles</a></li>
                 <li><a onclick="ouvrirFenetre('page-admin')">Espace Admin</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="search-area">
+    <div class="search-area" id="searchAreaBlock">
         <div class="search-box-group">
-            <input type="text" placeholder="Dites ce que vous cherchez (ex: Téléphone, Chaussures, Sac)...">
-            <button onclick="alert('Recherche lancée !')"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input type="text" id="searchInput" placeholder="Recherchez un plat, un iPhone, une marque (ex: Atassi, iPhone 15, Veste)...">
+            <button onclick="filtrerProduits()"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <button id="vocalBtn"><i class="fa-solid fa-microphone"></i> Activer la voix</button>
     </div>
@@ -362,179 +374,237 @@
     <main class="main-container">
 
         <section id="page-accueil" class="interface-section">
-            <div class="section-headline">Articles Disponibles (Photos Réelles)</div>
-            
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-img-holder">
-                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500" alt="Smartphone Android">
-                    </div>
-                    <div class="product-info">
-                        <h3>Smartphone Android 128Go</h3>
-                        <div class="product-price">85 000 FCFA</div>
-                        <div class="tag-container">
-                            <span class="product-tag">#Téléphone</span>
-                            <span class="product-tag">#Électronique</span>
-                            <span class="product-tag">#Cotonou</span>
-                        </div>
-                        <button class="buy-btn">Acheter cet article</button>
-                    </div>
+            <div class="section-headline">Notre Catalogue Multi-Secteurs</div>
+            <div class="products-grid" id="gridProduits">
                 </div>
-
-                <div class="product-card">
-                    <div class="product-img-holder">
-                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="Chaussures de sport">
-                    </div>
-                    <div class="product-info">
-                        <h3>Chaussures de Sport Confort</h3>
-                        <div class="product-price">18 000 FCFA</div>
-                        <div class="tag-container">
-                            <span class="product-tag">#Mode</span>
-                            <span class="product-tag">#Chaussures</span>
-                            <span class="product-tag">#Bénin</span>
-                        </div>
-                        <button class="buy-btn">Acheter cet article</button>
-                    </div>
-                </div>
-            </div>
 
             <div class="promo-banner">
-                <div class="promo-badge">Offre de lancement</div>
                 <h3>Devenez vendeur sur Vocal Commerce Bénin !</h3>
-                <p>Augmentez vos ventes grâce à la recherche vocale qui permet à tous les clients de trouver vos articles sans effort.</p>
-                <p>⭐ <strong>Abonnement mensuel : Prix compétitif</strong> après votre essai gratuit.</p>
-                <p>🎁 *PROMOTION : Les 7 premiers jours sont 100% GRATUITS !* Testez tous les outils maintenant.</p>
+                <p>Augmentez vos ventes grâce à la puissance du commerce vocal.</p>
+                <p>⭐ <strong>Abonnement mensuel : 2000 FCFA / MOIS</strong></p>
+                <p>🎁 <strong>PROMOTION : Les 7 premiers jours sont 100% GRATUITS !</strong></p>
+                <button class="buy-btn" style="background-color: var(--accent-orange); margin-top: 10px; width: auto; padding: 12px 25px;" onclick="ouvrirFenetre('page-abonnement')">S'abonner maintenant</button>
             </div>
+        </section>
 
-            <div class="reviews-wrapper">
-                <div class="section-headline" style="margin-top:0;">Avis des Clients Satisfaits</div>
-                
-                <div class="review-box">
-                    <div class="stars-gold"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"C'est super pratique de juste parler pour chercher un article. J'ai commandé mon téléphone et la photo était exactement la même que le produit reçu."</p>
-                    <strong>— Ganiou S. (Porto-Novo)</strong>
-                </div>
-
-                <div class="review-box">
-                    <div class="stars-gold"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p>"En tant que commerçante, l'espace vendeur me permet de poster mes stocks rapidement. Les clients me trouvent facilement grâce au micro."</p>
-                    <strong>— Clarisse T. (Cotonou)</strong>
+        <section id="page-abonnement" class="interface-section" style="display:none;">
+            <div class="section-headline">Espace Abonnement & Inscription Partenaires</div>
+            <div class="pricing-card">
+                <div class="badge-trial">7 Jours d'essai gratuits</div>
+                <h3 style="margin: 0; color: var(--primary-blue); font-size: 1.8rem;">Formule Pro Vendeur</h3>
+                <p style="color: #64748b; margin: 5px 0 0 0;">Ouvrez votre boutique vocale sur tout le réseau béninois</p>
+                <div class="price-tag">2 000 <span style="font-weight: 700; color: var(--accent-orange);">FCFA</span><span> / mois</span></div>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-circle-check"></i> Référencement par recherche vocale automatique</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Ajout illimité d'articles avec photos réelles</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Vente directe de repas de restaurants</li>
+                </ul>
+                <div class="form-pay">
+                    <h4 style="margin: 0 0 15px 0; color: var(--primary-blue); text-align: center;">Activer mon compte</h4>
+                    <form onsubmit="event.preventDefault(); alert('Période d\'essai activée !'); ouvrirFenetre('page-vendeur');">
+                        <label>Nom complet du commerce :</label>
+                        <input type="text" required>
+                        <label>Numéro WhatsApp :</label>
+                        <input type="tel" required>
+                        <button type="submit" class="buy-btn" style="background-color: var(--success-green);">Lancer mes 7 jours gratuits</button>
+                    </form>
                 </div>
             </div>
         </section>
 
         <section id="page-vendeur" class="interface-section" style="display:none;">
-            <div class="dashboard-panel">
-                <div class="section-headline" style="margin-top:0;">Tableau de Bord Partenaire Vendeur</div>
-                <p>Profitez de vos *7 jours d'essai gratuits* pour ajouter vos articles réels sur le marché béninois.</p>
+            <div style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid #cbd5e1;">
+                <div class="section-headline" style="margin-top:0;">Tableau de Bord Vendeur - Publier / Actualiser</div>
+                <p>Les prix modifiés ou ajoutés ici s'actualisent <strong>automatiquement</strong> sur la boutique.</p>
                 
-                <form onsubmit="event.preventDefault(); alert('Votre article réel a bien été enregistré et envoyé pour validation !');">
-                    <div class="form-input-item">
-                        <label>Nom du produit à vendre :</label>
-                        <input type="text" required placeholder="Ex: Sac à main en cuir local">
+                <form id="formAjoutArticle">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; margin-bottom:5px; font-weight:600;">Nom exact de l'article ou du plat à ajouter/modifier :</label>
+                        <input type="text" id="nomArticle" style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;" placeholder="Ex: Apple iPhone 15 Pro" required>
                     </div>
-                    <div class="form-input-item">
-                        <label>Prix de vente (FCFA) :</label>
-                        <input type="number" required placeholder="Ex: 15000">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; margin-bottom:5px; font-weight:600;">Nouveau Prix (FCFA) :</label>
+                        <input type="number" id="prixArticle" style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;" placeholder="Ex: 640000" required>
                     </div>
-                    <div class="form-input-item">
-                        <label>Mots-clés / Tags (séparés par des virgules) :</label>
-                        <input type="text" placeholder="Ex: #sac, #mode, #femme">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; margin-bottom:5px; font-weight:600;">Icône représentative :</label>
+                        <select id="iconeArticle" style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
+                            <option value="fa-mobile-screen-button">Téléphone / Tablette</option>
+                            <option value="fa-laptop">Ordinateur / PC</option>
+                            <option value="fa-utensils">Repas / Restaurant</option>
+                            <option value="fa-shoe-prints">Chaussures</option>
+                            <option value="fa-shirt">Vêtements</option>
+                        </select>
                     </div>
-                    <div class="form-input-item">
-                        <label>Téléverser la photo réelle de votre article en stock :</label>
-                        <input type="file" accept="image/*" required>
-                    </div>
-                    <button type="submit" class="buy-btn" style="background-color: var(--accent-orange);">Publier mon article</button>
+                    <button type="submit" class="buy-btn" style="background-color: var(--accent-orange);">Actualiser automatiquement le catalogue</button>
                 </form>
             </div>
         </section>
 
         <section id="page-admin" class="interface-section" style="display:none;">
-            <div class="dashboard-panel" style="border-top: 4px solid var(--primary-blue);">
-                <div class="section-headline" style="margin-top:0;">Panneau d'Administration Général</div>
-                <p>Gestion globale de la plateforme *Vocal Commerce Bénin*.</p>
-                
-                <div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-                    <div style="flex:1; background:#f1f5f9; padding: 20px; border-radius: 8px; min-width: 200px;">
-                        <h3 style="margin:0; color:var(--accent-orange);">148</h3>
-                        <p style="margin:5px 0 0 0;">Vendeurs actifs au Bénin</p>
-                    </div>
-                    <div style="flex:1; background:#f1f5f9; padding: 20px; border-radius: 8px; min-width: 200px;">
-                        <h3 style="margin:0; color:var(--primary-blue);">97%</h3>
-                        <p style="margin:5px 0 0 0;">Précision de la recherche vocale</p>
-                    </div>
-                </div>
-                <button class="buy-btn" onclick="alert('Commentaires récents modérés et publiés.')">Modérer et valider les nouveaux avis clients</button>
+            <div style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid #cbd5e1;">
+                <div class="section-headline" style="margin-top:0;">Panneau d'Administration</div>
+                <button class="buy-btn" onclick="reinitialiserCatalogue()">Réinitialiser le catalogue par défaut</button>
             </div>
         </section>
 
     </main>
 
+    <footer>
+        <p><strong>Responsable de la plateforme :</strong> DESSOUASSI Anael</p>
+        <p><i class="fa-solid fa-phone"></i> Contact : 01 40 10 93 06</p>
+        <p><i class="fa-solid fa-envelope"></i> Email : dessouassianael51@gmail.com</p>
+        <p>&copy; 2026 Vocal Commerce Bénin. Tous droits réservés.</p>
+    </footer>
+
     <script>
-        // NAVIGATION SINGLE PAGE (Changement d'interface au clic)
-        function ouvrirFenetre(interfaceId) {
-            document.querySelectorAll('.interface-section').forEach(section => {
-                section.style.display = 'none';
+        // Catalogue de base par défaut
+        const catalogueDefaut = [
+            { nom: "Apple iPhone 15 Pro", prix: "650 000 FCFA", tags: ["iphone", "iphone 15", "apple", "telephone"], icone: "fa-mobile-screen-button" },
+            { nom: "Apple iPhone 13 Pro", prix: "420 000 FCFA", tags: ["iphone", "iphone 13", "apple", "telephone"], icone: "fa-mobile-screen-button" },
+            { nom: "Samsung Galaxy S24 Ultra", prix: "700 000 FCFA", tags: ["samsung", "galaxy", "telephone"], icone: "fa-mobile-screen-button" },
+            { nom: "Tecno Camon 30 Pro", prix: "195 000 FCFA", tags: ["tecno", "camon", "telephone"], icone: "fa-mobile-screen-button" },
+            { nom: "Apple iPad Air 64Go", prix: "320 000 FCFA", tags: ["tablette", "ipad", "apple"], icone: "fa-tablet-screen-button" },
+            { nom: "Ordinateur Portable Dell Intel Core i7", prix: "380 000 FCFA", tags: ["ordinateur", "pc", "dell", "intel"], icone: "fa-laptop" },
+            { nom: "Ordinateur HP ProBook Intel Core i5", prix: "250 000 FCFA", tags: ["ordinateur", "pc", "hp", "intel"], icone: "fa-laptop" },
+            { nom: "Plat de Riz Atassi Complet (Poisson/Viande)", prix: "2 500 FCFA", tags: ["repas", "plat", "restaurant", "atassi"], icone: "fa-utensils" },
+            { nom: "Pizza Royale Familiale - Restaurant", prix: "7 000 FCFA", tags: ["repas", "plat", "restaurant", "pizza"], icone: "fa-pizza-slice" },
+            { nom: "Chaussures de Sport Confort", prix: "18 000 FCFA", tags: ["chaussures", "basket", "mode"], icone: "fa-shoe-prints" },
+            { nom: "Veste Blazer Moderne Homme", prix: "25 000 FCFA", tags: ["vetements", "veste", "mode"], icone: "fa-shirt" }
+        ];
+
+        // FONCTION D'ACTUALISATION AUTOMATIQUE (Récupération des données locales)
+        function obtenirCatalogueActuel() {
+            const sauvegarde = localStorage.getItem('vocal_commerce_catalogue');
+            if (!sauvegarde) {
+                localStorage.setItem('vocal_commerce_catalogue', JSON.stringify(catalogueDefaut));
+                return catalogueDefaut;
+            }
+            return JSON.parse(sauvegarde);
+        }
+        function afficherProduits(liste) {
+            const grid = document.getElementById('gridProduits');
+            if(!grid) return;
+            grid.innerHTML = "";
+            liste.forEach(p => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-img-holder"><i class="fa-solid ${p.icone}"></i></div>
+                        <div class="product-info">
+                            <h3>${p.nom}</h3>
+                            <div class="product-price">${p.prix}</div>
+                            <div class="tag-container">
+                                ${p.tags.map(t => <span class="product-tag">#${t}</span>).join('')}
+                            </div>
+                            <button class="buy-btn">Commander</button>
+                        </div>
+                    </div>`;
             });
-            const cible = document.getElementById(interfaceId);
-            if (cible) {
-                cible.style.display = 'block';
+        }
+
+        // Écouteur sur le formulaire vendeur pour gérer les prix automatiquement
+        document.getElementById('formAjoutArticle').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nom = document.getElementById('nomArticle').value.trim();
+            const prixBrut = document.getElementById('prixArticle').value;
+            const icone = document.getElementById('iconeArticle').value;
+            
+            // Formatage propre du prix en FCFA
+            const prixFormate = Number(prixBrut).toLocaleString('fr-FR') + " FCFA";
+            
+            let catalogue = obtenirCatalogueActuel();
+            
+            // Vérification si l'article existe déjà pour mettre à jour son prix, sinon on le crée
+            const indexExistant = catalogue.findIndex(p => p.nom.toLowerCase() === nom.toLowerCase());
+            
+            if (indexExistant !== -1) {
+                catalogue[indexExistant].prix = prixFormate; // Actualisation automatique du prix
+                alert('Le prix de l\'article a été mis à jour automatiquement !');
+            } else {
+                // Création d'un nouvel article automatique
+                const motsCles = nom.toLowerCase().split(" ");
+                catalogue.unshift({
+                    nom: nom,
+                    prix: prixFormate,
+                    tags: motsCles,
+                    icone: icone
+                });
+                alert('Nouvel article ajouté et publié automatiquement sur la boutique !');
+            }
+            
+            // Sauvegarde automatique globale
+            localStorage.setItem('vocal_commerce_catalogue', JSON.stringify(catalogue));
+            
+            // Réinitialisation du formulaire et retour à la boutique
+            document.getElementById('formAjoutArticle').reset();
+            ouvrirFenetre('page-accueil');
+        });
+
+        function filtrerProduits() {
+            const choix = document.getElementById('searchInput').value.toLowerCase().trim();
+            const catalogue = obtenirCatalogueActuel();
+            if(choix === "") {
+                afficherProduits(catalogue);
+                return;
+            }
+            const filtres = catalogue.filter(p => p.nom.toLowerCase().includes(choix) || p.tags.some(t => t.includes(choix)));
+            afficherProduits(filtres);
+        }
+
+        function reinitialiserCatalogue() {
+            localStorage.removeItem('vocal_commerce_catalogue');
+            alert('Catalogue réinitialisé aux valeurs d\'origine.');
+            ouvrirFenetre('page-accueil');
+        }
+
+        function ouvrirFenetre(interfaceId) {
+            document.querySelectorAll('.interface-section').forEach(s => s.style.display = 'none');
+            document.getElementById(interfaceId).style.display = 'block';
+            
+            const searchBlock = document.getElementById('searchAreaBlock');
+            if(interfaceId === 'page-abonnement' || interfaceId === 'page-vendeur' || interfaceId === 'page-admin') {
+                searchBlock.style.display = 'none';
+            } else {
+                searchBlock.style.display = 'flex';
+                afficherProduits(obtenirCatalogueActuel()); // Actualise la vue à chaque retour sur la boutique
             }
         }
 
-        // INTEGRATION RECONNAISSANCE VOCALE WEB SPEECH
+        // Configuration Vocale
         const vocalBtn = document.getElementById('vocalBtn');
-        const searchInput = document.querySelector('.search-box-group input');
-
+        const searchInput = document.getElementById('searchInput');
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
         if (SpeechRecognition) {
             const recognition = new SpeechRecognition();
-            recognition.lang = 'fr-FR'; // Langue : Français
-            recognition.interimResults = false;
-            recognition.maxAlternatives = 1;
+            recognition.lang = 'fr-FR';
 
             vocalBtn.addEventListener('click', () => {
-                vocalBtn.classList.toggle('active');
-                
-                if (vocalBtn.classList.contains('active')) {
-                    vocalBtn.innerHTML = '<i class="fa-solid fa-circle-stop"></i> Écoute en cours...';
-                    recognition.start(); // Ouvre le micro
+                if (!vocalBtn.classList.contains('active')) {
+                    vocalBtn.classList.add('active');
+                    vocalBtn.innerHTML = '<i class="fa-solid fa-circle-stop"></i> Écoute...';
+                    recognition.start();
                 } else {
+                    vocalBtn.classList.remove('active');
                     vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
-                    recognition.stop(); // Ferme le micro
+                    recognition.stop();
                 }
             });
 
             recognition.onresult = (event) => {
-                const texteEntendu = event.results[0][0].transcript;
-                if (searchInput) {
-                    searchInput.value = texteEntendu; // Ajoute le texte dicté dans le champ
-                }
-                
-                // Déclenche la recherche automatiquement
-                const boutonRecherche = document.querySelector('.search-box-group button');
-                if (boutonRecherche) boutonRecherche.click();
+                searchInput.value = event.results[0][0].transcript;
+                filtrerProduits();
             };
 
             recognition.onspeechend = () => {
-                recognition.stop();
                 vocalBtn.classList.remove('active');
                 vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
             };
-
-            recognition.onerror = (event) => {
-                console.error("Erreur micro :", event.error);
-                vocalBtn.classList.remove('active');
-                vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
-            };
-
-        } else {
-            vocalBtn.addEventListener('click', () => {
-                alert("Votre navigateur ne supporte pas la reconnaissance vocale. Veuillez utiliser Google Chrome ou Safari.");
-            });
         }
+
+        // Lancement initial automatique
+        afficherProduits(obtenirCatalogueActuel());
     </script>
 </body>
 </html>
