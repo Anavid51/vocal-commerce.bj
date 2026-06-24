@@ -386,7 +386,69 @@
             burger.classList.toggle('open');
             navLinks.classList.toggle('open');
         });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('open');
+                navLinks.classList.remove('open');
+            });
+        });
 
+        // ===== INTEGRATION DE LA RECONNAISSANCE VOCALE =====
+        const vocalBtn = document.getElementById('vocalBtn');
+        const searchInput = document.querySelector('.search-box input');
+
+        // Vérification de la compatibilité du navigateur
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'fr-FR'; // Langue de capture
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            vocalBtn.addEventListener('click', () => {
+                vocalBtn.classList.toggle('active');
+                
+                if (vocalBtn.classList.contains('active')) {
+                    vocalBtn.innerHTML = '<i class="fa-solid fa-circle-stop"></i> Écoute en cours...';
+                    recognition.start(); // Démarre le micro
+                } else {
+                    vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
+                    recognition.stop(); // Arrête le micro
+                }
+            });
+
+            // Quand le navigateur a fini de traduire la voix en texte
+            recognition.onresult = (event) => {
+                const parole = event.results[0][0].transcript;
+                searchInput.value = parole; // Écrit le texte dans votre barre de recherche
+                
+                // Optionnel : simuler un clic sur le bouton loupe pour lancer la recherche
+                document.querySelector('.search-box button').click();
+            };
+
+            // Arrêt automatique si l'utilisateur arrête de parler
+            recognition.onspeechend = () => {
+                recognition.stop();
+                vocalBtn.classList.remove('active');
+                vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
+            };
+
+            // En cas d'erreur (micro bloqué, pas de connexion, etc.)
+            recognition.onerror = (event) => {
+                console.error("Erreur vocale :", event.error);
+                vocalBtn.classList.remove('active');
+                vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
+            };
+
+        } else {
+            vocalBtn.addEventListener('click', () => {
+                alert("La reconnaissance vocale n'est pas supportée par votre navigateur.");
+            });
+        }
+    </script>
+</body>
+</html>
         // Gestion de l'état actif du bouton vocal (comme configuré dans votre CSS)
         const vocalBtn = document.getElementById('vocalBtn');
         vocalBtn.addEventListener('click', () => {
