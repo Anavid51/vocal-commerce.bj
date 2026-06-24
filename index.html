@@ -5,15 +5,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Vocal Commerce Benin</title>
+<title>Vocal Commerce Bénin</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial,sans-serif;
+font-family:Arial;
 background:#f5f5f5;
 }
+
 
 header{
 background:linear-gradient(90deg,#008751,#FCD116,#E8112D);
@@ -21,13 +22,15 @@ text-align:center;
 padding:30px;
 }
 
+
 header h1{
 background:white;
 color:#008751;
 padding:15px;
 border-radius:20px;
-display:inline-block;
 }
+
+
 
 .burger{
 position:fixed;
@@ -39,25 +42,29 @@ color:white;
 padding:10px;
 border-radius:12px;
 cursor:pointer;
-z-index:10;
+z-index:20;
 }
+
+
 
 nav{
 display:none;
 position:fixed;
-top:70px;
+top:75px;
 left:15px;
 background:white;
 padding:15px;
 border-radius:15px;
-z-index:9;
+z-index:19;
 }
+
 
 nav button{
 display:block;
+width:180px;
 margin:8px;
-width:170px;
 }
+
 
 button{
 background:#FCD116;
@@ -67,12 +74,16 @@ border-radius:20px;
 cursor:pointer;
 }
 
+
+
 #produits{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
 gap:20px;
 padding:20px;
 }
+
+
 
 .card{
 background:white;
@@ -81,21 +92,28 @@ border-radius:15px;
 box-shadow:0 4px 15px #ccc;
 }
 
+
 .card img{
 width:100%;
-height:170px;
+height:180px;
 object-fit:cover;
 border-radius:15px;
 }
+
+
 
 .prix{
 color:#E8112D;
 font-weight:bold;
 }
 
+
+
 .page{
 padding:20px;
 }
+
+
 
 #panier{
 position:fixed;
@@ -104,14 +122,15 @@ bottom:15px;
 background:white;
 padding:15px;
 border-radius:15px;
-box-shadow:0 5px 15px #aaa;
 }
+
+
 
 footer{
 background:#008751;
 color:white;
-text-align:center;
 padding:25px;
+text-align:center;
 }
 
 </style>
@@ -125,21 +144,37 @@ padding:25px;
 <div class="burger" onclick="menu()">☰</div>
 
 
+
 <nav id="menu">
 
-<button onclick="ouvrir('boutique')">Boutique</button>
-<button onclick="admin()">Admin</button>
-<button onclick="ouvrir('vendeur')">Vendeur</button>
-<button onclick="ouvrir('blog')">Blog</button>
-<button onclick="ouvrir('avis')">Avis clients</button>
+<button onclick="ouvrir('boutique')">
+🛒 Boutique
+</button>
+
+<button onclick="admin()">
+🔐 Administrateur
+</button>
+
+<button onclick="ouvrir('vendeur')">
+🛍️ Vendeur
+</button>
+
+<button onclick="ouvrir('blog')">
+📰 Blog
+</button>
+
+<button onclick="ouvrir('avis')">
+⭐ Avis
+</button>
 
 </nav>
 
 
 
+
 <header>
 
-<h1>Vocal Commerce Benin</h1>
+<h1>Vocal Commerce Bénin</h1>
 
 <p>Marketplace intelligente 🇧🇯</p>
 
@@ -148,9 +183,10 @@ padding:25px;
 
 
 
+
 <section id="boutique" class="page">
 
-<h2>🛒 Produits</h2>
+<h2>Nos articles</h2>
 
 <div id="produits"></div>
 
@@ -161,10 +197,10 @@ padding:25px;
 
 <section id="admin" class="page" style="display:none">
 
-<h2>👨‍💻 Administrateur</h2>
+<h2>🔐 Espace Administrateur</h2>
 
 <p>
-Gestion produits, commandes et utilisateurs.
+Gestion des produits, commandes, utilisateurs.
 </p>
 
 </section>
@@ -174,10 +210,10 @@ Gestion produits, commandes et utilisateurs.
 
 <section id="vendeur" class="page" style="display:none">
 
-<h2>🛍️ Vendeur</h2>
+<h2>🛍️ Espace Vendeur</h2>
 
 <p>
-Gestion de la boutique vendeur.
+Ajout et modification des articles.
 </p>
 
 </section>
@@ -204,11 +240,10 @@ Actualités et promotions.
 
 <div class="card">
 ⭐⭐⭐⭐⭐
-<p>Très bon service et produits fiables.</p>
+<p>Très bon service.</p>
 </div>
 
 </section>
-
 
 
 
@@ -217,10 +252,8 @@ Actualités et promotions.
 
 🛒 Panier
 
-<p>
-Total :
-<span id="total">0</span> FCFA
-</p>
+<p>Total :
+<span id="total">0</span> FCFA</p>
 
 </div>
 
@@ -238,9 +271,11 @@ Total :
 
 <p>Email : dessouassianael51@gmail.com</p>
 
-© 2026 Vocal Commerce Benin
+
+© 2026 Vocal Commerce Bénin
 
 </footer>
+
 
 
 
@@ -252,41 +287,10 @@ Total :
 let total=0;
 
 
+
 const produits=[
-{
-nom:"iPhone 16 Pro Max",
-cat:"Apple Premium",
-prix:1100000,
-img:"LIEN_IMAGE_ICI"
-},
 
-{
-nom:"PlayStation 5",
-cat:"Gaming",
-prix:450000,
-img:"LIEN_IMAGE_ICI"
-},
 
-{
-nom:"Ordinateur Dell",
-cat:"PC",
-prix:400000,
-img:"LIEN_IMAGE_ICI"
-},
-
-{
-nom:"Télévision Smart TV",
-cat:"TV",
-prix:250000,
-img:"LIEN_IMAGE_ICI"
-},
-
-{
-nom:"Tablette Samsung",
-cat:"Tablette",
-prix:250000,
-img:"LIEN_IMAGE_ICI"
-}
 {
 nom:"iPhone 17 Pro Max",
 cat:"Apple Premium",
@@ -294,12 +298,14 @@ prix:1400000,
 img:"https://images.unsplash.com/photo-1696446700330-1f6b1b2c1c1f"
 },
 
+
 {
-nom:"Samsung Galaxy S24 Ultra",
-cat:"Android Premium",
+nom:"Samsung Galaxy S24",
+cat:"Android",
 prix:850000,
 img:"https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00"
 },
+
 
 {
 nom:"iPad Pro",
@@ -308,12 +314,6 @@ prix:900000,
 img:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0"
 },
 
-{
-nom:"Apple Watch",
-cat:"Montre connectée",
-prix:200000,
-img:"https://images.unsplash.com/photo-1544117519-31a4b719223d"
-},
 
 {
 nom:"PS5",
@@ -322,6 +322,7 @@ prix:450000,
 img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
 },
 
+
 {
 nom:"PC Portable",
 cat:"Ordinateur",
@@ -329,12 +330,22 @@ prix:350000,
 img:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
 },
 
+
 {
 nom:"Smart TV",
 cat:"Télévision",
 prix:250000,
 img:"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1"
 },
+
+
+{
+nom:"Apple Watch",
+cat:"Montre",
+prix:200000,
+img:"https://images.unsplash.com/photo-1544117519-31a4b719223d"
+},
+
 
 {
 nom:"Chaussures",
@@ -378,9 +389,9 @@ Ajouter
 
 
 
-function achat(p){
+function achat(prix){
 
-total+=p;
+total+=prix;
 
 document.getElementById("total").innerHTML=
 total.toLocaleString();
@@ -400,7 +411,6 @@ m.style.display==="block"?"none":"block";
 
 
 
-
 function ouvrir(id){
 
 document.querySelectorAll(".page")
@@ -409,7 +419,6 @@ document.querySelectorAll(".page")
 document.getElementById(id).style.display="block";
 
 }
-
 
 
 
