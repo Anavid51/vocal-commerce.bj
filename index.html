@@ -3,393 +3,457 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vocal Commerce BJ</title>
+    <title>Vestiges & Voix - Plateforme d'Artéfacts</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        /* ===== VARIABLES & RESET ===== */
         :root {
-            --vert: #004d00;
-            --vert2: #006400;
-            --couleur-or: #FFD700;
-            --or2: #FF8C00;
-            --blanc: #ffffff;
-            --gris: #f4f4f4;
-            --texte: #333333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --primary-color: #1a2e40;
+            --accent-color: #b5835a;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
         }
 
         body {
-            background-color: var(--gris);
-            color: var(--texte);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
 
-        /* ===== NAVBAR ORIGINELLE ===== */
-        nav {
-            background-color: var(--vert);
-            color: var(--blanc);
-            padding: 15px 25px;
+        /* En-tête et Logo */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--couleur-or);
-            text-decoration: none;
-        }
-
-        .logo img {
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid var(--couleur-or);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            list-style: none;
-            gap: 25px;
-        }
-
-        .nav-links a {
-            color: var(--blanc);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--couleur-or);
-        }
-
-        .panier {
-            background-color: var(--couleur-or);
-            color: var(--vert) !important;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold !important;
-        }
-
-        /* ===== BOUTON BURGER MODERNE ===== */
-        .burger-menu {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        .burger-menu span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: var(--blanc);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        /* ===== HERO SECTION ORIGINELLE ===== */
-        .hero {
-            background: linear-gradient(rgba(0, 77, 0, 0.85), rgba(0, 100, 0, 0.9)), url('hero-bg.jpg') center/cover;
-            color: var(--blanc);
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
-
-        .hero h1 span {
-            color: var(--couleur-or);
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        /* ===== ZONE DE RECHERCHE INTEGRÉE ===== */
-        .search-box {
-            max-width: 550px;
-            margin: 0 auto 30px;
-            display: flex;
-            background: var(--blanc);
-            padding: 6px;
-            border-radius: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .search-box input {
-            flex: 1;
-            border: none;
-            outline: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 30px 0 0 30px;
-        }
-
-        .search-box button {
-            background: var(--vert);
-            color: var(--blanc);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .search-box button:hover {
-            background: var(--vert2);
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        /* ===== BOUTON VOCAL D'ORIGINE AVEC PULSATION ===== */
-        .btn-voix {
-            background-color: var(--couleur-or);
-            color: var(--vert);
-            padding: 14px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .btn-voix:hover {
-            background-color: var(--blanc);
-            color: var(--vert);
-        }
-
-        .btn-voix.active {
-            background-color: #ff4444;
-            color: var(--blanc);
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        /* ===== GRILLE DE PRODUITS ET PHOTOS REELLES ===== */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            color: var(--vert);
-            margin-bottom: 30px;
-            font-size: 28px;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: var(--blanc);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-img-box {
-            width: 100%;
-            height: 240px;
-            background-color: #e0e0e0;
-        }
-
-        .product-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ajuste proprement la photo sans la déformer */
-        }
-
-        .product-details {
-            padding: 20px;
-        }
-
-        .product-name {
-            font-size: 18px;
+        .logo-placeholder {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
-            margin-bottom: 8px;
         }
 
-        .product-price {
-            color: var(--or2);
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 15px;
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
         }
 
-        .btn-buy {
-            width: 100%;
-            background-color: var(--vert);
-            color: var(--blanc);
-            border: none;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
+        nav a {
+            color: white;
+            text-decoration: none;
             cursor: pointer;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Barre de recherche et Bouton Vocal */
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            display: flex;
+            gap: 10px;
+            padding: 0 1rem;
+        }
+
+        .search-box {
+            flex: 1;
+            display: flex;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .search-box button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 15px;
+            cursor: pointer;
+        }
+
+        #vocalBtn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             transition: background 0.3s;
         }
 
-        .btn-buy:hover {
-            background-color: var(--vert2);
+        #vocalBtn.active {
+            background-color: #d9534f;
         }
 
-        /* ===== RESPONSIVE TABLETTE & MOBILE ===== */
-        @media (max-width: 768px) {
-            .burger-menu {
-                display: flex;
-            }
+        /* Sections Générales */
+        .page-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
 
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                right: -100%;
-                width: 70%;
-                height: calc(100vh - 70px);
-                background-color: var(--vert);
-                flex-direction: column;
-                padding: 40px 20px;
-                gap: 25px;
-                transition: right 0.4s ease;
-                box-shadow: -5px 0 10px rgba(0,0,0,0.1);
-            }
+        h2 {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            color: var(--primary-color);
+        }
 
-            .nav-links.open {
-                right: 0;
-            }
+        /* Grille de produits */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 2rem;
+        }
 
-            .burger-menu.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-            .burger-menu.open span:nth-child(2) { opacity: 0; }
-            .burger-menu.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 10px 0;
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+
+        .btn-buy {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Commentaires */
+        .reviews-section {
+            margin-top: 4rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .review-card {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .stars {
+            color: #ffc107;
+            margin-bottom: 5px;
+        }
+
+        /* Dashboards (Admin / Vendeur) */
+        .dashboard-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
     </style>
 </head>
+script>
+        // NAVIGATION FLUIDE ENTRE LES INTERFACES
+        function basculerInterface(interfaceId) {
+            document.querySelectorAll('.interface-view').forEach(view => {
+                view.style.display = 'none';
+            });
+            const vueCible = document.getElementById(interfaceId);
+            if (vueCible) {
+                vueCible.style.display = 'block';
+            }
+        }
+
+        // ... Colle le reste du code de reconnaissance vocale ici ...// ===== RECONNAISSANCE VOCALE WEB SPEECH =====
+const vocalBtn = document.getElementById('vocalBtn');
+const searchInput = document.querySelector('.search-input-group input');
+
+// Vérification de la compatibilité du navigateur (Chrome, Edge, Safari)
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'fr-FR'; // Capture en français
+    recognition.interimResults = false; // Attendre la fin de la phrase
+    recognition.maxAlternatives = 1;
+
+    // Gestion du clic sur le bouton Micro
+    vocalBtn.addEventListener('click', () => {
+        vocalBtn.classList.toggle('active');
+        
+        if (vocalBtn.classList.contains('active')) {
+            vocalBtn.innerHTML = '<i class="fa-solid fa-circle-stop"></i> Écoute active...';
+            recognition.start(); // Démarre la capture audio
+        } else {
+            vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
+            recognition.stop(); // Arrête la capture manuellement
+        }
+    });
+
+    // Événement déclenché quand la voix est transformée en texte
+    recognition.onresult = (event) => {
+        const texteCapture = event.results[0][0].transcript;
+        
+        if (searchInput) {
+            searchInput.value = texteCapture; // Écrit le texte dans la barre
+        }
+        
+        // Simule un clic sur la loupe pour lancer la recherche automatiquement
+        const btnLoupe = document.querySelector('.search-input-group button');
+        if (btnLoupe) {
+            btnLoupe.click();
+        }
+    };
+
+    // Arrêt automatique du micro quand l'utilisateur s'arrête de parler
+    recognition.onspeechend = () => {
+        recognition.stop();
+        vocalBtn.classList.remove('active');
+        vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
+    };
+
+    // Gestion des erreurs (Micro bloqué, refus d'autorisation, pas de réseau...)
+    recognition.onerror = (event) => {
+        console.error("Erreur de reconnaissance vocale :", event.error);
+        vocalBtn.classList.remove('active');
+        vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
+    };
+
+} else {
+    // Si le navigateur ne gère pas l'API Web Speech
+    vocalBtn.addEventListener('click', () => {
+        alert("Votre navigateur actuel ne supporte pas la reconnaissance vocale. Essayez sur Google Chrome ou Microsoft Edge.");
+    });
+}
+    </script>
+    script src="script.js"></script>
+</body>
+</html>    
 <body>
 
-    <nav>
-        <a href="#" class="logo">
-            <img src="logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/40?text=VB'">
-            Vocal Commerce
-        </a>
-
-        <button class="burger-menu" id="burger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Boutiques</a></li>
-            <li><a href="#">Catégories</a></li>
-            <li><a href="#" class="panier"><i class="fa-solid fa-basket-shopping"></i> Panier (0)</a></li>
-        </ul>
-    </nav>
-
-    <header class="hero">
-        <h1>Achetez avec votre <span>Voix</span></h1>
-        <p>La première plateforme e-commerce vocale adaptée au Bénin.</p>
-
-        <div class="search-box">
-            <input type="text" placeholder="Rechercher un produit, une catégorie...">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+    <header>
+        <div class="logo-container">
+            <div class="logo-placeholder">VV</div>
+            <h1 style="margin:0; font-size: 1.5rem;">Vestiges & Voix</h1>
         </div>
-
-        <div class="hero-buttons">
-            <button class="btn-voix" id="vocalBtn">
-                <i class="fa-solid fa-microphone"></i> Activer la voix
-            </button>
-        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a onclick="afficherEspace('accueil')">Accueil</a></li>
+                <li><a onclick="afficherEspace('espace-vendeur')">Espace Vendeur</a></li>
+                <li><a onclick="afficherEspace('espace-admin')">Admin</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="container">
-        <h2 class="section-title">Articles Disponibles</h2>
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" placeholder="Rechercher un artéfact (ex: boussole, journal...)">
+            <button onclick="alert('Recherche lancée !')"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <button id="vocalBtn"><i class="fa-solid fa-microphone"></i> Activer la voix</button>
+    </div>
+
+    <main>
         
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="produit1.jpg" alt="Article 1" onerror="this.src='https://via.placeholder.com/300x240?text=Photo+Réelle+Article+1'">
+        <section class="page-section" id="accueil">
+            <h2>🎯 Photos Réelles des Articles en Stock</h2>
+            <div class="products-grid">
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500" alt="Journal en cuir ancien" class="product-img">
+                    <div class="product-info">
+                        <h3>Journal de l'Explorateur</h3>
+                        <p class="price">45.00 €</p>
+                        <div class="tags">
+                            <span class="tag">#Ancien</span>
+                            <span class="tag">#Cuir</span>
+                            <span class="tag">#Rare</span>
+                        </div>
+                        <button class="btn-buy">Ajouter au panier</button>
+                    </div>
                 </div>
-                <div class="product-details">
-                    <div class="product-name">Riz Local Premium du Bénin</div>
-                    <div class="product-price">12 500 FCFA</div>
-                    <button class="btn-buy">Ajouter au panier</button>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1548345680-f5475ea5df84?w=500" alt="Boussole vintage en laiton" class="product-img">
+                    <div class="product-info">
+                        <h3>Boussole Maritime 1880</h3>
+                        <p class="price">89.00 €</p>
+                        <div class="tags">
+                            <span class="tag">#Navigation</span>
+                            <span class="tag">#Laiton</span>
+                            <span class="tag">#Luxe</span>
+                        </div>
+                        <button class="btn-buy">Ajouter au panier</button>
+                    </div>
                 </div>
+
             </div>
 
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="produit2.jpg" alt="Article 2" onerror="this.src='https://via.placeholder.com/300x240?text=Photo+Réelle+Article+2'">
+            <div class="reviews-section">
+                <h2>⭐ Avis de nos Clients Satisfaits</h2>
+                
+                <div class="review-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"La boussole est tout simplement splendide. Conforme à la photo réelle présente sur la fiche produit."</p>
+                    <strong>— Jean-Pierre D. (Acheteur vérifié)</strong>
                 </div>
-                <div class="product-details">
-                    <div class="product-name">Huile d'Arachide Pure (5L)</div>
-                    <div class="product-price">6 000 FCFA</div>
-                    <button class="btn-buy">Ajouter au panier</button>
+
+                <div class="review-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"L'outil de recherche vocale fonctionne à merveille sur mon mobile, commande reçue en 3 jours."</p>
+                    <strong>— Amandine L. (Acheteuse vérifiée)</strong>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section class="page-section" id="espace-vendeur" style="display:none;">
+            <div class="dashboard-box">
+                <h2>👨‍💼 Espace Partenaire & Vendeur</h2>
+                <p>Ajoutez un nouvel article réel directement au catalogue de la plateforme.</p>
+                <form onsubmit="event.preventDefault(); alert('Article soumis pour validation par l\'administrateur !');">
+                    <div class="form-group">
+                        <label>Nom de l'objet :</label>
+                        <input type="text" required placeholder="Ex: Astrolabe en bronze">
+                    </div>
+                    <div class="form-group">
+                        <label>Prix de vente (€) :</label>
+                        <input type="number" required placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Tags associés (séparés par des virgules) :</label>
+                        <input type="text" placeholder="Ex: #rare, #bronze, #astronomie">
+                    </div>
+                    <div class="form-group">
+                        <label>Photo réelle du produit :</label>
+                        <input type="file" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn-buy" style="background-color: var(--accent-color);">Mettre en vente l'article</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="page-section" id="espace-admin" style="display:none;">
+            <div class="dashboard-box" style="border-top: 5px solid #d9534f;">
+                <h2>🛠️ Panneau d'Administration Général</h2>
+                <p>Suivi de l'activité globale du site Internet.</p>
+                <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                    <div style="flex:1; background:#f1f3f5; padding: 15px; border-radius: 5px;">
+                        <h3>45</h3>
+                        <p>Vendeurs inscrits</p>
+                    </div>
+                    <div style="flex:1; background:#f1f3f5; padding: 15px; border-radius: 5px;">
+                        <h3>12</h3>
+                        <p>Commentaires en attente de modération</p>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="alert('Tous les commentaires ont été modérés avec succès.')">Modérer les avis récents</button>
+            </div>
+        </section>
+
     </main>
 
     <script>
-        // Gestion du menu mobile (Burger)
-        const burger = document.getElementById('burger');
-        const navLinks = document.getElementById('navLinks');
+        // ===== NAVIGATION ENTRE LES ESPACES =====
+        function afficherEspace(espaceId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            const sectionCible = document.getElementById(espaceId);
+            if (sectionCible) {
+                sectionCible.style.display = 'block';
+            }
+        }
 
-        burger.addEventListener('click', () => {
-            burger.classList.toggle('open');
-            navLinks.classList.toggle('open');
-        });
+        // Fermeture automatique fictive du menu burger au clic sur les liens
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                burger.classList.remove('open');
-                navLinks.classList.remove('open');
+                if (typeof burger !== 'undefined' && typeof navLinks !== 'undefined') {
+                    burger.classList.remove('open');
+                    navLinks.classList.remove('open');
+                }
             });
         });
 
@@ -397,12 +461,11 @@
         const vocalBtn = document.getElementById('vocalBtn');
         const searchInput = document.querySelector('.search-box input');
 
-        // Vérification de la compatibilité du navigateur
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
         if (SpeechRecognition) {
             const recognition = new SpeechRecognition();
-            recognition.lang = 'fr-FR'; // Langue de capture
+            recognition.lang = 'fr-FR'; 
             recognition.interimResults = false;
             recognition.maxAlternatives = 1;
 
@@ -411,30 +474,29 @@
                 
                 if (vocalBtn.classList.contains('active')) {
                     vocalBtn.innerHTML = '<i class="fa-solid fa-circle-stop"></i> Écoute en cours...';
-                    recognition.start(); // Démarre le micro
+                    recognition.start(); 
                 } else {
                     vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
-                    recognition.stop(); // Arrête le micro
+                    recognition.stop(); 
                 }
             });
 
-            // Quand le navigateur a fini de traduire la voix en texte
             recognition.onresult = (event) => {
                 const parole = event.results[0][0].transcript;
-                searchInput.value = parole; // Écrit le texte dans votre barre de recherche
+                if (searchInput) {
+                    searchInput.value = parole; 
+                }
                 
-                // Optionnel : simuler un clic sur le bouton loupe pour lancer la recherche
-                document.querySelector('.search-box button').click();
+                const searchBtn = document.querySelector('.search-box button');
+                if (searchBtn) searchBtn.click();
             };
 
-            // Arrêt automatique si l'utilisateur arrête de parler
             recognition.onspeechend = () => {
                 recognition.stop();
                 vocalBtn.classList.remove('active');
                 vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
             };
 
-            // En cas d'erreur (micro bloqué, pas de connexion, etc.)
             recognition.onerror = (event) => {
                 console.error("Erreur vocale :", event.error);
                 vocalBtn.classList.remove('active');
@@ -449,17 +511,3 @@
     </script>
 </body>
 </html>
-        // Gestion de l'état actif du bouton vocal (comme configuré dans votre CSS)
-        const vocalBtn = document.getElementById('vocalBtn');
-        vocalBtn.addEventListener('click', () => {
-            vocalBtn.classList.toggle('active');
-            if(vocalBtn.classList.contains('active')) {
-                vocalBtn.innerHTML = '<i class="fa-solid fa-circle-stop"></i> Écoute en cours...';
-            } else {
-                vocalBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Activer la voix';
-            }
-        });
-    </script>
-</body>
-</html>
-      
