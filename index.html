@@ -563,128 +563,146 @@
 
     /* ===== VENDEUR ===== */
     .vendeur {
-      background: linear-gradient(135deg, #fff9e6, #fffde7);
-      padding: 60px 20px;
-      text-align: center;
+      background: #f9f9f9;
+      padding: 0 0 60px;
     }
-    .vendeur h2 { font-size: 1.8rem; font-weight: 800; color: var(--vert); margin-bottom: 10px; }
-    .vendeur .sous-titre { color: #888; margin-bottom: 40px; font-size: 0.95rem; }
+    .vendeur-hero {
+      background: linear-gradient(135deg, #004d00, #006400, #228B22);
+      color: white;
+      text-align: center;
+      padding: 70px 20px 50px;
+    }
+    .vendeur-hero-badge {
+      display: inline-block;
+      background: rgba(255,215,0,0.2);
+      border: 1px solid rgba(255,215,0,0.5);
+      color: var(--or);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .vendeur-hero h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+    .vendeur-hero h2 span { color: var(--or); }
+    .vendeur-hero .sous-titre {
+      font-size: 1rem;
+      opacity: 0.85;
+      max-width: 550px;
+      margin: 0 auto 35px;
+      line-height: 1.6;
+    }
+    .vendeur-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .v-stat { text-align: center; }
+    .v-stat-num { font-size: 1.8rem; font-weight: 800; color: var(--or); }
+    .v-stat-label { font-size: 0.75rem; opacity: 0.8; }
+
+    .vendeur-section {
+      max-width: 1100px;
+      margin: 50px auto 0;
+      padding: 0 20px;
+    }
+    .vendeur-section-titre {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--vert);
+      margin-bottom: 30px;
+    }
+
     .vendeur-avantages {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 20px;
-      margin-bottom: 40px;
     }
     .avantage {
       background: white;
       border-radius: 16px;
       padding: 25px 20px;
-      max-width: 200px;
+      width: 180px;
       box-shadow: var(--ombre);
       border-top: 4px solid var(--or);
+      text-align: center;
+      transition: transform 0.3s;
     }
+    .avantage:hover { transform: translateY(-5px); }
     .avantage .icone { font-size: 2rem; margin-bottom: 10px; }
     .avantage h4 { font-size: 0.9rem; font-weight: 700; color: var(--vert); margin-bottom: 5px; }
-    .avantage p { font-size: 0.8rem; color: #888; }
-    .vendeur-form {
+    .avantage p { font-size: 0.78rem; color: #888; line-height: 1.4; }
+
+    .plans {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+    .plan {
       background: white;
       border-radius: 20px;
-      padding: 35px;
-      max-width: 500px;
-      margin: 0 auto;
+      padding: 30px 25px;
+      width: 280px;
       box-shadow: var(--ombre);
-      text-align: left;
+      text-align: center;
+      position: relative;
+      border: 2px solid #eee;
+      transition: transform 0.3s;
     }
-    .vendeur-form h3 { font-size: 1.2rem; font-weight: 700; color: var(--vert); margin-bottom: 20px; text-align: center; }
-    .vendeur-form input,
-    .vendeur-form select,
-    .vendeur-form textarea {
-      width: 100%;
-      padding: 13px 16px;
-      border: 2px solid #e0e0e0;
-      border-radius: 12px;
-      font-size: 0.9rem;
-      font-family: 'Poppins', sans-serif;
-      margin-bottom: 14px;
-      outline: none;
-      transition: border 0.3s;
+    .plan:hover { transform: translateY(-5px); }
+    .plan-pro {
+      border: 2px solid var(--or);
+      box-shadow: 0 8px 30px rgba(255,215,0,0.3);
     }
-    .vendeur-form input:focus,
-    .vendeur-form select:focus,
-    .vendeur-form textarea:focus { border-color: var(--vert); }
-    .vendeur-form textarea { height: 100px; resize: none; }
-    .btn-inscrire {
+    .plan-badge-pro {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--or);
+      color: var(--vert);
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    .plan-nom { font-size: 1.2rem; font-weight: 800; color: var(--vert); margin-bottom: 10px; }
+    .plan-prix { font-size: 2rem; font-weight: 800; color: var(--vert); margin-bottom: 20px; }
+    .plan-prix span { font-size: 0.85rem; color: #888; font-weight: 400; }
+    .plan-features { list-style: none; text-align: left; margin-bottom: 25px; }
+    .plan-features li { font-size: 0.85rem; color: #555; padding: 6px 0; border-bottom: 1px solid #f0f0f0; }
+    .btn-plan {
       width: 100%;
-      padding: 15px;
+      padding: 13px;
       background: var(--vert);
       color: white;
       border: none;
       border-radius: 12px;
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
       font-family: 'Poppins', sans-serif;
       transition: all 0.3s;
     }
-    .btn-inscrire:hover { background: var(--vert2); transform: translateY(-2px); }
-    .tarif-box {
-      background: linear-gradient(135deg, var(--vert), var(--vert2));
-      color: white;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    .tarif-box .prix-abonnement { font-size: 2rem; font-weight: 800; color: var(--or); }
-    .tarif-box p { font-size: 0.85rem; opacity: 0.9; }
+    .btn-plan:hover { background: var(--vert2); }
+    .btn-plan-pro { background: var(--or); color: var(--vert); }
+    .btn-plan-pro:hover { background: var(--or2); color: white; }
 
-    /* ===== FOOTER ===== */
-    footer {
-      background: #002200;
-      color: rgba(255,255,255,0.7);
-      text-align: center;
-      padding: 25px 20px;
-      font-size: 0.8rem;
-      line-height: 2;
+    .temoignages {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
     }
-    footer strong { color: var(--or); }
-
-    /* ===== COMMENT CA MARCHE ===== */
-    .how { padding: 60px 20px; text-align: center; background: var(--gris); }
-    .how h2 { font-size: 1.8rem; font-weight: 800; color: var(--vert); margin-bottom: 40px; }
-    .steps { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
-    .step {
-      background: white;
-      border-radius: 16px;
-      padding: 30px 20px;
-      max-width: 200px;
-      box-shadow: var(--ombre);
-      transition: transform 0.3s;
-    }
-    .step:hover { transform: translateY(-5px); }
-    .step .icon { font-size: 2.5rem; margin-bottom: 12px; }
-    .step h3 { color: var(--vert); font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .step p { font-size: 0.82rem; color: #777; line-height: 1.5; }
-
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.8rem; }
-      nav ul { gap: 2px; }
-      nav ul li a { padding: 6px 10px; font-size: 0.75rem; }
-      .grille { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; padding: 15px; }
-    }
-  </style>
-</head>
-<body>
-
-<!-- NAVBAR -->
-<nav>
-  <div class="logo-container">
-    <div class="logo-icon">VC</div>
-    <div class="logo-text">
-      <span>VOCAL COMMERCE</span>
-      <span>Bénin — Électronique & Plus</span>
-    </div>
-  </div>
-  <ul>
-    <li><a href="#">Ac
+    .temoignage {
+      b
