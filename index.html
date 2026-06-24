@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE htmlc
 <html lang=cfr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=dev
+    ice-width, initial-scale=1.0">
 
 <title>Vocal Commerce Bénin</title>
 
@@ -308,7 +309,99 @@ Nos produits
 
 
 <script>
+// ===== ACHAT PAR COMMANDE VOCALE =====
 
+function commandeAchatVocale(){
+
+const SpeechRecognition =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
+
+
+if(!SpeechRecognition){
+
+alert("La commande vocale n'est pas disponible sur cet appareil.");
+return;
+
+}
+
+
+let reconnaissance = new SpeechRecognition();
+
+reconnaissance.lang = "fr-FR";
+
+reconnaissance.start();
+
+
+reconnaissance.onstart = function(){
+
+alert("Dites : acheter iPhone 15, Samsung, PC...");
+
+};
+
+
+
+reconnaissance.onresult = function(event){
+
+
+let phrase =
+event.results[0][0].transcript.toLowerCase();
+
+
+console.log("Commande :", phrase);
+
+
+
+let produitTrouve =
+produits.find(p =>
+phrase.includes(
+p.nom.toLowerCase()
+)
+);
+
+
+
+if(produitTrouve){
+
+
+let index =
+produits.indexOf(produitTrouve);
+
+
+ajouter(index);
+
+
+
+alert(
+"✅ "+produitTrouve.nom+
+" ajouté au panier"
+);
+
+
+}
+
+else{
+
+
+alert(
+"❌ Produit non trouvé. Essayez avec le nom exact."
+);
+
+
+}
+
+
+};
+
+
+reconnaissance.onerror=function(){
+
+alert("Erreur de reconnaissance vocale.");
+
+};
+
+
+}
 
 let produits=[
 
@@ -319,7 +412,144 @@ prix:250000,
 image:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab"
 },
 
+{
+nom:"iPhone 12",
+prix:350000,
+categorie:"Téléphone",
+image:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab"
+},
 
+{
+nom:"iPhone 13 Pro",
+prix:450000,
+categorie:"Téléphone",
+image:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab"
+},
+
+{
+nom:"iPhone 14",
+prix:500000,
+categorie:"Téléphone",
+image:"https://images.unsplash.com/photo-1678685888221-cda773a3dcdb"
+},
+
+{
+nom:"iPhone 14 Pro Max",
+prix:650000,
+categorie:"Téléphone",
+image:"https://images.unsplash.com/photo-1678685888221-cda773a3dcdb"
+},
+
+{
+nom:"iPhone 15",
+prix:600000,
+categorie:"Téléphone",
+image:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"
+},
+
+{
+nom:"iPhone 15 Pro Max",
+prix:850000,
+categorie:"Téléphone",
+image:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"
+},
+
+{
+nom:"iPhone 16",
+prix:750000,
+categorie:"Téléphone",
+image:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"
+},
+
+
+{
+nom:"Samsung Galaxy S24",
+prix:600000,
+categorie:"Téléphone",
+image:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf"
+},
+
+
+{
+nom:"Tablette Android",
+prix:150000,
+categorie:"Tablette",
+image:"https://images.unsplash.com/photo-1544244015-0df4b2f0b2f5"
+},
+
+
+{
+nom:"iPad Air",
+prix:400000,
+categorie:"iPad",
+image:"https://images.unsplash.com/photo-1544244015-0df4b2f0b2f5"
+},
+
+
+{
+nom:"iPad Pro",
+prix:700000,
+categorie:"iPad",
+image:"https://images.unsplash.com/photo-1544244015-0df4b2f0b2f5"
+},
+
+
+{
+nom:"AirPods Pro",
+prix:120000,
+categorie:"Audio",
+image:"https://images.unsplash.com/photo-1600294037681-c80b4cb5b434"
+},
+
+
+{
+nom:"PC Portable HP",
+prix:350000,
+categorie:"Ordinateur",
+image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
+},
+
+
+{
+nom:"PC Portable Dell",
+prix:450000,
+categorie:"Ordinateur",
+image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
+},
+
+
+{
+nom:"Chaussures Sport",
+prix:25000,
+categorie:"Chaussures",
+image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
+},
+
+
+{
+nom:"Vêtement Homme",
+prix:30000,
+categorie:"Vêtement",
+image:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b"
+},
+
+
+{
+nom:"Produits alimentaires",
+prix:5000,
+categorie:"Alimentation",
+image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"
+},
+
+
+{
+nom:"Produits ménagers",
+prix:10000,
+categorie:"Ménager",
+image:"https://images.unsplash.com/photo-1583947215259-38e31be8751f"
+}
+
+];
 {
 nom:"iPhone 17",
 prix:850000,
@@ -506,7 +736,25 @@ produits[i].prix+
 
 
 </script>
+<div style="position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:10px;">
 
+
+<a href="tel:0140109306"
+class="btn"
+style="text-decoration:none;text-align:center;">
+📞 Appeler
+</a>
+
+
+<a href="https://wa.me/2290140109306"
+target="_blank"
+class="btn"
+style="text-decoration:none;text-align:center;background:#25D366;">
+💬 WhatsApp
+</a>
+
+
+</div>
 </body>
 </html>
 <!DOCTYPE html>
@@ -1070,9 +1318,13 @@ image:"https://images.unsplash.com/photo-1583947215259-38e31be8751f"
 let panier=[];
 
 
-
 function afficher(){
-
+<a 
+class="btn"
+href="https://wa.me/2290140109306?text=Bonjour je suis intéressé par ${p.nom}"
+target="_blank">
+Contacter
+</a>
 let zone=document.getElementById("produits");
 
 zone.innerHTML="";
@@ -1150,7 +1402,9 @@ let mot=document
 .getElementById("recherche")
 .value.toLowerCase();
 
-
+<button onclick="commandeAchatVocale()" class="btn">
+🗣️ Acheter par la voix
+</button>
 let resultat=produits.filter(p=>
 p.nom.toLowerCase().includes(mot)
 );
