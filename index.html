@@ -117,7 +117,7 @@
             display: block;
         }
 
-        /* Section Flyer (Vendeur) */
+        /* Design de l'Intégration du Flyer (Vendeur) */
         .flyer-section {
             background: white;
             margin: 25px;
@@ -149,23 +149,24 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
-            margin-top: 25px;
+            margin: 25px 0;
         }
 
         .feature-item {
             background: #f9f9f9;
-            padding: 15px;
+            padding: 20px;
             border-radius: 12px;
             border-bottom: 3px solid var(--bj-yellow);
             font-size: 0.95em;
+            text-align: center;
         }
 
         .feature-item strong {
             color: var(--dark-green);
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-size: 1.1em;
         }
 
@@ -251,6 +252,7 @@
             border-radius: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
+
         input, textarea, select {
             width: 100%;
             max-width: 500px;
@@ -340,19 +342,33 @@
         <h2 style="text-align:center; margin-top: 40px; color: var(--dark-green);">🛒 Articles disponibles</h2>
         <div id="liste" class="produits"></div>
     </div>
-
     <div id="espaceVendeur" class="zone-espace">
         <div class="flyer-section">
-            <h2 class="flyer-title">Espace Vendeur — Publiez vos produits</h2>
-            <p style="text-align: center; font-size: 1.1em;">Rejoignez Vocal Commerce Benin et boostez votre visibilité locale.</p>
+            <h2 class="flyer-title">📢 Vendez plus vite sur Vocal Commerce Benin !</h2>
+            <p style="text-align: center; font-size: 1.1em; color: #555;">Une visibilité maximale pour vos produits auprès de milliers d'acheteurs au Bénin.</p>
             
             <div class="pricing-badge">
-                2 000 FCFA / MOIS SEULEMENT <br>
-                <span style="font-size: 0.85em; font-weight: normal;">✨ 7 jours GRATUITS !</span>
+                TARIF UNIQUE : 2 000 FCFA / MOIS <br>
+                <span style="font-size: 0.85em; font-weight: normal;">✨ Profitez de 7 jours d'essai GRATUITS !</span>
             </div>
 
-            <div class="section" style="max-width: 600px; margin: 20px auto;">
-                <h3>Ajouter un article sur la plateforme</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <strong>🎤 Recherche Vocale</strong>
+                    Vos produits deviennent trouvables instantanément par la voix.
+                </div>
+                <div class="feature-item">
+                    <strong>💰 Zéro Commission</strong>
+                    Vous fixez votre prix de base, nous n'ajoutons que les 5% de marge système.
+                </div>
+                <div class="feature-item">
+                    <strong>⚡ Publication Express</strong>
+                    Mettez en ligne vos articles en moins d'une minute via le formulaire ci-dessous.
+                </div>
+            </div>
+
+            <div class="section" style="max-width: 600px; margin: 20px auto; border-top: 4px solid var(--bj-green);">
+                <h3>📦 Publier un nouvel article</h3>
                 <label>Nom de l'article :</label>
                 <input type="text" id="addNom" placeholder="ex: iPhone 12 Pro"><br>
                 
@@ -368,7 +384,7 @@
 
                 <label>Prix d'achat de base (FCFA) :</label>
                 <input type="number" id="addPrix" placeholder="ex: 400000"><br>
-                <p style="font-size: 0.85em; color: #666; margin-top: -5px;">*Une marge bénéficiaire automatique de 5% sera appliquée sur le prix affiché aux clients.</p>
+                <p style="font-size: 0.85em; color: #666; margin-top: -5px;">*Note : Le système ajoutera automatiquement 5% de marge sur le prix final affiché aux clients.</p>
 
                 <button class="btn-buy" onclick="vendeurAjouterProduit()">Mettre le produit en ligne</button>
             </div>
@@ -376,7 +392,7 @@
             <div class="stats-bar">
                 <div class="stat-box"><h3>500+</h3><p style="margin:5px 0 0 0;">Clients actifs</p></div>
                 <div class="stat-box"><h3>30+</h3><p style="margin:5px 0 0 0;">Vendeurs inscrits</p></div>
-                <div class="stat-box"><h3>MTN / Moov</h3><p style="margin:5px 0 0 0;">Paiements directs</p></div>
+                <div class="stat-box"><h3>MTN / Moov</h3><p style="margin:5px 0 0 0;">Paiements sécurisés</p></div>
             </div>
         </div>
     </div>
@@ -435,21 +451,21 @@
     </footer>
 
     <script>
-        // Catalogue d'articles - Prix avec marge de 5% intégrée
+        // Catalogue d'articles - Photos réelles par produit
         const produits = [
             { nom: "iPhone 4", cat: "Téléphone", qualite: "⭐⭐ Occasion", etat: "Occasion", prix: 84000, stock: 5, img: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=500&q=80" },
-            { nom: "iPhone SE", cat: "Téléphone", qualite: "⭐⭐⭐⭐ Bon état", etat: "Occasion", prix: 231000, stock: 4, img: "https://images.unsplash.com/photo-1523206489230-c012c64b2b48?w=500&q=80" },
-            { nom: "iPhone 11", cat: "Téléphone", qualite: "⭐⭐⭐ Occasion", etat: "Occasion", prix: 280875, stock: 5, img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=500&q=80" },
-            { nom: "iPhone 11 Pro Max", cat: "Téléphone", qualite: "⭐⭐⭐⭐", etat: "Occasion", prix: 393225, stock: 4, img: "https://images.unsplash.com/photo-1574755393849-623942496936?w=500&q=80" },
+            { nom: "iPhone SE", cat: "Téléphone", qualite: "⭐⭐⭐⭐ Bon état", etat: "Occasion", prix: 231000, stock: 4, img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=500&q=80" },
+            { nom: "iPhone 11", cat: "Téléphone", qualite: "⭐⭐⭐ Occasion", etat: "Occasion", prix: 280875, stock: 5, img: "https://images.unsplash.com/photo-1573148195900-7845dcb9b127?w=500&q=80" },
+            { nom: "iPhone 11 Pro Max", cat: "Téléphone", qualite: "⭐⭐⭐⭐", etat: "Occasion", prix: 393225, stock: 4, img: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500&q=80" },
             { nom: "iPhone 12", cat: "Téléphone", qualite: "⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 449400, stock: 5, img: "https://images.unsplash.com/photo-1605787020600-b9ebd5df1d07?w=500&q=80" },
             { nom: "iPhone 13", cat: "Téléphone", qualite: "⭐⭐⭐⭐⭐ Premium", etat: "Neuf", prix: 561750, stock: 5, img: "https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=500&q=80" },
             { nom: "iPhone 14", cat: "Téléphone", qualite: "⭐⭐⭐⭐⭐ Premium", etat: "Neuf", prix: 729750, stock: 4, img: "https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=500&q=80" },
             { nom: "iPhone 15 Pro Max", cat: "Téléphone", qualite: "⭐⭐⭐⭐⭐ Premium", etat: "Neuf", prix: 1067325, stock: 4, img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&q=80" },
-            { nom: "Samsung Galaxy S24 Ultra", cat: "Samsung", qualite: "⭐⭐⭐⭐⭐ Premium", etat: "Neuf", prix: 997500, stock: 5, img: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500&q=80" },
-            { nom: "Samsung Galaxy A54", cat: "Samsung", qualite: "⭐⭐⭐⭐", etat: "Neuf", prix: 262500, stock: 8, img: "https://images.unsplash.com/photo-1636113824707-1b6a7a0b368a?w=500&q=80" },
+            { nom: "Samsung Galaxy S24 Ultra", cat: "Samsung", qualite: "⭐⭐⭐⭐⭐ Premium", etat: "Neuf", prix: 997500, stock: 5, img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&q=80" },
+            { nom: "Samsung Galaxy A54", cat: "Samsung", qualite: "⭐⭐⭐⭐", etat: "Neuf", prix: 262500, stock: 8, img: "https://images.unsplash.com/photo-1601784551446-20c9e0969041?w=500&q=80" },
             { nom: "Google Pixel 9 Pro", cat: "Pixel", qualite: "⭐⭐⭐⭐⭐", etat: "Neuf", prix: 840000, stock: 3, img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&q=80" },
             { nom: "PlayStation 5", cat: "Gaming", qualite: "⭐⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 561750, stock: 3, img: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500&q=80" },
-            { nom: "PlayStation 4", cat: "Gaming", qualite: "⭐⭐⭐⭐ Occasion", etat: "Occasion", prix: 262500, stock: 5, img: "https://images.unsplash.com/photo-1507457379470-08b8006b224e?w=500&q=80" },
+            { nom: "PlayStation 4", cat: "Gaming", qualite: "⭐⭐⭐⭐ Occasion", etat: "Occasion", prix: 262500, stock: 5, img: "https://images.unsplash.com/photo-1486401899868-0e435da85128?w=500&q=80" },
             { nom: "Manette PlayStation", cat: "Gaming", qualite: "⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 68250, stock: 10, img: "https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=500&q=80" },
             { nom: "Ordinateur portable", cat: "Informatique", qualite: "⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 449400, stock: 5, img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80" },
             { nom: "Smart TV", cat: "Télévision", qualite: "⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 337050, stock: 4, img: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500&q=80" },
@@ -563,7 +579,6 @@
                 </div>
             `;
             
-            // Insérer le nouvel avis tout en haut de la liste des commentaires
             let zoneListe = document.getElementById("avisListe");
             zoneListe.innerHTML = nouvelAvis + zoneListe.innerHTML;
             
@@ -628,3 +643,4 @@
     </script>
 </body>
 </html>
+    
