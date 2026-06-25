@@ -1,139 +1,169 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Vocal Commerce Bénin</title>
+<title>Vocal Commerce Benin</title>
+
 
 <style>
 
 body{
 margin:0;
-font-family:Arial;
-background:#f5f5f5;
+font-family:Arial,sans-serif;
+background:#f4f4f4;
 }
 
 
 header{
-background:linear-gradient(90deg,#008751,#FCD116,#E8112D);
+
+background:linear-gradient(
+90deg,
+#008751,
+#FCD116,
+#E8112D
+);
+
+padding:25px;
 text-align:center;
-padding:30px;
+
 }
-
-
-header h1{
-background:white;
-color:#008751;
-padding:15px;
-border-radius:20px;
-}
-
 
 
 .burger{
-position:fixed;
-top:15px;
-left:15px;
-font-size:30px;
+
+font-size:35px;
 background:#008751;
 color:white;
 padding:10px;
-border-radius:12px;
 cursor:pointer;
-z-index:20;
+
 }
 
 
 
 nav{
+
 display:none;
-position:fixed;
-top:75px;
-left:15px;
-background:white;
-padding:15px;
-border-radius:15px;
-z-index:19;
+background:#008751;
+
 }
 
 
-nav button{
+
+nav a{
+
 display:block;
-width:180px;
-margin:8px;
-}
+padding:15px;
+color:white;
+text-decoration:none;
 
-
-button{
-background:#FCD116;
-border:none;
-padding:10px;
-border-radius:20px;
-cursor:pointer;
 }
 
 
 
-#produits{
+
+.produits{
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+grid-template-columns:
+repeat(auto-fit,minmax(230px,1fr));
+
 gap:20px;
 padding:20px;
+
 }
+
 
 
 
 .card{
+
 background:white;
 padding:15px;
-border-radius:15px;
-box-shadow:0 4px 15px #ccc;
+border-radius:20px;
+box-shadow:0 3px 10px #aaa;
+
 }
+
 
 
 .card img{
+
 width:100%;
-height:180px;
+height:220px;
 object-fit:cover;
 border-radius:15px;
+
 }
 
 
 
-.prix{
-color:#E8112D;
-font-weight:bold;
+
+button{
+
+background:#FCD116;
+border:0;
+padding:12px;
+border-radius:20px;
+cursor:pointer;
+
 }
 
 
 
-.page{
+
+.section{
+
+background:white;
+margin:20px;
 padding:20px;
+border-radius:20px;
+
 }
+
 
 
 
 #panier{
+
 position:fixed;
-right:15px;
-bottom:15px;
+right:20px;
+bottom:20px;
 background:white;
 padding:15px;
-border-radius:15px;
+border-radius:20px;
+
 }
+
 
 
 
 footer{
+
 background:#008751;
 color:white;
-padding:25px;
+padding:20px;
 text-align:center;
+
 }
 
+
+
+input,textarea{
+
+width:90%;
+padding:10px;
+margin:5px;
+
+}
+
+
 </style>
+
 
 </head>
 
@@ -141,31 +171,37 @@ text-align:center;
 <body>
 
 
-<div class="burger" onclick="menu()">☰</div>
+
+<div class="burger" onclick="menu()">
+
+☰
+
+</div>
 
 
 
 <nav id="menu">
 
-<button onclick="ouvrir('boutique')">
-🛒 Boutique
-</button>
 
-<button onclick="admin()">
-🔐 Administrateur
-</button>
+<a href="#">
+Accueil
+</a>
 
-<button onclick="ouvrir('vendeur')">
-🛍️ Vendeur
-</button>
 
-<button onclick="ouvrir('blog')">
-📰 Blog
-</button>
+<a href="#admin">
+Administrateur
+</a>
 
-<button onclick="ouvrir('avis')">
-⭐ Avis
-</button>
+
+<a href="#vendeur">
+Vendeur
+</a>
+
+
+<a href="#avis">
+Commentaires
+</a>
+
 
 </nav>
 
@@ -174,159 +210,216 @@ text-align:center;
 
 <header>
 
-<h1>Vocal Commerce Bénin</h1>
 
-<p>Marketplace intelligente 🇧🇯</p>
+<h1>
+🇧🇯 Vocal Commerce Benin
+</h1>
+
+
+<p>
+Marketplace intelligente
+</p>
+
+
+
+<button onclick="vocal()">
+
+🎤 Recherche vocale
+
+</button>
+
+
+<p id="resultat"></p>
+
 
 </header>
 
 
 
 
+<h2 style="text-align:center">
 
-<section id="boutique" class="page">
+Articles disponibles
 
-<h2>Nos articles</h2>
-
-<div id="produits"></div>
-
-</section>
+</h2>
 
 
 
-
-<section id="admin" class="page" style="display:none">
-
-<h2>🔐 Espace Administrateur</h2>
-
-<p>
-Gestion des produits, commandes, utilisateurs.
-</p>
-
-</section>
-
-
-
-
-<section id="vendeur" class="page" style="display:none">
-
-<h2>🛍️ Espace Vendeur</h2>
-
-<p>
-Ajout et modification des articles.
-</p>
-
-</section>
-
-
-
-
-<section id="blog" class="page" style="display:none">
-
-<h2>📰 Blog</h2>
-
-<p>
-Actualités et promotions.
-</p>
-
-</section>
-
-
-
-
-<section id="avis" class="page" style="display:none">
-
-<h2>⭐ Avis clients</h2>
-
-<div class="card">
-⭐⭐⭐⭐⭐
-<p>Très bon service.</p>
-</div>
-
-</section>
-
+<div id="liste" class="produits"></div>
 
 
 
 <div id="panier">
 
-🛒 Panier
-
-<p>Total :
-<span id="total">0</span> FCFA</p>
+🛒 Panier :
+<span id="total">0</span>
+FCFA
 
 </div>
-
-
-
-
-
-<footer>
-
-<h3>Développeur</h3>
-
-<p>DESSOUASSI Anael</p>
-
-<p>WhatsApp : +2290140109306</p>
-
-<p>Email : dessouassianael51@gmail.com</p>
-
-
-© 2026 Vocal Commerce Bénin
-
-</footer>
-
-
-
-
-
-
-<script>
-
-
-let total=0;
-
-
-
-const produits=[
+    const produits=[
 
 
 {
-nom:"iPhone 17 Pro Max",
-cat:"Apple Premium",
-prix:1400000,
-img:"https://images.unsplash.com/photo-1696446700330-1f6b1b2c1c1f"
+nom:"iPhone 4",
+cat:"Téléphone",
+qualite:"⭐⭐ Occasion",
+etat:"Occasion",
+prix:80000,
+stock:5,
+img:"https://images.unsplash.com/photo-1592286927505-b6f7f5f0a7c8"
 },
 
 
 {
-nom:"Samsung Galaxy S24",
-cat:"Android",
-prix:850000,
-img:"https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00"
+nom:"iPhone SE",
+cat:"Téléphone",
+qualite:"⭐⭐⭐⭐ Bon état",
+etat:"Occasion",
+prix:220000,
+stock:4,
+img:"https://images.unsplash.com/photo-1603899122634-f086ca5f5ddd"
 },
 
 
 {
-nom:"iPad Pro",
-cat:"Tablette",
-prix:900000,
-img:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0"
+nom:"iPhone 11",
+cat:"Téléphone",
+qualite:"⭐⭐⭐ Occasion",
+etat:"Occasion",
+prix:267500,
+stock:5,
+img:"https://images.unsplash.com/photo-1592286927505-b6f7f5f0a7c8"
 },
 
 
 {
-nom:"PS5",
+nom:"iPhone 11 Pro Max",
+cat:"Téléphone",
+qualite:"⭐⭐⭐⭐",
+etat:"Occasion",
+prix:374500,
+stock:4,
+img:"https://images.unsplash.com/photo-1592286927505-b6f7f5f0a7c8"
+},
+
+
+{
+nom:"iPhone 12",
+cat:"Téléphone",
+qualite:"⭐⭐⭐⭐ Neuf",
+etat:"Neuf",
+prix:428000,
+stock:5,
+img:"https://images.unsplash.com/photo-1603899122634-f086ca5f5ddd"
+},
+
+
+{
+nom:"iPhone 13",
+cat:"Téléphone",
+qualite:"⭐⭐⭐⭐⭐ Premium",
+etat:"Neuf",
+prix:535000,
+stock:5,
+img:"https://images.unsplash.com/photo-1632661674596-df8be070a5c5"
+},
+
+
+{
+nom:"iPhone 14",
+cat:"Téléphone",
+qualite:"⭐⭐⭐⭐⭐ Premium",
+etat:"Neuf",
+prix:695000,
+stock:4,
+img:"https://images.unsplash.com/photo-1678652197831-2d180705cd2c"
+},
+
+
+{
+nom:"iPhone 15 Pro Max",
+cat:"Téléphone",
+qualite:"⭐⭐⭐⭐⭐ Premium",
+etat:"Neuf",
+prix:1016500,
+stock:4,
+img:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"
+},
+
+
+{
+nom:"Samsung Galaxy S24 Ultra",
+cat:"Samsung",
+qualite:"⭐⭐⭐⭐⭐ Premium",
+etat:"Neuf",
+prix:950000,
+stock:5,
+img:"https://images.unsplash.com/photo-1610945415295-d9bbf067e59c"
+},
+
+
+{
+nom:"Samsung Galaxy A54",
+cat:"Samsung",
+qualite:"⭐⭐⭐⭐",
+etat:"Neuf",
+prix:250000,
+stock:8,
+img:"https://images.unsplash.com/photo-1610945415295-d9bbf067e59c"
+},
+
+
+{
+nom:"Google Pixel 9 Pro",
+cat:"Pixel",
+qualite:"⭐⭐⭐⭐⭐",
+etat:"Neuf",
+prix:800000,
+stock:3,
+img:"https://images.unsplash.com/photo-1598327105666-5b89351aff97"
+},
+
+
+{
+nom:"PlayStation 5",
 cat:"Gaming",
-prix:450000,
+qualite:"⭐⭐⭐⭐⭐ Neuf",
+etat:"Neuf",
+prix:535000,
+stock:3,
 img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
 },
 
 
 {
-nom:"PC Portable",
-cat:"Ordinateur",
-prix:350000,
+nom:"PlayStation 4",
+cat:"Gaming",
+qualite:"⭐⭐⭐⭐ Occasion",
+etat:"Occasion",
+prix:250000,
+stock:5,
+img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"
+},
+
+
+{
+nom:"Manette PlayStation",
+cat:"Gaming",
+qualite:"⭐⭐⭐⭐ Neuf",
+etat:"Neuf",
+prix:65000,
+stock:10,
+img:"https://images.unsplash.com/photo-1592840496694-26d035b52b48"
+},
+
+
+{
+nom:"Ordinateur portable",
+cat:"Informatique",
+qualite:"⭐⭐⭐⭐ Neuf",
+etat:"Neuf",
+prix:428000,
+stock:5,
 img:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
 },
 
@@ -334,52 +427,102 @@ img:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
 {
 nom:"Smart TV",
 cat:"Télévision",
-prix:250000,
+qualite:"⭐⭐⭐⭐ Neuf",
+etat:"Neuf",
+prix:321000,
+stock:4,
 img:"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1"
 },
 
 
 {
-nom:"Apple Watch",
-cat:"Montre",
-prix:200000,
-img:"https://images.unsplash.com/photo-1544117519-31a4b719223d"
+nom:"Chaussures sport",
+cat:"Vêtement",
+qualite:"⭐⭐⭐⭐⭐ Neuf",
+etat:"Neuf",
+prix:45000,
+stock:15,
+img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
 },
 
 
 {
-nom:"Chaussures",
-cat:"Mode",
+nom:"T-shirt Premium",
+cat:"Vêtement",
+qualite:"⭐⭐⭐⭐⭐ Neuf",
+etat:"Neuf",
 prix:15000,
-img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
+stock:20,
+img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
 }
 
+
 ];
+    <script>
+
+
+let total = 0;
 
 
 
-let zone=document.getElementById("produits");
+function afficherProduits(liste = produits){
+
+let zone = document.getElementById("liste");
+
+zone.innerHTML="";
 
 
-produits.forEach(p=>{
+liste.sort((a,b)=>
+b.qualite.localeCompare(a.qualite)
+);
 
-zone.innerHTML+=`
+
+
+liste.forEach(p=>{
+
+
+zone.innerHTML += `
 
 <div class="card">
 
+
 <img src="${p.img}">
+
 
 <h3>${p.nom}</h3>
 
-<p>${p.cat}</p>
 
-<p class="prix">
-${p.prix.toLocaleString()} FCFA
+<p>
+Catégorie : ${p.cat}
 </p>
 
-<button onclick="achat(${p.prix})">
-Ajouter
+
+<p>
+Qualité : ${p.qualite}
+</p>
+
+
+<p>
+Etat : ${p.etat}
+</p>
+
+
+<h3>
+${p.prix.toLocaleString()} FCFA
+</h3>
+
+
+<p>
+${p.stock > 0 ?
+"✅ Disponible":
+"❌ Rupture"}
+</p>
+
+
+<button onclick="acheter('${p.nom}')">
+Acheter
 </button>
+
 
 </div>
 
@@ -387,63 +530,229 @@ Ajouter
 
 });
 
+}
 
 
-function achat(prix){
 
-total+=prix;
+afficherProduits();
 
-document.getElementById("total").innerHTML=
-total.toLocaleString();
+
+
+
+
+
+function acheter(nom){
+
+
+total++;
+
+
+document.getElementById("total")
+.innerHTML = total;
+
+
+
+document.getElementById("commandes")
+.innerHTML +=
+"<li>"+nom+"</li>";
 
 }
+
+
+
+
 
 
 
 function menu(){
 
-let m=document.getElementById("menu");
 
-m.style.display=
-m.style.display==="block"?"none":"block";
+let m =
+document.getElementById("menu");
+
+
+m.style.display =
+m.style.display=="block"
+?
+"none"
+:
+"block";
+
 
 }
 
 
 
-function ouvrir(id){
-
-document.querySelectorAll(".page")
-.forEach(x=>x.style.display="none");
-
-document.getElementById(id).style.display="block";
-
-}
 
 
 
-function admin(){
 
-let md=prompt("Mot de passe administrateur :");
+// ADMIN
+
+function connexionAdmin(){
 
 
-if(md==="Anael2009"){
+let mdp =
+prompt("Mot de passe administrateur");
 
-ouvrir("admin");
+
+if(mdp=="Anael2009"){
+
+
+document.getElementById("adminZone")
+.style.display="block";
+
+
+alert("Bienvenue Administrateur");
+
 
 }
 
 else{
 
-alert("Accès refusé");
+
+alert("Mot de passe incorrect");
+
 
 }
 
+
 }
+
+
+
+
+
+
+
+
+// COMMENTAIRES CLIENTS
+
+
+function commenter(){
+
+
+let nom =
+document.getElementById("nom").value;
+
+
+let message =
+document.getElementById("message").value;
+
+
+
+document.getElementById("avisListe")
+.innerHTML +=
+
+
+`
+<p>
+⭐ ${nom} : ${message}
+</p>
+`;
+
+
+}
+
+
+
+
+
+
+
+
+// RECHERCHE VOCALE
+
+
+function vocal(){
+
+
+
+if(!("webkitSpeechRecognition" in window)){
+
+
+alert("Reconnaissance vocale non disponible");
+
+
+return;
+
+
+}
+
+
+
+let reconnaissance =
+new webkitSpeechRecognition();
+
+
+
+reconnaissance.lang="fr-FR";
+
+
+reconnaissance.start();
+
+
+
+reconnaissance.onresult=function(e){
+
+
+
+let texte =
+e.results[0][0]
+.transcript
+.toLowerCase();
+
+
+
+document.getElementById("resultat")
+.innerHTML =
+"Recherche : "+texte;
+
+
+
+
+let resultat =
+produits.filter(p =>
+
+
+p.nom.toLowerCase()
+.includes(texte)
+
+
+||
+
+p.cat.toLowerCase()
+.includes(texte)
+
+
+);
+
+
+
+afficherProduits(resultat);
+
+
+
+}
+
+
+
+}
+
+
+
 
 
 </script>
 
 
+<footer>
+
+© 2026 Vocal Commerce Benin 🇧🇯
+
+</footer>
+
+
 </body>
 </html>
+    
