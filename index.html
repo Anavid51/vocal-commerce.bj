@@ -1,646 +1,728 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vocal Commerce Benin</title>
-    <style>
-        :root {
-            --bj-green: #008751;
-            --bj-yellow: #FCD116;
-            --bj-red: #E8112D;
-            --dark-green: #005c36;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocal Commerce Bénin — Le marché qui vous écoute</title>
+<meta name="description" content="Vocal Commerce Bénin : achetez et vendez à la voix. Le marché de Dantokpa, réinventé pour le mobile.">
 
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f8f9fa;
-            color: #333;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 
-        /* En-tête */
-        header {
-            background: linear-gradient(135deg, var(--bj-green) 0%, var(--dark-green) 100%);
-            padding: 40px 20px;
-            text-align: center;
-            color: white;
-            position: relative;
-            border-bottom: 8px solid var(--bj-yellow);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
+<style>
+/* ===================================================================
+   VOCAL COMMERCE BÉNIN — Design system
+   Palette inspirée du marché de Dantokpa et de la terre de barre :
+   terracotta (terre), vert palmeraie, jaune soleil, encre nocturne.
+   =================================================================== */
+:root{
+  --ink:        #14181B;
+  --ink-soft:   #23282C;
+  --paper:      #FBF6EE;
+  --paper-dim:  #F0E9DA;
+  --terre:      #B8460E;
+  --terre-dark: #8C3308;
+  --palm:       #0B5D3B;
+  --palm-dark:  #084A2F;
+  --soleil:     #F5B700;
+  --stone:      #6B6259;
+  --line:       #E4DAC6;
 
-        header h1 {
-            margin: 0 0 5px 0;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
 
-        .global-rating {
-            font-size: 1.2em;
-            color: var(--bj-yellow);
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
+  --radius: 14px;
+  --shadow: 0 8px 30px rgba(20,24,27,0.10);
+}
 
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-            margin-bottom: 25px;
-        }
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.5;
+}
+h1,h2,h3{ font-family:var(--font-display); margin:0; }
+a{ color:inherit; }
+button{ font-family:inherit; }
+img{ max-width:100%; display:block; }
 
-        /* Bouton vocal */
-        .btn-vocal {
-            background: var(--bj-yellow);
-            color: #000;
-            border: 0;
-            padding: 15px 35px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.1em;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
 
-        .btn-vocal:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-        }
+:focus-visible{
+  outline:3px solid var(--soleil);
+  outline-offset:2px;
+}
 
-        #resultat {
-            margin-top: 15px;
-            font-weight: bold;
-            color: var(--bj-yellow);
-            background: rgba(0, 0, 0, 0.2);
-            display: inline-block;
-            padding: 8px 15px;
-            border-radius: 10px;
-        }
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+}
 
-        /* Menu Burger & Nav */
-        .burger {
-            font-size: 28px;
-            background: var(--dark-green);
-            color: white;
-            padding: 12px 20px;
-            cursor: pointer;
-            display: inline-block;
-            border-bottom-right-radius: 10px;
-        }
+/* ---------- Topbar ---------- */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 20px;
+  background:var(--ink);
+  color:var(--paper);
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--font-display); font-weight:600; font-size:1.15rem;
+  letter-spacing:0.2px;
+}
+.brand .flag{ display:inline-flex; width:22px; height:16px; border-radius:2px; overflow:hidden; box-shadow:0 0 0 1px rgba(255,255,255,0.15); }
+.brand .flag span{ flex:1; }
+.brand .flag .g{ background:var(--palm); }
+.brand .flag .y{ background:var(--soleil); }
+.brand .flag .r{ background:#D6431E; }
 
-        nav {
-            display: none;
-            background: var(--dark-green);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+.menu-toggle{
+  background:none; border:1px solid rgba(251,246,238,0.25);
+  color:var(--paper); border-radius:10px; padding:8px 12px;
+  cursor:pointer; font-size:1.1rem;
+}
+.menu-toggle:hover{ background:rgba(251,246,238,0.08); }
 
-        nav a {
-            display: block;
-            padding: 15px 20px;
-            color: white;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            font-weight: 500;
-            cursor: pointer;
-        }
+nav#drawer{
+  position:fixed; inset:0 0 0 auto; width:min(320px, 86vw);
+  background:var(--ink-soft); color:var(--paper);
+  transform:translateX(100%); transition:transform 0.28s ease;
+  z-index:60; padding:22px 20px; box-shadow:-10px 0 30px rgba(0,0,0,0.3);
+}
+nav#drawer.open{ transform:translateX(0); }
+nav#drawer .close-drawer{
+  background:none; border:0; color:var(--paper); font-size:1.4rem;
+  cursor:pointer; float:right; margin-bottom:20px;
+}
+nav#drawer ul{ list-style:none; padding:0; margin:40px 0 0; display:flex; flex-direction:column; gap:4px; }
+nav#drawer button.nav-link{
+  width:100%; text-align:left; background:none; border:0; color:var(--paper);
+  padding:14px 10px; font-size:1.02rem; border-radius:10px; cursor:pointer;
+  display:flex; align-items:center; gap:12px;
+}
+nav#drawer button.nav-link:hover{ background:rgba(251,246,238,0.08); }
+#scrim{
+  position:fixed; inset:0; background:rgba(20,24,27,0.5); z-index:55;
+  opacity:0; pointer-events:none; transition:opacity 0.28s ease;
+}
+#scrim.show{ opacity:1; pointer-events:auto; }
 
-        nav a:hover {
-            background: var(--bj-green);
-        }
+/* ---------- Hero / voice ---------- */
+.hero{
+  background:var(--ink);
+  color:var(--paper);
+  padding:64px 20px 56px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(600px 300px at 15% -10%, rgba(11,93,59,0.45), transparent),
+    radial-gradient(500px 260px at 90% 110%, rgba(184,70,14,0.35), transparent);
+  pointer-events:none;
+}
+.hero-inner{ position:relative; max-width:720px; margin:0 auto; }
+.eyebrow{
+  font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--soleil); margin-bottom:14px;
+}
+.hero h1{ font-size:clamp(2rem, 5vw, 3.1rem); font-weight:600; line-height:1.08; }
+.hero .rating{ margin-top:14px; color:var(--soleil); font-family:var(--font-mono); font-size:0.95rem; }
+.hero p.tag{ margin:16px auto 0; max-width:480px; opacity:0.82; font-size:1.05rem; }
 
-        /* Gestion des espaces */
-        .zone-espace {
-            display: none;
-        }
-        #espaceClient {
-            display: block;
-        }
+/* Waveform mic */
+.voice-zone{ margin-top:34px; display:flex; flex-direction:column; align-items:center; gap:16px; }
+.waveform{ display:flex; align-items:flex-end; gap:4px; height:44px; }
+.waveform i{
+  display:block; width:5px; border-radius:3px;
+  background:linear-gradient(180deg, var(--soleil), var(--terre));
+  height:12px; opacity:0.55;
+}
+.waveform.live i{ animation:bounce 0.9s ease-in-out infinite; }
+.waveform i:nth-child(1){ animation-delay:0s; }
+.waveform i:nth-child(2){ animation-delay:0.08s; }
+.waveform i:nth-child(3){ animation-delay:0.16s; }
+.waveform i:nth-child(4){ animation-delay:0.24s; }
+.waveform i:nth-child(5){ animation-delay:0.32s; }
+.waveform i:nth-child(6){ animation-delay:0.24s; }
+.waveform i:nth-child(7){ animation-delay:0.16s; }
+.waveform i:nth-child(8){ animation-delay:0.08s; }
+.waveform i:nth-child(9){ animation-delay:0s; }
+@keyframes bounce{
+  0%,100%{ height:12px; opacity:0.55; }
+  50%{ height:40px; opacity:1; }
+}
 
-        /* Design de l'Intégration du Flyer (Vendeur) */
-        .flyer-section {
-            background: white;
-            margin: 25px;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border-left: 10px solid var(--bj-green);
-        }
+.btn-vocal{
+  background:var(--soleil); color:var(--ink);
+  border:0; padding:16px 34px; border-radius:40px;
+  font-weight:700; font-size:1.05rem; cursor:pointer;
+  box-shadow:0 10px 24px rgba(245,183,0,0.28);
+  transition:transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-vocal:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(245,183,0,0.35); }
+.btn-vocal:active{ transform:translateY(0); }
+.btn-vocal[aria-pressed="true"]{ background:var(--terre); color:var(--paper); }
 
-        .flyer-title {
-            color: var(--bj-green);
-            text-align: center;
-            margin-top: 0;
-            font-size: 1.8em;
-        }
+#resultat{
+  font-family:var(--font-mono); font-size:0.92rem; color:var(--paper);
+  background:rgba(251,246,238,0.08); border:1px solid rgba(251,246,238,0.16);
+  padding:10px 18px; border-radius:10px; min-height:1.4em;
+}
 
-        .pricing-badge {
-            background: var(--bj-red);
-            color: white;
-            display: block;
-            width: fit-content;
-            margin: 15px auto;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: bold;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
+/* ---------- Sections ---------- */
+.section{
+  max-width:1080px; margin:0 auto; padding:48px 20px;
+}
+.section-head{ margin-bottom:28px; text-align:center; }
+.section-head .eyebrow{ color:var(--terre); }
+.section-head h2{ font-size:clamp(1.5rem, 3vw, 2rem); color:var(--ink); }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin: 25px 0;
-        }
+.zone-espace{ display:none; }
+.zone-espace.active{ display:block; }
 
-        .feature-item {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 12px;
-            border-bottom: 3px solid var(--bj-yellow);
-            font-size: 0.95em;
-            text-align: center;
-        }
+/* ---------- Product grid (market-stall cards) ---------- */
+.produits{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+  gap:22px;
+}
+.card{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  padding:18px; position:relative; box-shadow:var(--shadow);
+  display:flex; flex-direction:column; transition:transform 0.15s ease;
+}
+.card:hover{ transform:translateY(-4px); }
+.card .thumb{
+  aspect-ratio:1/1; border-radius:10px; overflow:hidden; background:var(--paper-dim);
+  margin-bottom:14px;
+}
+.card .thumb img{ width:100%; height:100%; object-fit:cover; }
+.card h3{ font-size:1.02rem; font-weight:600; margin-bottom:4px; }
+.card .meta{ font-size:0.82rem; color:var(--stone); margin-bottom:10px; }
+.card .stock{ font-family:var(--font-mono); font-size:0.78rem; font-weight:600; margin-bottom:12px; }
+.card .stock.ok{ color:var(--palm); }
+.card .stock.out{ color:var(--terre); }
 
-        .feature-item strong {
-            color: var(--dark-green);
-            display: block;
-            margin-bottom: 8px;
-            font-size: 1.1em;
-        }
+/* Physical market price-tag */
+.price-tag{
+  align-self:flex-start;
+  position:relative;
+  background:var(--terre); color:var(--paper);
+  font-family:var(--font-mono); font-weight:600; font-size:0.98rem;
+  padding:8px 14px 8px 22px; border-radius:3px 10px 10px 3px;
+  transform:rotate(-2deg);
+  margin:2px 0 14px;
+}
+.price-tag::before{
+  content:""; position:absolute; left:8px; top:50%; transform:translateY(-50%);
+  width:6px; height:6px; border-radius:50%; background:var(--paper);
+}
 
-        .stats-bar {
-            background: var(--dark-green);
-            color: white;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 25px;
-            text-align: center;
-        }
+.btn-buy{
+  margin-top:auto;
+  background:var(--palm); color:var(--paper);
+  border:0; padding:12px; border-radius:10px; font-weight:600; cursor:pointer;
+  transition:background 0.15s ease;
+}
+.btn-buy:hover{ background:var(--palm-dark); }
+.btn-buy:disabled{ background:var(--stone); cursor:not-allowed; }
 
-        .stat-box h3 {
-            margin: 0;
-            font-size: 1.8em;
-            color: var(--bj-yellow);
-        }
+.filters{
+  display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:26px;
+}
+.filters button{
+  background:var(--paper); border:1px solid var(--line); color:var(--ink);
+  padding:8px 16px; border-radius:20px; font-size:0.88rem; cursor:pointer;
+}
+.filters button[aria-pressed="true"]{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
 
-        /* Grille des Produits */
-        .produits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-            padding: 20px;
-        }
+/* ---------- Vendor space ---------- */
+.flyer{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  padding:34px; box-shadow:var(--shadow);
+}
+.flyer h2{ text-align:center; color:var(--palm); font-size:1.6rem; }
+.flyer .lede{ text-align:center; color:var(--stone); max-width:520px; margin:8px auto 0; }
 
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border: 1px solid #eee;
-            transition: transform 0.2s;
-        }
+.pricing-badge{
+  width:fit-content; margin:22px auto; text-align:center;
+  background:var(--ink); color:var(--paper);
+  padding:14px 26px; border-radius:12px; font-family:var(--font-mono);
+}
+.pricing-badge b{ color:var(--soleil); font-size:1.15rem; }
+.pricing-badge small{ display:block; margin-top:4px; opacity:0.75; }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+.features-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+  gap:16px; margin:26px 0;
+}
+.feature-item{
+  background:var(--paper-dim); border-radius:10px; padding:18px;
+  border-top:3px solid var(--soleil);
+}
+.feature-item strong{ display:block; color:var(--palm-dark); margin-bottom:6px; }
+.feature-item{ font-size:0.92rem; color:var(--stone); }
 
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            background-color: #fafafa;
-            border-radius: 15px;
-            margin-bottom: 15px;
-        }
+.form-card{
+  max-width:520px; margin:26px auto 0; background:var(--paper-dim);
+  border-radius:var(--radius); padding:24px;
+}
+.field{ margin-bottom:14px; }
+.field label{ display:block; font-size:0.85rem; font-weight:600; margin-bottom:6px; }
+.field input, .field select, .field textarea{
+  width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:8px;
+  background:var(--paper); font-family:inherit; font-size:0.95rem;
+}
+.field .hint{ font-size:0.78rem; color:var(--stone); margin-top:4px; }
 
-        .prix-tag {
-            color: var(--bj-red);
-            font-size: 1.3em;
-            font-weight: bold;
-            margin: 10px 0;
-        }
+.stats-bar{
+  display:flex; flex-wrap:wrap; justify-content:space-around; gap:16px;
+  background:var(--ink); color:var(--paper); border-radius:12px; padding:22px; margin-top:26px;
+}
+.stat-box{ text-align:center; }
+.stat-box b{ display:block; font-family:var(--font-mono); font-size:1.6rem; color:var(--soleil); }
+.stat-box span{ font-size:0.82rem; opacity:0.8; }
 
-        .btn-buy {
-            background: var(--bj-green);
-            color: white;
-            border: 0;
-            padding: 12px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            transition: background 0.2s;
-        }
+/* ---------- Admin ---------- */
+.admin-card{
+  background:var(--paper); border:1px solid var(--soleil); border-left:6px solid var(--soleil);
+  border-radius:var(--radius); padding:26px; box-shadow:var(--shadow);
+}
+.admin-card ul{ list-style:none; padding:0; margin:14px 0 0; display:grid; gap:10px; }
+.admin-card li{
+  display:flex; justify-content:space-between; background:var(--paper-dim);
+  padding:12px 16px; border-radius:8px; font-size:0.92rem;
+}
+.status-ok{ color:var(--palm); font-weight:600; }
 
-        .btn-buy:hover {
-            background: var(--dark-green);
-        }
+/* ---------- Reviews ---------- */
+.review{
+  background:var(--paper); border:1px solid var(--line); border-left:4px solid var(--palm);
+  border-radius:10px; padding:16px 18px; margin-bottom:14px;
+}
+.review .stars{ color:var(--soleil); font-family:var(--font-mono); font-size:0.9rem; margin-bottom:6px; }
+.review .who{ color:var(--palm-dark); font-weight:600; }
 
-        /* Formulaires et Sections */
-        .section {
-            background: white;
-            margin: 25px;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
+.btn-secondary{
+  background:var(--ink); color:var(--paper); border:0; padding:11px 26px;
+  border-radius:10px; font-weight:600; cursor:pointer; margin-top:6px;
+}
+.btn-secondary:hover{ background:var(--ink-soft); }
 
-        input, textarea, select {
-            width: 100%;
-            max-width: 500px;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-family: inherit;
-        }
+/* ---------- Cart pill ---------- */
+#panier{
+  position:fixed; right:18px; bottom:18px; z-index:40;
+  background:var(--ink); color:var(--paper);
+  padding:13px 20px; border-radius:40px; font-family:var(--font-mono);
+  font-size:0.9rem; box-shadow:0 10px 24px rgba(20,24,27,0.3);
+  display:flex; align-items:center; gap:8px;
+}
+#panier b{ color:var(--soleil); }
 
-        .commentaire-item {
-            background: #f1f3f5;
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 5px solid var(--bj-green);
-            margin-bottom: 15px;
-        }
+/* ---------- Footer ---------- */
+.contact{
+  text-align:center; background:var(--paper-dim); padding:30px 20px; font-size:0.92rem; color:var(--stone);
+}
+.contact a{ color:var(--palm-dark); font-weight:600; text-decoration:none; }
+.contact .row{ margin:6px 0; }
 
-        .commentaire-item strong {
-            color: var(--dark-green);
-        }
+footer{
+  background:var(--ink); color:var(--paper); text-align:center;
+  padding:22px; font-size:0.85rem; opacity:0.85;
+}
 
-        .commentaire-stars {
-            color: var(--bj-yellow);
-            font-size: 0.9em;
-            margin-bottom: 5px;
-        }
-
-        /* Panier Flottant */
-        #panier {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            background: white;
-            padding: 15px 20px;
-            border-radius: 50px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            z-index: 1000;
-            font-weight: bold;
-            border: 2px solid var(--bj-green);
-        }
-
-        .contact-info {
-            text-align: center;
-            background: #f1f3f5;
-            padding: 20px;
-            margin-top: 30px;
-            font-size: 0.95em;
-        }
-
-        .contact-info a {
-            color: var(--bj-green);
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        footer {
-            background: linear-gradient(90deg, var(--bj-green), var(--dark-green));
-            color: white;
-            padding: 25px;
-            text-align: center;
-            font-weight: 500;
-        }
-    </style>
+@media (max-width:520px){
+  .hero{ padding:48px 16px 44px; }
+  .section{ padding:36px 16px; }
+}
+</style>
 </head>
 <body>
 
-    <div class="burger" onclick="menu()">☰</div>
+<div class="topbar">
+  <div class="brand">
+    <span class="flag" aria-hidden="true"><span class="g"></span><span class="y"></span><span class="r"></span></span>
+    Vocal Commerce Bénin
+  </div>
+  <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="drawer">
+    ☰ <span class="sr-only">Ouvrir le menu</span>
+  </button>
+</div>
 
-    <nav id="menu">
-        <a onclick="changerEspace('client')">🛒 Éspace Client (Accueil)</a>
-        <a onclick="changerEspace('vendeur')">📦 Éspace Vendeur (Publier)</a>
-        <a onclick="connexionAdmin()">🔒 Éspace Administrateur</a>
-        <a href="#avis" onclick="menu()">💬 Avis clients</a>
-    </nav>
+<div id="scrim"></div>
+<nav id="drawer" aria-label="Menu principal">
+  <button class="close-drawer" id="closeDrawer" aria-label="Fermer le menu">✕</button>
+  <ul>
+    <li><button class="nav-link" data-espace="client">🛒 Espace client</button></li>
+    <li><button class="nav-link" data-espace="vendeur">📦 Espace vendeur</button></li>
+    <li><button class="nav-link" id="navAdmin">🔒 Espace administrateur</button></li>
+    <li><button class="nav-link" data-scroll="#avis">💬 Avis clients</button></li>
+  </ul>
+</nav>
 
-    <header>
-        <h1>🇧🇯 Vocal Commerce Benin</h1>
-        <div class="global-rating">Note globale : ⭐⭐⭐⭐☆ (4.2/5 basé sur 148 avis)</div>
-        <p>Première Plateforme Vocale du Bénin — Marketplace Intelligente</p>
-        <button class="btn-vocal" onclick="vocal()">🎤 Lancer la recherche vocale</button>
-        <div><p id="resultat">En attente d'une commande...</p></div>
-    </header>
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Marché de Dantokpa · édition vocale</p>
+    <h1>Le marché qui vous écoute</h1>
+    <p class="rating">★★★★☆ 4,2/5 — 148 avis</p>
+    <p class="tag">Dites ce que vous cherchez, on s'occupe du reste. Achetez et vendez à la voix, partout au Bénin.</p>
 
-    <div id="espaceClient" class="zone-espace">
-        <h2 style="text-align:center; margin-top: 40px; color: var(--dark-green);">🛒 Articles disponibles</h2>
-        <div id="liste" class="produits"></div>
+    <div class="voice-zone">
+      <div class="waveform" id="waveform" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <button class="btn-vocal" id="btnVocal" aria-pressed="false">🎤 Lancer la recherche vocale</button>
+      <p id="resultat" role="status" aria-live="polite">En attente d'une commande…</p>
     </div>
-    <div id="espaceVendeur" class="zone-espace">
-        <div class="flyer-section">
-            <h2 class="flyer-title">📢 Vendez plus vite sur Vocal Commerce Benin !</h2>
-            <p style="text-align: center; font-size: 1.1em; color: #555;">Une visibilité maximale pour vos produits auprès de milliers d'acheteurs au Bénin.</p>
-            
-            <div class="pricing-badge">
-                TARIF UNIQUE : 2 000 FCFA / MOIS <br>
-                <span style="font-size: 0.85em; font-weight: normal;">✨ Profitez de 7 jours d'essai GRATUITS !</span>
-            </div>
+  </div>
+</header>
 
-            <div class="features-grid">
-                <div class="feature-item">
-                    <strong>🎤 Recherche Vocale</strong>
-                    Vos produits deviennent trouvables instantanément par la voix.
-                </div>
-                <div class="feature-item">
-                    <strong>💰 Zéro Commission</strong>
-                    Vous fixez votre prix de base, nous n'ajoutons que les 5% de marge système.
-                </div>
-                <div class="feature-item">
-                    <strong>⚡ Publication Express</strong>
-                    Mettez en ligne vos articles en moins d'une minute via le formulaire ci-dessous.
-                </div>
-            </div>
+<main>
 
-            <div class="section" style="max-width: 600px; margin: 20px auto; border-top: 4px solid var(--bj-green);">
-                <h3>📦 Publier un nouvel article</h3>
-                <label>Nom de l'article :</label>
-                <input type="text" id="addNom" placeholder="ex: iPhone 12 Pro"><br>
-                
-                <label>Catégorie :</label>
-                <select id="addCat">
-                    <option value="Téléphone">Téléphone</option>
-                    <option value="Samsung">Samsung</option>
-                    <option value="Pixel">Pixel</option>
-                    <option value="Gaming">Gaming</option>
-                    <option value="Informatique">Informatique</option>
-                    <option value="Vêtement">Vêtement</option>
-                </select><br>
+  <section id="espaceClient" class="zone-espace active section" aria-labelledby="titreClient">
+    <div class="section-head">
+      <p class="eyebrow">Étals du jour</p>
+      <h2 id="titreClient">Articles disponibles</h2>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filtrer par catégorie"></div>
+    <div id="liste" class="produits"></div>
+  </section>
 
-                <label>Prix d'achat de base (FCFA) :</label>
-                <input type="number" id="addPrix" placeholder="ex: 400000"><br>
-                <p style="font-size: 0.85em; color: #666; margin-top: -5px;">*Note : Le système ajoutera automatiquement 5% de marge sur le prix final affiché aux clients.</p>
+  <section id="espaceVendeur" class="zone-espace section" aria-labelledby="titreVendeur">
+    <div class="flyer">
+      <h2 id="titreVendeur">Vendez plus vite sur Vocal Commerce Bénin</h2>
+      <p class="lede">Une visibilité maximale pour vos produits auprès de milliers d'acheteurs au Bénin.</p>
 
-                <button class="btn-buy" onclick="vendeurAjouterProduit()">Mettre le produit en ligne</button>
-            </div>
+      <div class="pricing-badge">
+        <b>2 000 FCFA / mois</b>
+        <small>✨ 7 jours d'essai gratuits</small>
+      </div>
 
-            <div class="stats-bar">
-                <div class="stat-box"><h3>500+</h3><p style="margin:5px 0 0 0;">Clients actifs</p></div>
-                <div class="stat-box"><h3>30+</h3><p style="margin:5px 0 0 0;">Vendeurs inscrits</p></div>
-                <div class="stat-box"><h3>MTN / Moov</h3><p style="margin:5px 0 0 0;">Paiements sécurisés</p></div>
-            </div>
+      <div class="features-grid">
+        <div class="feature-item"><strong>🎤 Recherche vocale</strong>Vos produits deviennent trouvables instantanément par la voix.</div>
+        <div class="feature-item"><strong>💰 Zéro commission cachée</strong>Vous fixez votre prix de base ; seuls 5 % de marge système s'ajoutent.</div>
+        <div class="feature-item"><strong>⚡ Publication express</strong>Mettez un article en ligne en moins d'une minute.</div>
+      </div>
+
+      <form class="form-card" id="formVendeur">
+        <h3 style="margin-bottom:14px;">Publier un nouvel article</h3>
+        <div class="field">
+          <label for="addNom">Nom de l'article</label>
+          <input type="text" id="addNom" placeholder="ex : iPhone 12 Pro" required>
         </div>
-    </div>
-
-    <div id="espaceAdmin" class="zone-espace">
-        <div class="section" style="background: #fff3cd; border-left: 10px solid var(--bj-yellow); margin-top: 30px;">
-            <h2>🔒 Espace Administrateur Connecté</h2>
-            <p>Bienvenue sur votre console globale de contrôle de la plateforme.</p>
-            <div style="background: white; padding: 15px; border-radius: 10px; margin-top: 15px;">
-                <h4>Statistiques Générales :</h4>
-                <ul>
-                    <li>État des serveurs vocaux : <span style="color: green; font-weight: bold;">En ligne</span></li>
-                    <li>Modération des commentaires : <span style="font-weight: bold;">0 en attente</span></li>
-                </ul>
-            </div>
+        <div class="field">
+          <label for="addCat">Catégorie</label>
+          <select id="addCat">
+            <option>Téléphone</option>
+            <option>Samsung</option>
+            <option>Pixel</option>
+            <option>Gaming</option>
+            <option>Informatique</option>
+            <option>Télévision</option>
+            <option>Vêtement</option>
+          </select>
         </div>
-    </div>
-
-    <div id="panier">
-        🛒 Panier : <span id="total">0</span> article(s)
-    </div>
-
-    <div id="avis" class="section">
-        <h2 style="color: var(--dark-green);">💬 Avis & Commentaires</h2>
-        <input type="text" id="nom" placeholder="Votre nom complet"><br>
-        <textarea id="message" rows="3" placeholder="Laissez un commentaire sur la plateforme..."></textarea><br>
-        <button class="btn-buy" style="width: auto; padding: 10px 30px;" onclick="commenter()">Envoyer l'avis</button>
-        
-        <div id="avisListe" style="margin-top: 25px;">
-            <div class="commentaire-item">
-                <div class="commentaire-stars">⭐⭐⭐⭐⭐</div>
-                <strong>Koffi M. (Cotonou) :</strong> 
-                "Franchement la commande vocale marche super bien ! J'ai juste dit 'Acheter iPhone 11' et ça s'est mis directement dans mon panier. Vraiment pratique quand on n'a pas envie de taper."
-            </div>
-            <div class="commentaire-item">
-                <div class="commentaire-stars">⭐⭐⭐⭐☆</div>
-                <strong>Ablavi D. (Porto-Novo) :</strong> 
-                "Super concept au Bénin. Les prix sont très transparents et l'interface aux couleurs du pays est magnifique. Livraison rapide, je recommande."
-            </div>
-            <div class="commentaire-item">
-                <div class="commentaire-stars">⭐⭐⭐⭐⭐</div>
-                <strong>Saliou T. (Parakou) :</strong> 
-                "En tant que vendeur, la formule à 2000 FCFA est très rentable. J'ai pu ajouter mes articles facilement et l'application automatique de la marge m'évite de refaire tous les calculs."
-            </div>
+        <div class="field">
+          <label for="addPrix">Prix d'achat de base (FCFA)</label>
+          <input type="number" id="addPrix" min="0" placeholder="ex : 400000" required>
+          <p class="hint">Le système ajoute automatiquement 5 % de marge sur le prix final affiché aux clients.</p>
         </div>
+        <button type="submit" class="btn-buy">Mettre le produit en ligne</button>
+      </form>
+
+      <div class="stats-bar">
+        <div class="stat-box"><b>500+</b><span>Clients actifs</span></div>
+        <div class="stat-box"><b>30+</b><span>Vendeurs inscrits</span></div>
+        <div class="stat-box"><b>MTN / Moov</b><span>Paiements sécurisés</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="espaceAdmin" class="zone-espace section" aria-labelledby="titreAdmin">
+    <div class="admin-card">
+      <h2 id="titreAdmin">Console administrateur</h2>
+      <p>Vue d'ensemble de l'état de la plateforme.</p>
+      <ul>
+        <li>Serveurs vocaux <span class="status-ok">● En ligne</span></li>
+        <li>Commentaires en attente de modération <span>0</span></li>
+        <li>Produits publiés <span id="adminCountProduits">—</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="avis" class="section" aria-labelledby="titreAvis">
+    <div class="section-head">
+      <p class="eyebrow">Ce qu'on en dit</p>
+      <h2 id="titreAvis">Avis &amp; commentaires</h2>
     </div>
 
-    <div class="contact-info">
-        <strong>Besoin d'aide ? Contactez le support Vocal Commerce</strong><br>
-        📞 <a href="tel:+2290140109396">01 40 10 93 96</a> / <a href="tel:+2290162552778">01 62 55 27 78</a><br>
-        ✉️ dessouassonael51@gmail.com | 🌐 <a href="https://anovid51.github.io/vocal-commerce.bj" target="_blank">anovid51.github.io/vocal-commerce.bj</a>
-    </div>
+    <form class="form-card" id="formAvis" style="margin:0 0 30px;">
+      <div class="field">
+        <label for="nom">Votre nom complet</label>
+        <input type="text" id="nom" required>
+      </div>
+      <div class="field">
+        <label for="message">Votre commentaire</label>
+        <textarea id="message" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn-secondary">Envoyer l'avis</button>
+    </form>
 
-    <footer>
-        © 2026 Vocal Commerce Benin 🇧🇯 — Tous droits réservés.
-    </footer>
+    <div id="avisListe"></div>
+  </section>
 
-    <script>
-        // Catalogue d'articles - Photos réelles par produit
-        const produits = [
-            { nom: "iPhone 4", cat: "Téléphone", qualite: "⭐⭐ Occasion", etat: "Occasion", prix: 84000, stock: 5, img: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=500&q=80" },
-            { nom: "iPhone SE", cat: "Téléphone", qualite: "⭐⭐⭐⭐ Bon état", etat: "Occasion", prix: 231000, stock: 4, img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=500&q=80" },
-            { nom: "iPhone 11", cat: "Téléphone", qualite: "⭐⭐⭐ Occasion", etat: "Occasion", prix: 280875, stock: 5, img: "https://images.unsplash.com/photo-1573148195900-7845dcb9b127?w=500&q=80" },
-            { nom: "iPhone 11 Pro Max", cat: "Téléphone", qualite: "⭐⭐⭐⭐", etat: "Occasion", prix: 393225, stock: 4, img: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500&q=80" },
-            { nom: "iPhone 12", cat: "Téléphone", qualite: "⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 449400, stock: 5, img: "https://images.unsplash.com/photo-1605787020600-b9ebd5df1d07?w=500&q=80" },
-            { nom: "iPhone 13", cat: "Téléphone", qualite: "⭐⭐⭐⭐⭐ Premium", etat: "Neuf", prix: 561750, stock: 5, img: "https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=500&q=80" },
-            { nom: "iPhone 14", cat: "Téléphone", qualite: "⭐⭐⭐⭐⭐ Premium", etat: "Neuf", prix: 729750, stock: 4, img: "https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=500&q=80" },
-            { nom: "iPhone 15 Pro Max", cat: "Téléphone", qualite: "⭐⭐⭐⭐⭐ Premium", etat: "Neuf", prix: 1067325, stock: 4, img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&q=80" },
-            { nom: "Samsung Galaxy S24 Ultra", cat: "Samsung", qualite: "⭐⭐⭐⭐⭐ Premium", etat: "Neuf", prix: 997500, stock: 5, img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&q=80" },
-            { nom: "Samsung Galaxy A54", cat: "Samsung", qualite: "⭐⭐⭐⭐", etat: "Neuf", prix: 262500, stock: 8, img: "https://images.unsplash.com/photo-1601784551446-20c9e0969041?w=500&q=80" },
-            { nom: "Google Pixel 9 Pro", cat: "Pixel", qualite: "⭐⭐⭐⭐⭐", etat: "Neuf", prix: 840000, stock: 3, img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&q=80" },
-            { nom: "PlayStation 5", cat: "Gaming", qualite: "⭐⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 561750, stock: 3, img: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500&q=80" },
-            { nom: "PlayStation 4", cat: "Gaming", qualite: "⭐⭐⭐⭐ Occasion", etat: "Occasion", prix: 262500, stock: 5, img: "https://images.unsplash.com/photo-1486401899868-0e435da85128?w=500&q=80" },
-            { nom: "Manette PlayStation", cat: "Gaming", qualite: "⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 68250, stock: 10, img: "https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=500&q=80" },
-            { nom: "Ordinateur portable", cat: "Informatique", qualite: "⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 449400, stock: 5, img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80" },
-            { nom: "Smart TV", cat: "Télévision", qualite: "⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 337050, stock: 4, img: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500&q=80" },
-            { nom: "Chaussures sport", cat: "Vêtement", qualite: "⭐⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 47250, stock: 15, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80" },
-            { nom: "T-shirt Premium", cat: "Vêtement", qualite: "⭐⭐⭐⭐⭐ Neuf", etat: "Neuf", prix: 15750, stock: 20, img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80" }
-        ];
+</main>
 
-        let total = 0;
+<div id="panier" role="status" aria-live="polite">
+  🛒 Panier — <b id="total">0</b> article(s)
+</div>
 
-        function afficherProduits(liste = produits) {
-            let zone = document.getElementById("liste");
-            zone.innerHTML = "";
-            liste.sort((a, b) => b.qualite.localeCompare(a.qualite));
+<div class="contact">
+  <strong>Besoin d'aide ? Contactez le support Vocal Commerce Bénin</strong>
+  <p class="row">📞 <a href="tel:+2290162552778">01 62 55 27 78</a> · <a href="tel:+2290140109306">01 40 10 93 06</a></p>
+  <p class="row">✉️ <a href="mailto:dessouassianael51@gmail.com">dessouassianael51@gmail.com</a></p>
+  <p class="row">🌐 <a href="https://github.com/Anavid51" target="_blank" rel="noopener">github.com/Anavid51</a> · 💬 <a href="https://wa.me/2290162552778" target="_blank" rel="noopener">WhatsApp</a></p>
+</div>
 
-            liste.forEach(p => {
-                zone.innerHTML += `
-                    <div class="card">
-                        <img src="${p.img}" alt="${p.nom}">
-                        <h3>${p.nom}</h3>
-                        <p style="margin:5px 0; font-size:0.9em; color:#666;">Catégorie : ${p.cat} | État : ${p.etat}</p>
-                        <p style="margin:5px 0; font-size:0.9em;">Qualité : ${p.qualite}</p>
-                        <div class="prix-tag">${p.prix.toLocaleString()} FCFA</div>
-                        <p style="font-size:0.85em; font-weight:bold; color: ${p.stock > 0 ? 'green':'red'}">${p.stock > 0 ? '✅ Disponible' : '❌ Rupture'}</p>
-                        <button class="btn-buy" onclick="acheter('${p.nom}')">Acheter</button>
-                    </div>
-                `;
-            });
-        }
+<footer>
+  © 2026 Vocal Commerce Bénin 🇧🇯 — Développé par DESSOUASSI Anael · Tous droits réservés.
+</footer>
 
-        afficherProduits();
+<script>
+(function(){
+  "use strict";
 
-        function acheter(nom) {
-            total++;
-            document.getElementById("total").innerHTML = total;
-        }
+  /* ---------------- Data ---------------- */
+  // Chaque article porte son prix de marché de base (prixBase) : le prix affiché
+  // (prix) est calculé automatiquement avec la marge système de 5 %, comme pour
+  // les articles publiés par les vendeurs.
+  const MARGE = 1.05;
+  const produitsBruts = [
+    { nom:"iPhone 4", cat:"Téléphone", qualite:"Occasion", note:2, etat:"Occasion", prixBase:8000, stock:5, img:"https://images.unsplash.com/photo-1562232723-6949c130734d?w=500&q=80" },
+    { nom:"iPhone SE", cat:"Téléphone", qualite:"Bon état", note:4, etat:"Occasion", prixBase:45000, stock:4, img:"https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=500&q=80" },
+    { nom:"iPhone 11", cat:"Téléphone", qualite:"Occasion", note:3, etat:"Occasion", prixBase:55000, stock:5, img:"https://images.unsplash.com/photo-1573148195900-7845dcb9b127?w=500&q=80" },
+    { nom:"iPhone 11 Pro Max", cat:"Téléphone", qualite:"Très bon état", note:4, etat:"Occasion", prixBase:85000, stock:4, img:"https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500&q=80" },
+    { nom:"iPhone 12", cat:"Téléphone", qualite:"Neuf", note:4, etat:"Neuf", prixBase:180000, stock:5, img:"https://images.unsplash.com/photo-1605787020600-b9ebd5df1d07?w=500&q=80" },
+    { nom:"iPhone 13", cat:"Téléphone", qualite:"Premium", note:5, etat:"Neuf", prixBase:220000, stock:5, img:"https://images.unsplash.com/photo-1632661674596-df8be070a5c5?w=500&q=80" },
+    { nom:"iPhone 14", cat:"Téléphone", qualite:"Premium", note:5, etat:"Neuf", prixBase:300000, stock:4, img:"https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=500&q=80" },
+    { nom:"iPhone 15 Pro Max", cat:"Téléphone", qualite:"Premium", note:5, etat:"Neuf", prixBase:550000, stock:4, img:"https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&q=80" },
+    { nom:"Samsung Galaxy S24 Ultra", cat:"Samsung", qualite:"Premium", note:5, etat:"Neuf", prixBase:450000, stock:5, img:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&q=80" },
+    { nom:"Samsung Galaxy A54", cat:"Samsung", qualite:"Standard", note:4, etat:"Neuf", prixBase:110000, stock:8, img:"https://images.unsplash.com/photo-1601784551446-20c9e0969041?w=500&q=80" },
+    { nom:"Google Pixel 9 Pro", cat:"Pixel", qualite:"Premium", note:5, etat:"Neuf", prixBase:400000, stock:3, img:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&q=80" },
+    { nom:"PlayStation 5", cat:"Gaming", qualite:"Neuf", note:5, etat:"Neuf", prixBase:500000, stock:3, img:"https://images.unsplash.com/photo-1752262526779-bd65a9b83c25?w=500&q=80" },
+    { nom:"PlayStation 4", cat:"Gaming", qualite:"Occasion", note:4, etat:"Occasion", prixBase:100000, stock:5, img:"https://images.unsplash.com/photo-1486401899868-0e435da85128?w=500&q=80" },
+    { nom:"Manette PlayStation", cat:"Gaming", qualite:"Neuf", note:4, etat:"Neuf", prixBase:25000, stock:10, img:"https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=500&q=80" },
+    { nom:"Ordinateur portable", cat:"Informatique", qualite:"Neuf", note:4, etat:"Neuf", prixBase:180000, stock:5, img:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80" },
+    { nom:"Smart TV", cat:"Télévision", qualite:"Neuf", note:4, etat:"Neuf", prixBase:130000, stock:4, img:"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500&q=80" },
+    { nom:"Chaussures sport", cat:"Vêtement", qualite:"Neuf", note:5, etat:"Neuf", prixBase:15000, stock:15, img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80" },
+    { nom:"T-shirt Premium", cat:"Vêtement", qualite:"Neuf", note:5, etat:"Neuf", prixBase:5000, stock:20, img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80" }
+  ];
 
-        function changerEspace(espaceCible) {
-            document.getElementById("espaceClient").style.display = "none";
-            document.getElementById("espaceVendeur").style.display = "none";
-            document.getElementById("espaceAdmin").style.display = "none";
+  const produits = produitsBruts.map(p => ({
+    ...p,
+    prix: Math.round(p.prixBase * MARGE)
+  }));
 
-            if (espaceCible === 'client') {
-                document.getElementById("espaceClient").style.display = "block";
-            } else if (espaceCible === 'vendeur') {
-                document.getElementById("espaceVendeur").style.display = "block";
-            } else if (espaceCible === 'admin') {
-                document.getElementById("espaceAdmin").style.display = "block";
-            }
-            menu();
-        }
+  const avisInitiaux = [
+    { note:5, nom:"Koffi M. (Cotonou)", texte:"La commande vocale marche vraiment bien. J'ai dit « Acheter iPhone 11 » et c'est parti direct dans le panier." },
+    { note:4, nom:"Ablavi D. (Porto-Novo)", texte:"Beau concept béninois, prix transparents, livraison rapide. Je recommande." },
+    { note:5, nom:"Saliou T. (Parakou)", texte:"Vendeur ici : la formule à 2000 FCFA est rentable et la marge se calcule toute seule." }
+  ];
 
-        function menu() {
-            let m = document.getElementById("menu");
-            m.style.display = (m.style.display == "block") ? "none" : "block";
-        }
+  /* ---------------- State ---------------- */
+  const state = {
+    filtreCat: "Tous",
+    panier: 0,
+    produits: produits.slice()
+  };
 
-        function connexionAdmin() {
-            let mdp = prompt("Mot de passe administrateur secret :");
-            if (mdp === "Anael2009") {
-                alert("Accès accordé. Bienvenue Anael !");
-                changerEspace('admin');
-            } else {
-                alert("Mot de passe incorrect.");
-                menu();
-            }
-        }
+  /* ---------------- DOM refs ---------------- */
+  const $ = (sel) => document.querySelector(sel);
+  const listeEl = $("#liste");
+  const filtersEl = $("#filters");
+  const resultatEl = $("#resultat");
+  const totalEl = $("#total");
+  const avisListeEl = $("#avisListe");
+  const waveformEl = $("#waveform");
+  const btnVocal = $("#btnVocal");
 
-        function vendeurAjouterProduit() {
-            let nom = document.getElementById("addNom").value;
-            let prixInitial = parseFloat(document.getElementById("addPrix").value);
-            let categorie = document.getElementById("addCat").value;
+  /* ---------------- Rendering ---------------- */
+  function formatFCFA(n){
+    return n.toLocaleString("fr-FR") + " FCFA";
+  }
 
-            if(!nom || isNaN(prixInitial) || !categorie) {
-                alert("Veuillez remplir correctement tous les champs !");
-                return;
-            }
+  function renderFilters(){
+    const cats = ["Tous", ...new Set(produits.map(p => p.cat))];
+    filtersEl.innerHTML = cats.map(c =>
+      <button data-cat="${c}" aria-pressed="${c === state.filtreCat}">${c}</button>
+    ).join("");
+  }
 
-            let prixFinal = Math.round(prixInitial * 1.05);
+  function renderProduits(){
+    const liste = state.filtreCat === "Tous"
+      ? state.produits
+      : state.produits.filter(p => p.cat === state.filtreCat);
 
-            produits.push({
-                nom: nom,
-                cat: categorie,
-                qualite: "⭐⭐⭐⭐⭐ Neuf",
-                etat: "Neuf",
-                prix: prixFinal,
-                stock: 1,
-                img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&q=80"
-            });
+    listeEl.innerHTML = liste.map(p => `
+      <article class="card">
+        <div class="thumb"><img src="${p.img}" alt="${p.nom}" loading="lazy"></div>
+        <h3>${p.nom}</h3>
+        <p class="meta">${p.cat} · ${p.etat} · ${"★".repeat(p.note)}${"☆".repeat(5 - p.note)}</p>
+        <p class="stock ${p.stock > 0 ? "ok" : "out"}">${p.stock > 0 ? "Disponible · " + p.stock + " en stock" : "Rupture de stock"}</p>
+        <span class="price-tag">${formatFCFA(p.prix)}</span>
+        <button class="btn-buy" data-nom="${p.nom}" ${p.stock === 0 ? "disabled" : ""}>
+          ${p.stock === 0 ? "Indisponible" : "Acheter"}
+        </button>
+      </article>
+    `).join("");
 
-            alert(Succès ! Votre article "${nom}" est publié au prix de ${prixFinal.toLocaleString()} FCFA.);
-            
-            document.getElementById("addNom").value = "";
-            document.getElementById("addPrix").value = "";
-            afficherProduits();
-            changerEspace('client');
-        }
+    document.getElementById("adminCountProduits").textContent = state.produits.length;
+  }
 
-        function commenter() {
-            let nom = document.getElementById("nom").value;
-            let message = document.getElementById("message").value;
+  function renderAvis(liste){
+    avisListeEl.innerHTML = liste.map(a => `
+      <div class="review">
+        <div class="stars">${"★".repeat(a.note)}${"☆".repeat(5 - a.note)}</div>
+        <p><span class="who">${a.nom} :</span> « ${a.texte} »</p>
+      </div>
+    `).join("");
+  }
 
-            if(nom.trim() === "" || message.trim() === "") {
-                alert("Veuillez remplir tous les champs !");
-                return;
-            }
+  /* ---------------- Interactions ---------------- */
+  function changerEspace(id){
+    document.querySelectorAll(".zone-espace").forEach(z => z.classList.remove("active"));
+    const target = document.getElementById("espace" + id.charAt(0).toUpperCase() + id.slice(1));
+    if (target) target.classList.add("active");
+    fermerDrawer();
+  }
 
-            let nouvelAvis = `
-                <div class="commentaire-item">
-                    <div class="commentaire-stars">⭐⭐⭐⭐⭐</div>
-                    <strong>${nom} :</strong> ${message}
-                </div>
-            `;
-            
-            let zoneListe = document.getElementById("avisListe");
-            zoneListe.innerHTML = nouvelAvis + zoneListe.innerHTML;
-            
-            document.getElementById("nom").value = "";
-            document.getElementById("message").value = "";
-        }
+  function ouvrirDrawer(){
+    $("#drawer").classList.add("open");
+    $("#scrim").classList.add("show");
+    $("#menuToggle").setAttribute("aria-expanded", "true");
+  }
+  function fermerDrawer(){
+    $("#drawer").classList.remove("open");
+    $("#scrim").classList.remove("show");
+    $("#menuToggle").setAttribute("aria-expanded", "false");
+  }
 
-        function vocal() {
-            if (!("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window)) {
-                alert("Reconnaissance vocale non disponible sur ce navigateur. Utilisez Google Chrome.");
-                return;
-            }
+  function acheter(nom){
+    state.panier++;
+    totalEl.textContent = state.panier;
+    resultatEl.textContent = Ajouté au panier : ${nom};
+  }
 
-            changerEspace('client');
+  function lancerRechercheVocale(){
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition){
+      resultatEl.textContent = "Reconnaissance vocale non prise en charge sur ce navigateur.";
+      return;
+    }
+    const reco = new SpeechRecognition();
+    reco.lang = "fr-FR";
+    reco.interimResults = false;
 
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            let reconnaissance = new SpeechRecognition();
-            reconnaissance.lang = "fr-FR";
-            reconnaissance.start();
+    btnVocal.setAttribute("aria-pressed", "true");
+    waveformEl.classList.add("live");
+    resultatEl.textContent = "Je vous écoute…";
 
-            document.getElementById("resultat").innerHTML = "🎙️ Écoute en cours... Dites 'Acheter [produit]' ou un mot-clé.";
+    reco.onresult = (event) => {
+      const dit = event.results[0][0].transcript;
+      const trouve = produits.find(p => dit.toLowerCase().includes(p.nom.toLowerCase()));
+      if (trouve){
+        acheter(trouve.nom);
+      } else {
+        resultatEl.textContent = Vous avez dit : « ${dit} ». Aucun article correspondant trouvé.;
+      }
+    };
+    reco.onerror = () => {
+      resultatEl.textContent = "Je n'ai rien entendu, réessayez.";
+    };
+    reco.onend = () => {
+      btnVocal.setAttribute("aria-pressed", "false");
+      waveformEl.classList.remove("live");
+    };
+    reco.start();
+  }
 
-            reconnaissance.onresult = function(e) {
-                let texte = e.results[0][0].transcript.toLowerCase().trim();
-                document.getElementById("resultat").innerHTML = "Entendu : " + texte;
+  /* ---------------- Events ---------------- */
+  $("#menuToggle").addEventListener("click", ouvrirDrawer);
+  $("#closeDrawer").addEventListener("click", fermerDrawer);
+  $("#scrim").addEventListener("click", fermerDrawer);
 
-                const déclencheursAchat = ["acheter", "prend", "commande", "ajoute", "ajouter"];
-                let actionAchatDétectée = false;
-                let produitCible = texte;
+  document.querySelectorAll("[data-espace]").forEach(btn =>
+    btn.addEventListener("click", () => changerEspace(btn.dataset.espace))
+  );
+  $("#navAdmin").addEventListener("click", () => changerEspace("admin"));
+  document.querySelectorAll("[data-scroll]").forEach(btn =>
+    btn.addEventListener("click", () => {
+      fermerDrawer();
+      document.querySelector(btn.dataset.scroll).scrollIntoView({ behavior: "smooth" });
+    })
+  );
 
-                for (let mot of déclencheursAchat) {
-                    if (texte.startsWith(mot)) {
-                        produitCible = texte.replace(mot, "").trim();
-                        actionAchatDétectée = true;
-                        break;
-                    }
-                }
+  btnVocal.addEventListener("click", lancerRechercheVocale);
 
-                if (actionAchatDétectée) {
-                    let produitTrouve = produits.find(p => p.nom.toLowerCase().includes(produitCible) && p.stock > 0);
-                    
-                    if (produitTrouve) {
-                        acheter(produitTrouve.nom);
-                        document.getElementById("resultat").innerHTML = ✅ Ajouté : <strong>${produitTrouve.nom}</strong>;
-                        afficherProduits(produits); 
-                    } else {
-                        document.getElementById("resultat").innerHTML = ❌ "${produitCible}" indisponible ou introuvable.;
-                    }
-                } else {
-                    let resultat = produits.filter(p => 
-                        p.nom.toLowerCase().includes(texte) || 
-                        p.cat.toLowerCase().includes(texte)
-                    );
-                    afficherProduits(resultat);
-                }
-            };
+  listeEl.addEventListener("click", (e) => {
+    const btn = e.target.closest(".btn-buy");
+    if (btn && !btn.disabled) acheter(btn.dataset.nom);
+  });
 
-            reconnaissance.onerror = function() {
-                document.getElementById("resultat").innerHTML = "❌ Erreur de capture vocale.";
-            };
-        }
-    </script>
+  filtersEl.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-cat]");
+    if (!btn) return;
+    state.filtreCat = btn.dataset.cat;
+    renderFilters();
+    renderProduits();
+  });
+
+  $("#formVendeur").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nom = $("#addNom").value.trim();
+    const cat = $("#addCat").value;
+    const prixBase = parseFloat($("#addPrix").value);
+    if (!nom || !prixBase) return;
+
+    const prixFinal = Math.round(prixBase * 1.05);
+    state.produits.unshift({
+      nom, cat, qualite:"Neuf", note:5, etat:"Neuf", prix:prixFinal, stock:1,
+      img:"https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=500&q=80"
+    });
+    e.target.reset();
+    changerEspace("client");
+    renderFilters();
+    renderProduits();
+    resultatEl.textContent = Article publié : ${nom} (${formatFCFA(prixFinal)});
+  });
+
+  $("#formAvis").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nom = $("#nom").value.trim();
+    const texte = $("#message").value.trim();
+    if (!nom || !texte) return;
+    avisInitiaux.unshift({ note:5, nom, texte });
+    renderAvis(avisInitiaux);
+    e.target.reset();
+  });
+
+  /* ---------------- Init ---------------- */
+  renderFilters();
+  renderProduits();
+  renderAvis(avisInitiaux);
+})();
+</script>
 </body>
 </html>
-    
+      
