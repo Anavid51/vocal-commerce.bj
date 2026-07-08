@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -565,7 +565,7 @@ footer{
   function renderFilters(){
     const cats = ["Tous", ...new Set(produits.map(p => p.cat))];
     filtersEl.innerHTML = cats.map(c =>
-      <button data-cat="${c}" aria-pressed="${c === state.filtreCat}">${c}</button>
+      `<button data-cat="${c}" aria-pressed="${c === state.filtreCat}">${c}</button>`
     ).join("");
   }
 
@@ -621,7 +621,7 @@ footer{
   function acheter(nom){
     state.panier++;
     totalEl.textContent = state.panier;
-    resultatEl.textContent = Ajouté au panier : ${nom};
+    resultatEl.textContent = `Ajouté au panier : ${nom}`;
   }
 
   function lancerRechercheVocale(){
@@ -644,7 +644,7 @@ footer{
       if (trouve){
         acheter(trouve.nom);
       } else {
-        resultatEl.textContent = Vous avez dit : « ${dit} ». Aucun article correspondant trouvé.;
+        resultatEl.textContent = `Vous avez dit : « ${dit} ». Aucun article correspondant trouvé.`;
       }
     };
     reco.onerror = () => {
@@ -704,7 +704,7 @@ footer{
     changerEspace("client");
     renderFilters();
     renderProduits();
-    resultatEl.textContent = Article publié : ${nom} (${formatFCFA(prixFinal)});
+    resultatEl.textContent = `Article publié : ${nom} (${formatFCFA(prixFinal)})`;
   });
 
   $("#formAvis").addEventListener("submit", (e) => {
@@ -725,4 +725,3 @@ footer{
 </script>
 </body>
 </html>
-      
